@@ -14,6 +14,7 @@ export default defineConfig({
         main: path.resolve(import.meta.dirname, 'index.html'),
         matchday: path.resolve(import.meta.dirname, 'matchday.html'),
         lab: path.resolve(import.meta.dirname, 'lab.html'),
+        drop: path.resolve(import.meta.dirname, 'drop.html'),
       },
     },
   },

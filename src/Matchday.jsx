@@ -19,7 +19,8 @@ const TILE_COLORS = ['ink', 'green', 'amber', 'paper']
 const money = (n) => `$${Number(n).toFixed(2)}`
 const BADGE = 'SINCE 2017 ✦ 270K+ ORDERS ✦ 3,000+ STYLES ✦ '
 
-export default function Matchday() {
+/** @param {{ hero?: import('react').ReactNode }} props */
+export default function Matchday({ hero = null }) {
   const root = useRef(null)
 
   useEffect(() => initSmoothScroll(), [])
@@ -41,18 +42,22 @@ export default function Matchday() {
         .to('.curtain-logo', { opacity: 0, y: -30, duration: 0.4, delay: 0.2 })
         .to('.curtain i', { yPercent: -100, duration: 0.9, stagger: 0.09, ease: 'expo.inOut' }, '-=0.1')
         .set('.curtain', { display: 'none' })
-        .from('.hero .h-word', { yPercent: 110, duration: 1, stagger: 0.1, ease: 'expo.out' }, '-=0.5')
-        .from('.fan-card', { y: 160, opacity: 0, rotate: 0, duration: 1.1, stagger: 0.12, ease: 'expo.out' }, '-=0.8')
-        .from('.badge, .sticker', { scale: 0, rotate: -90, duration: 0.8, stagger: 0.1, ease: 'back.out(1.7)' }, '-=0.6')
-        .from('.hero-foot > *, .md-nav', { y: 24, opacity: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out' }, '-=0.6')
+      if (hero) {
+        tl.from('.md-nav', { y: -24, opacity: 0, duration: 0.7, ease: 'power3.out' }, '-=0.4')
+      } else {
+        tl.from('.hero .h-word', { yPercent: 110, duration: 1, stagger: 0.1, ease: 'expo.out' }, '-=0.5')
+          .from('.fan-card', { y: 160, opacity: 0, rotate: 0, duration: 1.1, stagger: 0.12, ease: 'expo.out' }, '-=0.8')
+          .from('.badge, .sticker', { scale: 0, rotate: -90, duration: 0.8, stagger: 0.1, ease: 'back.out(1.7)' }, '-=0.6')
+          .from('.hero-foot > *, .md-nav', { y: 24, opacity: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out' }, '-=0.6')
 
-      gsap.to('.badge-ring', { rotate: 360, duration: 18, repeat: -1, ease: 'none' })
-      gsap.to('.sticker', { rotate: '+=8', yoyo: true, repeat: -1, duration: 2.2, ease: 'sine.inOut' })
+        gsap.to('.badge-ring', { rotate: 360, duration: 18, repeat: -1, ease: 'none' })
+        gsap.to('.sticker', { rotate: '+=8', yoyo: true, repeat: -1, duration: 2.2, ease: 'sine.inOut' })
 
-      // Hero fan parallax
-      gsap.utils.toArray('.fan-card').forEach((c, i) =>
-        gsap.to(c, { yPercent: -10 - i * 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } }),
-      )
+        // Hero fan parallax
+        gsap.utils.toArray('.fan-card').forEach((c, i) =>
+          gsap.to(c, { yPercent: -10 - i * 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } }),
+        )
+      }
 
       // Ticker reacts to scroll speed
       const mq = gsap.to('.tick-track', { xPercent: -50, repeat: -1, duration: 24, ease: 'none' })
@@ -96,6 +101,7 @@ export default function Matchday() {
         <a className="pill" href={`${STORE}/cart`} target="_blank" rel="noreferrer">Cart</a>
       </header>
 
+      {hero ? <section className="hero-liquid" id="top">{hero}</section> : (
       <section className="hero" id="top">
         <h1 aria-label="Kits for the stands.">
           <span className="h-line"><span className="h-word">KITS</span> <span className="h-word">FOR</span></span>
@@ -117,6 +123,7 @@ export default function Matchday() {
           <a className="btn btn-line" href="#customize">Customize yours</a>
         </div>
       </section>
+      )}
 
       <div className="tick" aria-hidden="true">
         <div className="tick-track">{[...Array(4)].flatMap((_, r) => TICKER.map((t) => <span key={r + t}>{t}<em>✦</em></span>))}</div>

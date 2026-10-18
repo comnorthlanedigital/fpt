@@ -1,0 +1,197 @@
+{
+ "featured": [
+  {
+   "img": "/img/j0.jpg",
+   "label": "Mexico \u00b7 Black & Gold"
+  },
+  {
+   "img": "/img/j1.jpg",
+   "label": "Mexico \u00b7 Aztec Green"
+  },
+  {
+   "img": "/img/j2.jpg",
+   "label": "Argentina \u00b7 Midnight"
+  },
+  {
+   "img": "/img/j3.jpg",
+   "label": "Brazil \u00b7 Sele\u00e7\u00e3o"
+  },
+  {
+   "img": "/img/j4.jpg",
+   "label": "France \u00b7 Les Bleus"
+  },
+  {
+   "img": "/img/j5.jpg",
+   "label": "Argentina \u00b7 Three Stars"
+  },
+  {
+   "img": "/img/j6.jpg",
+   "label": "Brazil \u00b7 Jordan Blue"
+  },
+  {
+   "img": "/img/j7.jpg",
+   "label": "Mexico \u00b7 Maroon"
+  }
+ ],
+ "shop": [
+  {
+   "title": "Liverpool 26/27 Special 1 Standard Kit",
+   "price": 45.99,
+   "handle": "liverpool-26-27-special-1-standard-kit",
+   "img": "/img/p0.jpg"
+  },
+  {
+   "title": "Man Utd 26/27 Special 2 Standard Kit",
+   "price": 45.99,
+   "handle": "man-utd-26-27-special-2-stantard-kit",
+   "img": "/img/p1.jpg"
+  },
+  {
+   "title": "Arsenal 26/27 Special 2 Standard Kit",
+   "price": 45.99,
+   "handle": "arsenal-26-27-special-2-standard-kit",
+   "img": "/img/p2.jpg"
+  },
+  {
+   "title": "R. Madrid 26/27 Special 5 Standard Kit",
+   "price": 45.99,
+   "handle": "r-madrid-26-27-special-5-standard-kit",
+   "img": "/img/p3.jpg"
+  },
+  {
+   "title": "Mexico Home 2026 Woman Kit",
+   "price": 40.99,
+   "handle": "mexico-home-2026-woman-kit-1",
+   "img": "/img/p4.jpg"
+  },
+  {
+   "title": "Argentina Last Dance Player Issue Kit",
+   "price": 60.99,
+   "handle": "argentina-last-dance-player-issue-kit",
+   "img": "/img/p5.jpg"
+  },
+  {
+   "title": "Chivas de Guadalajara 3rd 26/27 Standard Kit",
+   "price": 45.99,
+   "handle": "chivas-de-guadalajara-3rd-26-27-standard-kit",
+   "img": "/img/p6.jpg"
+  },
+  {
+   "title": "Brazil Home 2014 Retro / Neymar Jr 10",
+   "price": 45.99,
+   "handle": "sale-brazil-home-2010-retro-neymar-jr-10",
+   "img": "/img/p7.jpg"
+  },
+  {
+   "title": "Portugal Away 2004 Retro / C.Ronaldo 17",
+   "price": 40.99,
+   "handle": "sale-portugal-away-2004-retro-c-ronaldo-17",
+   "img": "/img/p8.jpg"
+  },
+  {
+   "title": "Juventu 26/27 Kids Complete Tracksuit 3",
+   "price": 60.99,
+   "handle": "juventu-26-27-kids-complete-tracksuit-3",
+   "img": "/img/p9.jpg"
+  },
+  {
+   "title": "Mexico 3rd 2026 Long Sleeve Player Issue Kit",
+   "price": 66.99,
+   "handle": "mexico-3rd-2026-long-sleeve-player-issue-kit",
+   "img": "/img/p10.jpg"
+  },
+  {
+   "title": "Bayern Mun 26/27 Hoodie Complete Training Suit Set 1",
+   "price": 35.99,
+   "handle": "bayern-mun-26-27-hoodie-complete-training-suit-set-1",
+   "img": "/img/p11.jpg"
+  }
+ ],
+ "collections": [
+  {
+   "title": "Bundesliga Jerseys",
+   "count": 41,
+   "handle": "bundesliga-jerseys"
+  },
+  {
+   "title": "Concept / Limited Edition Jerseys",
+   "count": 47,
+   "handle": "concept-special-limited-edition-jersey"
+  },
+  {
+   "title": "CONMEBOL Team Jerseys",
+   "count": 31,
+   "handle": "conmebol-team-jersey"
+  },
+  {
+   "title": "Kids/Baby/Woman Jerseys",
+   "count": 402,
+   "handle": "kids-jersey"
+  },
+  {
+   "title": "La Liga Jerseys",
+   "count": 93,
+   "handle": "la-liga-jersey"
+  },
+  {
+   "title": "Liga MX Jerseys",
+   "count": 105,
+   "handle": "liga-mx-jersey"
+  },
+  {
+   "title": "Ligue 1",
+   "count": 48,
+   "handle": "ligue-1s"
+  },
+  {
+   "title": "MLS Jerseys",
+   "count": 33,
+   "handle": "mls-jersey"
+  },
+  {
+   "title": "Other Leagues Jerseys",
+   "count": 40,
+   "handle": "other-leagues-jersey"
+  },
+  {
+   "title": "Player Issue Jerseys",
+   "count": 298,
+   "handle": "player-issue-jersey"
+  },
+  {
+   "title": "Premier League Jerseys",
+   "count": 132,
+   "handle": "premier-league-jersey"
+  },
+  {
+   "title": "Retro/Vintage Jerseys",
+   "count": 817,
+   "handle": "retro-vintage-jersey"
+  },
+  {
+   "title": "Serie A",
+   "count": 86,
+   "handle": "serie-as"
+  },
+  {
+   "title": "Shorts/Socks Set",
+   "count": 240,
+   "handle": "shorts-socks-set"
+  },
+  {
+   "title": "Training/Warm Up Sets",
+   "count": 522,
+   "handle": "soccer-shorts-and-sock"
+  },
+  {
+   "title": "Windbreakers/Hoodie Sets",
+   "count": 94,
+   "handle": "windbreakers-hoodie-sets"
+  },
+  {
+   "title": "World Cup Jerseys",
+   "count": 285,
+   "handle": "international-jersey"
+  }
+ ]
+}

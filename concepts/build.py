@@ -116,3 +116,23 @@ footer{{padding:50px 5vw;color:#7a705d;display:flex;justify-content:space-betwee
 for n, h in (('1-stadium-night', c1), ('2-matchday-editorial', c2), ('3-the-vault', c3)):
     open(f'concepts/{n}.html', 'w').write(h)
 print([p['title'] for p in VAULT[:8]])
+
+# ---------- embed images so pages work offline / in sandboxed viewers ----------
+import re, base64, io, urllib.request
+from PIL import Image
+cache = {}
+def embed(url):
+    if url not in cache:
+        raw = urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}), timeout=30).read()
+        im = Image.open(io.BytesIO(raw)).convert('RGB')
+        im.thumbnail((640, 640))
+        buf = io.BytesIO(); im.save(buf, 'JPEG', quality=72, optimize=True)
+        cache[url] = 'data:image/jpeg;base64,' + base64.b64encode(buf.getvalue()).decode()
+    return cache[url]
+for n in ('1-stadium-night', '2-matchday-editorial', '3-the-vault'):
+    f = f'concepts/{n}.html'
+    h = open(f).read()
+    h = re.sub(r'https://cdn\.shopify\.com[^"\']+', lambda m: embed(m.group(0)), h)
+    h = h.replace(' loading="lazy"', '')
+    open(f, 'w').write(h)
+print('embedded', len(cache), 'images')

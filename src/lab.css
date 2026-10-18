@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+
+/* shadcn theme tokens (dark, brand gold) so bg-card / text-muted-foreground etc. resolve */
+:root {
+  --background: #050605;
+  --foreground: #f4efe2;
+  --card: #0b0f0c;
+  --card-foreground: #f4efe2;
+  --muted-foreground: #9a9684;
+  --border: #ffffff1f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+}
+
+body { margin: 0; background: var(--background); color: var(--foreground); }
+
+.loader { width: 28px; height: 28px; border: 3px solid #ffffff33; border-top-color: #e8c35a; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }

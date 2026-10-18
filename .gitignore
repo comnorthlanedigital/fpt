@@ -3,3 +3,4 @@ dist/
 *.zip
 .DS_Store
 __pycache__/
+!fpt831-concepts.zip

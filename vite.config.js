@@ -16,6 +16,8 @@ export default defineConfig({
         lab: path.resolve(import.meta.dirname, 'lab.html'),
         drop: path.resolve(import.meta.dirname, 'drop.html'),
         liquid: path.resolve(import.meta.dirname, 'liquid.html'),
+        archive: path.resolve(import.meta.dirname, 'archive.html'),
+        sound: path.resolve(import.meta.dirname, 'sound.html'),
       },
     },
   },

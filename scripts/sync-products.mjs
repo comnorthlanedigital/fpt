@@ -3,7 +3,6 @@
 import { writeFile } from 'node:fs/promises'
 
 const STORES = {
-  fpt831: 'https://fpt831sportz.myshopify.com',
   fpt: 'https://fptsportz.myshopify.com',
 }
 

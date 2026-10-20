@@ -1,0 +1,49 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "FPT Matchday Night",
+    "theme_version": "1.0.0",
+    "theme_author": "FPTSPORTZ concept",
+    "theme_documentation_url": "https://fptsportz.myshopify.com",
+    "theme_support_url": "https://fptsportz.myshopify.com"
+  },
+  {
+    "name": "Brand colors",
+    "settings": [
+      { "type": "color", "id": "color_bg", "label": "Background", "default": "#050605" },
+      { "type": "color", "id": "color_panel", "label": "Panel / cards", "default": "#0b0f0c" },
+      { "type": "color", "id": "color_green", "label": "Deep green", "default": "#0b3d27" },
+      { "type": "color", "id": "color_green_dark", "label": "Darker green", "default": "#0e2a1d" },
+      { "type": "color", "id": "color_gold", "label": "Gold", "default": "#e8c35a" },
+      { "type": "color", "id": "color_gold_deep", "label": "Gold (deep)", "default": "#c9973a" },
+      { "type": "color", "id": "color_text", "label": "Text", "default": "#f4efe2" },
+      { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#a9a690" }
+    ]
+  },
+  {
+    "name": "Logo & favicon",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo (transparent PNG works best)" },
+      { "type": "range", "id": "logo_width", "label": "Logo height (px)", "min": 36, "max": 120, "step": 2, "default": 60 },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon (square, 32 x 32 or larger)" }
+    ]
+  },
+  {
+    "name": "Behavior",
+    "settings": [
+      { "type": "select", "id": "cart_type", "label": "Cart style", "options": [ { "value": "drawer", "label": "Slide-out drawer" }, { "value": "page", "label": "Cart page" } ], "default": "drawer" },
+      { "type": "checkbox", "id": "smooth_scroll", "label": "Smooth scrolling", "default": true },
+      { "type": "checkbox", "id": "animations", "label": "Scroll animations", "default": true },
+      { "type": "text", "id": "personalization_tag", "label": "Tag that turns OFF name & number on a product", "default": "no-personalization", "info": "Add this tag to products that can't be personalized, such as shin guards or gift cards." }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      { "type": "text", "id": "social_instagram", "label": "Instagram URL", "default": "https://instagram.com/fptsportz" },
+      { "type": "text", "id": "social_tiktok", "label": "TikTok URL" },
+      { "type": "text", "id": "social_facebook", "label": "Facebook URL" },
+      { "type": "text", "id": "social_youtube", "label": "YouTube URL" }
+    ]
+  }
+]

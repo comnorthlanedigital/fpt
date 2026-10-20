@@ -1,0 +1,24 @@
+<section class="page">
+  <div class="wrap wrap--narrow">
+    <h1 class="display">{{ 'customer.login' | t }}</h1>
+    {%- form 'customer_login', novalidate: 'novalidate' -%}
+      {{ form.errors | default_errors }}
+      <label class="field"><span>{{ 'customer.email' | t }}</span><input type="email" name="customer[email]" autocomplete="email" required></label>
+      {%- if form.password_needed -%}
+        <label class="field"><span>{{ 'customer.password' | t }}</span><input type="password" name="customer[password]" autocomplete="current-password" required></label>
+      {%- endif -%}
+      <button type="submit" class="btn btn--gold">{{ 'customer.login' | t }}</button>
+    {%- endform -%}
+
+    <details class="recover">
+      <summary>{{ 'customer.forgot' | t }}</summary>
+      {%- form 'recover_customer_password' -%}
+        {%- if form.posted_successfully? -%}<p role="status">{{ 'customer.recover_sent' | t }}</p>{%- endif -%}
+        {{ form.errors | default_errors }}
+        <label class="field"><span>{{ 'customer.email' | t }}</span><input type="email" name="email" autocomplete="email" required></label>
+        <button type="submit" class="btn btn--line">{{ 'customer.recover_submit' | t }}</button>
+      {%- endform -%}
+    </details>
+    <p><a class="link" href="{{ routes.account_register_url }}">{{ 'customer.register' | t }}</a></p>
+  </div>
+</section>

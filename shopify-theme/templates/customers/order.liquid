@@ -1,0 +1,37 @@
+<section class="page">
+  <div class="wrap">
+    <a class="link" href="{{ routes.account_url }}">&larr; {{ 'customer.account_title' | t }}</a>
+    <h1 class="display">{{ 'customer.order' | t }} {{ order.name }}</h1>
+    <p class="muted">{{ order.created_at | time_tag: format: 'date' }} &middot; {{ order.financial_status_label }} &middot; {{ order.fulfillment_status_label }}</p>
+
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>{{ 'cart.item' | t }}</th><th>{{ 'cart.quantity' | t }}</th><th>{{ 'cart.total' | t }}</th></tr></thead>
+        <tbody>
+          {%- for line_item in order.line_items -%}
+            <tr>
+              <td>
+                {{ line_item.title }}
+                {%- for property in line_item.properties -%}
+                  {%- if property.last != blank -%}<br><small>{{ property.first }}: {{ property.last }}</small>{%- endif -%}
+                {%- endfor -%}
+                {%- if line_item.fulfillment and line_item.fulfillment.tracking_url -%}
+                  <br><a class="link" href="{{ line_item.fulfillment.tracking_url }}">{{ line_item.fulfillment.tracking_company }} {{ line_item.fulfillment.tracking_number }}</a>
+                {%- endif -%}
+              </td>
+              <td>{{ line_item.quantity }}</td>
+              <td>{{ line_item.final_line_price | money }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+        <tfoot>
+          <tr><td colspan="2">{{ 'cart.subtotal' | t }}</td><td>{{ order.line_items_subtotal_price | money }}</td></tr>
+          {%- for shipping_method in order.shipping_methods -%}
+            <tr><td colspan="2">{{ shipping_method.title }}</td><td>{{ shipping_method.price | money }}</td></tr>
+          {%- endfor -%}
+          <tr><td colspan="2"><b>{{ 'cart.total' | t }}</b></td><td><b>{{ order.total_price | money }}</b></td></tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</section>

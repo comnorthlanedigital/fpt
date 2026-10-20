@@ -1,0 +1,21 @@
+<section class="tiles-sec">
+  <div class="wrap">
+    <h1 class="display">{{ page_title }}</h1>
+    <div class="tiles">
+      {%- for collection in collections -%}
+        {%- assign i0 = forloop.index0 -%}
+        {%- assign row = i0 | divided_by: 4 -%}
+        {%- assign palette = i0 | plus: row | modulo: 4 -%}
+        <a class="tile tile--{{ palette }}" href="{{ collection.url }}" data-reveal>
+          <span class="tile__n">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+          <h3>{{ collection.title }}</h3>
+          <span class="tile__c">{{ 'collection.products_count' | t: count: collection.all_products_count }} {% render 'icon', name: 'arrow' %}</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Collection list page" }
+{% endschema %}

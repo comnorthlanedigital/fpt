@@ -1,0 +1,77 @@
+<header class="header{% if section.settings.sticky %} header--sticky{% endif %}" data-header>
+  <div class="header__in">
+    <a class="header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 360 | image_tag: loading: 'eager', alt: shop.name, class: 'header__logo-img', widths: '120, 180, 240, 360', sizes: '180px' }}
+      {%- else -%}
+        <img class="header__logo-img" src="{{ 'fpt-logo.png' | asset_url }}" alt="{{ shop.name | escape }}" width="260" height="228" loading="eager">
+      {%- endif -%}
+    </a>
+
+    <nav class="header__nav" aria-label="Primary">
+      <ul>
+        {%- for link in section.settings.menu.links -%}
+          <li class="{% if link.links.size > 0 %}has-sub{% endif %}">
+            <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+            {%- if link.links.size > 0 -%}
+              <ul class="sub">
+                {%- for child in link.links -%}
+                  <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      {%- if section.settings.show_search -%}
+        <button type="button" class="icon-btn" data-search-toggle aria-label="{{ 'general.search' | t }}" aria-expanded="false" aria-controls="HeaderSearch">{% render 'icon', name: 'search' %}</button>
+      {%- endif -%}
+      {%- if shop.customer_accounts_enabled -%}
+        <a class="icon-btn header__account" href="{{ routes.account_url }}" aria-label="{{ 'general.account' | t }}">{% render 'icon', name: 'account' %}</a>
+      {%- endif -%}
+      <a class="icon-btn header__cart" href="{{ routes.cart_url }}" data-cart-toggle aria-label="{{ 'general.cart' | t }}">
+        {% render 'icon', name: 'cart' %}
+        <span class="cart-count" data-cart-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span>
+      </a>
+      <button type="button" class="icon-btn header__burger" data-menu-toggle aria-label="{{ 'general.menu' | t }}" aria-expanded="false" aria-controls="MobileNav">{% render 'icon', name: 'menu' %}</button>
+    </div>
+  </div>
+
+  {%- if section.settings.show_search -%}
+    <div class="header__search" id="HeaderSearch" hidden>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="searchbar">
+        <input type="hidden" name="type" value="product">
+        <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search_placeholder' | t }}" aria-label="{{ 'general.search' | t }}" autocomplete="off">
+        <button type="submit" class="btn btn--gold btn--sm">{{ 'search.submit' | t }}</button>
+      </form>
+    </div>
+  {%- endif -%}
+
+  <nav class="mobile-nav" id="MobileNav" aria-label="Mobile" hidden>
+    <ul>
+      {%- for link in section.settings.menu.links -%}
+        <li><a href="{{ link.url }}">{{ link.title }}</a>
+          {%- if link.links.size > 0 -%}
+            <ul>
+              {%- for child in link.links -%}<li><a href="{{ child.url }}">{{ child.title }}</a></li>{%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "show_search", "label": "Show search", "default": true },
+    { "type": "checkbox", "id": "sticky", "label": "Sticky header", "default": true }
+  ]
+}
+{% endschema %}

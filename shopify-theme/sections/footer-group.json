@@ -1,0 +1,20 @@
+{
+  "name": "Footer group",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "shop": { "type": "menu", "settings": { "title": "Shop", "menu": "footer" } },
+        "help": { "type": "text", "settings": { "title": "Help", "text": "<p>Orders ship in 6–10 working days.</p><p>Questions? <a href=\"mailto:customercare@fptsportz.com\">customercare@fptsportz.com</a></p>" } },
+        "news": { "type": "newsletter", "settings": { "title": "Join the crew" } }
+      },
+      "block_order": ["shop", "help", "news"],
+      "settings": {
+        "tagline": "Every club. Every era. Kits for the stands.",
+        "show_payment": true
+      }
+    }
+  },
+  "order": ["footer"]
+}

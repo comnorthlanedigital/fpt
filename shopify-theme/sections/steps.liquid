@@ -1,0 +1,39 @@
+<section class="steps-sec">
+  <div class="wrap">
+    <h2 class="display">{{ section.settings.heading }}</h2>
+    <ol class="steps">
+      {%- for block in section.blocks -%}
+        <li class="step" data-reveal {{ block.shopify_attributes }}>
+          <b>{{ forloop.index }}</b>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </li>
+      {%- endfor -%}
+    </ol>
+    {%- if section.settings.note != blank -%}
+      <div class="note" data-reveal>{{ section.settings.note }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Order steps",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "CLICK TO DOORSTEP" },
+    { "type": "richtext", "id": "note", "label": "Shipping note", "default": "<p>Orders ship in <strong>6–10 working days</strong> and are guaranteed within <strong>11–15</strong>. Questions? <a href=\"mailto:customercare@fptsportz.com\">customercare@fptsportz.com</a></p>" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Order" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Pick your kit and your name and number." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [ { "name": "Order steps" } ]
+}
+{% endschema %}

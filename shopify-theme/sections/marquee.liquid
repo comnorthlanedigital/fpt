@@ -1,0 +1,35 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="marquee marquee--{{ section.settings.style }}" data-marquee data-speed="{{ section.settings.speed }}" aria-hidden="true">
+    <div class="marquee__track" data-marquee-track>
+      {%- for i in (1..4) -%}
+        {%- for block in section.blocks -%}
+          <span class="marquee__item" {% if i == 1 %}{{ block.shopify_attributes }}{% endif %}>{{ block.settings.text }}<em>✦</em></span>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Marquee",
+  "settings": [
+    { "type": "select", "id": "style", "label": "Style", "options": [ { "value": "gold", "label": "Gold" }, { "value": "dark", "label": "Dark" }, { "value": "green", "label": "Green" } ], "default": "gold" },
+    { "type": "range", "id": "speed", "label": "Speed (seconds per loop)", "min": 12, "max": 60, "step": 2, "default": 26 }
+  ],
+  "blocks": [
+    { "type": "text", "name": "Text", "settings": [ { "type": "text", "id": "text", "label": "Text", "default": "New 26/27 kits" } ] }
+  ],
+  "presets": [
+    {
+      "name": "Marquee",
+      "blocks": [
+        { "type": "text", "settings": { "text": "New 26/27 kits" } },
+        { "type": "text", "settings": { "text": "Custom name & number" } },
+        { "type": "text", "settings": { "text": "Since 2017" } },
+        { "type": "text", "settings": { "text": "270K+ orders" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

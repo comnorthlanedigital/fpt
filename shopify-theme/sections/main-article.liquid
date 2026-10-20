@@ -1,0 +1,15 @@
+<article class="page">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">{{ article.published_at | time_tag: format: 'date' }}</p>
+    <h1 class="display">{{ article.title }}</h1>
+    {%- if article.image -%}
+      <div class="article__img">{{ article.image | image_url: width: 1200 | image_tag: loading: 'eager', alt: article.title, widths: '600, 900, 1200', sizes: '(min-width: 800px) 800px, 92vw' }}</div>
+    {%- endif -%}
+    <div class="rte">{{ article.content }}</div>
+    <a class="link" href="{{ blog.url }}">&larr; {{ blog.title }}</a>
+  </div>
+</article>
+
+{% schema %}
+{ "name": "Article" }
+{% endschema %}

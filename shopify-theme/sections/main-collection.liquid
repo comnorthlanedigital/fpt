@@ -1,0 +1,87 @@
+{%- paginate collection.products by section.settings.products_per_page -%}
+<section class="coll-head">
+  <div class="wrap coll-head__in">
+    <div>
+      <p class="eyebrow">{{ 'collection.products_count' | t: count: collection.products_count }}</p>
+      <h1 class="display">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}<div class="muted rte">{{ collection.description }}</div>{%- endif -%}
+    </div>
+    {%- if section.settings.show_image and collection.image -%}
+      <div class="coll-head__img">{{ collection.image | image_url: width: 600 | image_tag: loading: 'eager', alt: collection.title, widths: '300, 450, 600', sizes: '300px' }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+<section class="coll">
+  <div class="wrap">
+    <form class="coll__bar" id="FiltersForm" method="get" data-filters-form>
+      {%- if collection.filters != empty and section.settings.enable_filtering -%}
+        <div class="coll__filters">
+          {%- for filter in collection.filters -%}
+            <details class="facet">
+              <summary>{{ filter.label }}{% if filter.active_values.size > 0 %} <b>{{ filter.active_values.size }}</b>{% endif %}</summary>
+              <div class="facet__body">
+                {%- case filter.type -%}
+                  {%- when 'list', 'boolean' -%}
+                    {%- for value in filter.values -%}
+                      <label class="check">
+                        <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}>
+                        <span>{{ value.label }} <em>({{ value.count }})</em></span>
+                      </label>
+                    {%- endfor -%}
+                  {%- when 'price_range' -%}
+                    <div class="facet__price">
+                      <label>{{ 'collection.price_from' | t }} <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}" min="0" max="{{ filter.range_max | money_without_currency | remove: ',' }}" placeholder="0"></label>
+                      <label>{{ 'collection.price_to' | t }} <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}" min="0" placeholder="{{ filter.range_max | money_without_currency | remove: ',' }}"></label>
+                    </div>
+                {%- endcase -%}
+              </div>
+            </details>
+          {%- endfor -%}
+          {%- if collection.filters != empty -%}
+            <a class="link" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">{{ 'collection.clear_all' | t }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      <label class="coll__sort">
+        <span>{{ 'collection.sort_by' | t }}</span>
+        <select name="sort_by" data-sort>
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+          {%- endfor -%}
+        </select>
+      </label>
+      <noscript><button type="submit" class="btn btn--ink btn--sm">{{ 'collection.filter' | t }}</button></noscript>
+    </form>
+
+    {%- if collection.products.size > 0 -%}
+      <div class="grid grid--{{ section.settings.columns }}">
+        {%- for product in collection.products -%}
+          {%- liquid
+            assign eager = 'lazy'
+            if forloop.index <= 4
+              assign eager = 'eager'
+            endif
+          -%}
+          {% render 'product-card', product: product, loading: eager %}
+        {%- endfor -%}
+      </div>
+      {% render 'pagination', paginate: paginate %}
+    {%- else -%}
+      <p class="empty">{{ 'collection.no_products' | t }}</p>
+    {%- endif -%}
+  </div>
+</section>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Collection page",
+  "settings": [
+    { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 24 },
+    { "type": "select", "id": "columns", "label": "Columns (desktop)", "options": [ { "value": "3", "label": "3" }, { "value": "4", "label": "4" } ], "default": "4" },
+    { "type": "checkbox", "id": "enable_filtering", "label": "Enable filtering", "default": true, "info": "Set up filters in the Shopify Search & Discovery app." },
+    { "type": "checkbox", "id": "show_image", "label": "Show collection image", "default": true }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,147 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign can_personalize = false
+  if section.settings.show_personalization
+    assign can_personalize = true
+  endif
+  if settings.personalization_tag != blank and product.tags contains settings.personalization_tag
+    assign can_personalize = false
+  endif
+  assign form_id = 'product-form-' | append: section.id
+-%}
+<section class="product" data-product data-section-id="{{ section.id }}">
+  <div class="wrap product__in">
+    <div class="gallery" data-gallery>
+      <div class="gallery__main">
+        {%- for media in product.media -%}
+          <div class="gallery__slide{% if media.id == current_variant.featured_media.id or forloop.first and current_variant.featured_media == blank %} is-active{% endif %}" data-media-id="{{ media.id }}">
+            {%- if media.media_type == 'image' -%}
+              {{ media | image_url: width: 1100 | image_tag: widths: '360, 540, 720, 900, 1100', sizes: '(min-width: 1000px) 46vw, 92vw', loading: 'eager', alt: media.alt | default: product.title }}
+            {%- else -%}
+              {{ media | media_tag: image_size: '1100x' }}
+            {%- endif -%}
+          </div>
+        {%- else -%}
+          <div class="gallery__slide is-active">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</div>
+        {%- endfor -%}
+        {%- unless product.available -%}<span class="pcard__badge">{{ 'general.sold_out' | t }}</span>{%- endunless -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+        <ul class="gallery__thumbs">
+          {%- for media in product.media -%}
+            <li>
+              <button type="button" class="thumb" data-thumb="{{ media.id }}" aria-label="{{ product.title | escape }} {{ forloop.index }}">
+                {{ media.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}
+              </button>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="info">
+      {%- if product.vendor != blank -%}<p class="eyebrow">{{ product.vendor }}</p>{%- endif -%}
+      <h1 class="info__title">{{ product.title }}</h1>
+      <div class="info__price" data-price-block>{% render 'price', product: product, use_from: false %}</div>
+
+      {%- form 'product', product, id: form_id, class: 'pform', novalidate: 'novalidate', data-product-form: '' -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <fieldset class="opt" data-option-index="{{ forloop.index0 }}">
+              <legend>{{ option.name }}</legend>
+              <div class="opt__values">
+                {%- for value in option.values -%}
+                  <input type="radio" id="{{ form_id }}-{{ option.position }}-{{ forloop.index0 }}" name="options[{{ option.name | escape }}]" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}>
+                  <label for="{{ form_id }}-{{ option.position }}-{{ forloop.index0 }}">{{ value }}</label>
+                {%- endfor -%}
+              </div>
+            </fieldset>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        {%- if can_personalize -%}
+          <div class="personalize" data-jersey-customizer data-jersey-live>
+            <div class="personalize__head">
+              <h2>{{ 'product.personalize' | t }}</h2>
+              <p class="muted">{{ 'product.preview_hint' | t }}</p>
+            </div>
+            <div class="personalize__body">
+              <div class="personalize__fields">
+                <label class="field">
+                  <span>{{ 'product.name_label' | t }}</span>
+                  <input type="text" name="properties[Name]" maxlength="12" data-jersey-name autocomplete="off">
+                </label>
+                <label class="field">
+                  <span>{{ 'product.number_label' | t }}</span>
+                  <input type="text" name="properties[Number]" inputmode="numeric" maxlength="2" data-jersey-number autocomplete="off">
+                </label>
+                <label class="field">
+                  <span>{{ 'product.notes_label' | t }}</span>
+                  <textarea name="properties[Notes]" rows="2" placeholder="{{ 'product.notes_placeholder' | t }}"></textarea>
+                </label>
+                <div class="swatches" role="group" aria-label="Preview colours" data-jersey-themes></div>
+              </div>
+              <div class="personalize__preview">{% render 'jersey-svg', uid: section.id %}</div>
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="buy">
+          <div class="qty" data-qty>
+            <button type="button" data-qty-minus aria-label="-">{% render 'icon', name: 'minus' %}</button>
+            <input type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="{{ 'product.quantity' | t }}">
+            <button type="button" data-qty-plus aria-label="+">{% render 'icon', name: 'plus' %}</button>
+          </div>
+          <button type="submit" name="add" class="btn btn--gold btn--grow" data-add-to-cart {% unless current_variant.available %}disabled{% endunless %}>
+            <span data-add-label>{% if current_variant.available %}{{ 'product.add_to_cart' | t }}{% else %}{{ 'product.sold_out' | t }}{% endif %}</span>
+          </button>
+        </div>
+        <div class="pform__error" data-form-error role="alert"></div>
+
+        {%- if section.settings.show_dynamic_checkout -%}
+          {{ form | payment_button }}
+        {%- endif -%}
+      {%- endform -%}
+
+      <script type="application/json" data-product-json>{{ product | json }}</script>
+
+      {%- if product.description != blank -%}
+        <div class="info__desc rte">
+          <h2 class="info__h">{{ 'product.description' | t }}</h2>
+          {{ product.description }}
+        </div>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'accordion' -%}
+          <details class="acc__item acc__item--product" {{ block.shopify_attributes }}>
+            <summary><span>{{ block.settings.title }}</span><i aria-hidden="true"></i></summary>
+            <div class="acc__body rte">{{ block.settings.content }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "checkbox", "id": "show_personalization", "label": "Show name & number personalization", "default": true, "info": "Saved with the order as line item properties (Name, Number, Notes). Products tagged no-personalization hide it." },
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show express checkout buttons", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Shipping" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Add details here.</p>" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,41 @@
+{%- if section.blocks.size > 0 -%}
+  <section class="stats">
+    <div class="stats__in">
+      {%- for block in section.blocks -%}
+        <div class="stat" data-reveal {{ block.shopify_attributes }}>
+          <div class="stat__num"><span data-count="{{ block.settings.number }}"{% if block.settings.plain %} data-plain{% endif %}>{{ block.settings.number }}</span><small>{{ block.settings.suffix }}</small></div>
+          <p>{{ block.settings.label }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Stats",
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "number", "id": "number", "label": "Number", "default": 270 },
+        { "type": "text", "id": "suffix", "label": "Suffix", "default": "K+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Orders fulfilled" },
+        { "type": "checkbox", "id": "plain", "label": "No thousands separator (for years)", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stats",
+      "blocks": [
+        { "type": "stat", "settings": { "number": 270, "suffix": "K+", "label": "Orders fulfilled" } },
+        { "type": "stat", "settings": { "number": 7, "suffix": "+", "label": "Years in the game" } },
+        { "type": "stat", "settings": { "number": 3000, "suffix": "+", "label": "Styles in stock" } },
+        { "type": "stat", "settings": { "number": 2017, "suffix": "", "label": "Founded", "plain": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

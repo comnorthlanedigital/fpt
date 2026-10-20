@@ -1,0 +1,36 @@
+{%- liquid
+  assign lb = section.settings.collection
+  if lb == blank
+    assign lb = collections.all
+  endif
+  assign tilts = '-4,3,-2,5,-5,2,-3,4' | split: ','
+  assign speeds = '1.1,0.5,1.4,0.8,1.2,0.6,1.5,0.9' | split: ','
+-%}
+<section class="lookbook" data-lookbook>
+  <div class="wrap">
+    <h2 class="display display--center">{{ section.settings.heading }}</h2>
+    <div class="lookbook__grid">
+      {%- for product in lb.products limit: section.settings.products_count -%}
+        {%- assign idx = forloop.index0 | modulo: 8 -%}
+        <a class="polaroid" href="{{ product.url }}" data-speed="{{ speeds[idx] }}" style="--tilt: {{ tilts[idx] }}deg">
+          {%- if product.featured_image -%}
+            {{ product.featured_image | image_url: width: 640 | image_tag: widths: '240, 360, 480, 640', sizes: '(min-width: 1000px) 22vw, 44vw', loading: 'lazy', alt: product.title }}
+          {%- endif -%}
+          <span>{{ product.title | truncate: 38 }}</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lookbook wall",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "THE LOOKBOOK" },
+    { "type": "range", "id": "products_count", "label": "Items", "min": 4, "max": 8, "step": 1, "default": 8 }
+  ],
+  "presets": [ { "name": "Lookbook wall" } ]
+}
+{% endschema %}

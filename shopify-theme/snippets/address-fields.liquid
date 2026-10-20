@@ -1,0 +1,12 @@
+{%- comment -%} Address form fields. Usage: {% render 'address-fields', address: address, form: form %} {%- endcomment -%}
+<div class="addr-grid">
+  <label class="field"><span>{{ 'customer.first_name' | t }}</span><input type="text" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name"></label>
+  <label class="field"><span>{{ 'customer.last_name' | t }}</span><input type="text" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name"></label>
+  <label class="field"><span>Address</span><input type="text" name="address[address1]" value="{{ form.address1 }}" autocomplete="address-line1"></label>
+  <label class="field"><span>Apartment, suite</span><input type="text" name="address[address2]" value="{{ form.address2 }}" autocomplete="address-line2"></label>
+  <label class="field"><span>City</span><input type="text" name="address[city]" value="{{ form.city }}" autocomplete="address-level2"></label>
+  <label class="field"><span>Postal code</span><input type="text" name="address[zip]" value="{{ form.zip }}" autocomplete="postal-code"></label>
+  <label class="field"><span>Country</span><input type="text" name="address[country]" value="{{ form.country }}" autocomplete="country-name"></label>
+  <label class="field"><span>Province / state</span><input type="text" name="address[province]" value="{{ form.province }}" autocomplete="address-level1"></label>
+  <label class="field"><span>Phone</span><input type="tel" name="address[phone]" value="{{ form.phone }}" autocomplete="tel"></label>
+</div>

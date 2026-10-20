@@ -1,0 +1,25 @@
+{%- liquid
+  assign og_title = page_title | default: shop.name
+  assign og_url = canonical_url
+  assign og_type = 'website'
+  if template.name == 'product'
+    assign og_type = 'product'
+  endif
+-%}
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+{%- if page_description -%}
+  <meta property="og:description" content="{{ page_description | escape }}">
+{%- endif -%}
+{%- if template.name == 'product' and product.featured_image -%}
+  <meta property="og:image" content="https:{{ product.featured_image | image_url: width: 1200 }}">
+{%- elsif settings.logo != blank -%}
+  <meta property="og:image" content="https:{{ settings.logo | image_url: width: 1200 }}">
+{%- endif -%}
+{%- if template.name == 'product' -%}
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency }}">
+  <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+{%- endif -%}
+<meta name="twitter:card" content="summary_large_image">

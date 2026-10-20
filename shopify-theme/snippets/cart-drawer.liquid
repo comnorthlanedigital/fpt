@@ -1,0 +1,23 @@
+{%- comment -%}
+  Slide-out cart. The item list is rendered by theme.js from /cart.js so it updates without a reload.
+{%- endcomment -%}
+<div class="drawer-overlay" data-drawer-overlay hidden></div>
+<aside class="drawer" id="CartDrawer" role="dialog" aria-modal="true" aria-label="{{ 'cart.title' | t }}" tabindex="-1" data-cart-drawer hidden>
+  <header class="drawer__head">
+    <h2>{{ 'cart.title' | t }} <span data-cart-count-label></span></h2>
+    <button type="button" class="icon-btn" data-drawer-close aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button>
+  </header>
+  <div class="drawer__body" data-cart-items aria-live="polite"></div>
+  <footer class="drawer__foot" data-cart-footer hidden>
+    <label class="drawer__note">
+      <span>{{ 'cart.note' | t }}</span>
+      <textarea name="note" rows="2" placeholder="{{ 'cart.note_placeholder' | t }}" data-cart-note>{{ cart.note }}</textarea>
+    </label>
+    <div class="drawer__subtotal"><span>{{ 'cart.subtotal' | t }}</span><b data-cart-subtotal>{{ cart.total_price | money }}</b></div>
+    <p class="drawer__small">{{ 'cart.taxes_shipping' | t }}</p>
+    <a class="btn btn--gold btn--block" href="{{ routes.cart_url }}" data-cart-view>{{ 'cart.title' | t }}</a>
+    <form action="{{ routes.cart_url }}" method="post">
+      <button type="submit" name="checkout" class="btn btn--ink btn--block">{{ 'cart.checkout' | t }}</button>
+    </form>
+  </footer>
+</aside>

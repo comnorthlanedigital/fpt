@@ -1,0 +1,336 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "collection": "international-jersey"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "m0": {
+          "type": "text",
+          "settings": {
+            "text": "New 26/27 kits"
+          }
+        },
+        "m1": {
+          "type": "text",
+          "settings": {
+            "text": "Custom name & number"
+          }
+        },
+        "m2": {
+          "type": "text",
+          "settings": {
+            "text": "Since 2017"
+          }
+        },
+        "m3": {
+          "type": "text",
+          "settings": {
+            "text": "270K+ orders"
+          }
+        },
+        "m4": {
+          "type": "text",
+          "settings": {
+            "text": "Every club. Every era."
+          }
+        }
+      },
+      "block_order": [
+        "m0",
+        "m1",
+        "m2",
+        "m3",
+        "m4"
+      ],
+      "settings": {
+        "style": "gold",
+        "speed": 26
+      }
+    },
+    "stats": {
+      "type": "stats",
+      "blocks": {
+        "s0": {
+          "type": "stat",
+          "settings": {
+            "number": 270,
+            "suffix": "K+",
+            "label": "Orders fulfilled"
+          }
+        },
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "number": 7,
+            "suffix": "+",
+            "label": "Years in the game"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "number": 3000,
+            "suffix": "+",
+            "label": "Styles in stock"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "number": 2017,
+            "suffix": "",
+            "label": "Founded",
+            "plain": true
+          }
+        }
+      },
+      "block_order": [
+        "s0",
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "drops": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "premier-league-jersey",
+        "eyebrow": "Fresh off the press",
+        "heading": "NEW DROPS.",
+        "text": "26/27 kits, player issue and more.",
+        "button_label": "All collections",
+        "products_count": 6,
+        "columns": "3"
+      }
+    },
+    "lookbook": {
+      "type": "lookbook",
+      "settings": {
+        "collection": "international-jersey",
+        "heading": "THE LOOKBOOK",
+        "products_count": 8
+      }
+    },
+    "customizer": {
+      "type": "jersey-customizer",
+      "settings": {
+        "button_link": "shopify://collections/premier-league-jersey"
+      }
+    },
+    "tiles": {
+      "type": "collection-tiles",
+      "blocks": {
+        "t0": {
+          "type": "collection",
+          "settings": {
+            "collection": "premier-league-jersey"
+          }
+        },
+        "t1": {
+          "type": "collection",
+          "settings": {
+            "collection": "la-liga-jersey"
+          }
+        },
+        "t2": {
+          "type": "collection",
+          "settings": {
+            "collection": "liga-mx-jersey"
+          }
+        },
+        "t3": {
+          "type": "collection",
+          "settings": {
+            "collection": "serie-as"
+          }
+        },
+        "t4": {
+          "type": "collection",
+          "settings": {
+            "collection": "bundesliga-jerseys"
+          }
+        },
+        "t5": {
+          "type": "collection",
+          "settings": {
+            "collection": "ligue-1s"
+          }
+        },
+        "t6": {
+          "type": "collection",
+          "settings": {
+            "collection": "international-jersey"
+          }
+        },
+        "t7": {
+          "type": "collection",
+          "settings": {
+            "collection": "retro-vintage-jersey"
+          }
+        },
+        "t8": {
+          "type": "collection",
+          "settings": {
+            "collection": "player-issue-jersey"
+          }
+        },
+        "t9": {
+          "type": "collection",
+          "settings": {
+            "collection": "kids-jersey"
+          }
+        },
+        "t10": {
+          "type": "collection",
+          "settings": {
+            "collection": "soccer-shorts-and-sock"
+          }
+        },
+        "t11": {
+          "type": "collection",
+          "settings": {
+            "collection": "mls-jersey"
+          }
+        }
+      },
+      "block_order": [
+        "t0",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "settings": {
+        "heading": "PICK YOUR LEAGUE"
+      }
+    },
+    "steps": {
+      "type": "steps",
+      "blocks": {
+        "p0": {
+          "type": "step",
+          "settings": {
+            "title": "Order",
+            "text": "Pick your kit and your name and number."
+          }
+        },
+        "p1": {
+          "type": "step",
+          "settings": {
+            "title": "Made",
+            "text": "Your order is processed and quality-checked."
+          }
+        },
+        "p2": {
+          "type": "step",
+          "settings": {
+            "title": "Shipped",
+            "text": "A tracking number lands in your inbox."
+          }
+        },
+        "p3": {
+          "type": "step",
+          "settings": {
+            "title": "Yours",
+            "text": "Wear it. Post it. Tag us."
+          }
+        }
+      },
+      "block_order": [
+        "p0",
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {
+        "heading": "CLICK TO DOORSTEP"
+      }
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "eyebrow": "Join the crew",
+        "heading": "AMBASSADOR PROGRAM.",
+        "text": "Share your link, earn on every order made through it.",
+        "button_label": "Join and get paid",
+        "button_link": "/pages/join-and-get-paid"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q0": {
+          "type": "question",
+          "settings": {
+            "question": "How do I add a name and number?",
+            "answer": "<p>Open any jersey and use the <strong>Make it yours</strong> box. Type the name and number, watch the preview update, and add to cart. They are saved with your order. Forgot? Email <a href=\"mailto:customercare@fptsportz.com\">customercare@fptsportz.com</a>.</p>"
+          }
+        },
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Orders ship in 6–10 working days and are guaranteed within 11–15 working days. Once your order is placed it is processed and shipped, and a tracking number is emailed to you.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I track my order?",
+            "answer": "<p>You get a tracking number by email once it ships. Order updates are also posted on our Instagram story, @fptsportz.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Which size should I get?",
+            "answer": "<p><strong>Player Issue:</strong> skin-slim, so take your normal size or one up. <strong>Standard:</strong> fitted with a little room, so go up a size if you like it loose. <strong>Women:</strong> V-shaped slim fit, size up for a looser feel.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I become an ambassador?",
+            "answer": "<p>Yes. Sign up, get your shareable link, and earn on purchases made through it. Standout ambassadors can be invited to become official FPT Sportz ambassadors.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
+      "settings": {
+        "eyebrow": "Help",
+        "heading": "GOOD TO KNOW",
+        "first_open": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "stats",
+    "drops",
+    "lookbook",
+    "customizer",
+    "tiles",
+    "steps",
+    "cta",
+    "faq"
+  ]
+}

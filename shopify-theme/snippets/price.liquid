@@ -1,0 +1,20 @@
+{%- comment -%}
+  Price block. Usage: {% render 'price', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+-%}
+<span class="price{% if on_sale %} price--sale{% endif %}" data-price-wrapper>
+  {%- if product.price_varies and use_from != false -%}
+    <span class="price__from">{{ 'collection.price_from' | t }}</span>
+  {%- endif -%}
+  <span class="price__now" data-price>{{ product.price | money }}</span>
+  {%- if on_sale -%}
+    <s class="price__was" data-compare-price>{{ product.compare_at_price | money }}</s>
+  {%- else -%}
+    <s class="price__was" data-compare-price hidden></s>
+  {%- endif -%}
+</span>

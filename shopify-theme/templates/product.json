@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "ship": {
+          "type": "accordion",
+          "settings": {
+            "title": "Shipping",
+            "content": "<p>Orders ship in 6–10 working days and are guaranteed within 11–15 working days. A tracking number is emailed once your order ships.</p>"
+          }
+        },
+        "size": {
+          "type": "accordion",
+          "settings": {
+            "title": "Sizing",
+            "content": "<p><strong>Player Issue:</strong> skin-slim. Take your normal size or one up.</p><p><strong>Standard:</strong> fitted with a little room. Go up a size if you like it loose.</p><p><strong>Women:</strong> V-shaped slim fit. Size up for a looser feel.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "ship",
+        "size"
+      ],
+      "settings": {
+        "show_personalization": true,
+        "show_dynamic_checkout": true
+      }
+    },
+    "recs": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "COMPLETE THE LOOK",
+        "products_count": 4
+      }
+    }
+  },
+  "order": [
+    "main",
+    "recs"
+  ]
+}

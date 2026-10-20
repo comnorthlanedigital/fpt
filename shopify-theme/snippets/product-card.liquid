@@ -1,0 +1,39 @@
+{%- comment -%}
+  Product card. Usage: {% render 'product-card', product: product %}
+  Optional: image_sizes, loading
+{%- endcomment -%}
+{%- liquid
+  assign sizes = image_sizes | default: '(min-width: 1000px) 22vw, 46vw'
+  assign load = loading | default: 'lazy'
+  assign second = product.images[1]
+-%}
+<article class="pcard" data-reveal>
+  <a class="pcard__link" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+    <div class="pcard__media">
+      {%- if product.featured_image -%}
+        {{
+          product.featured_image
+          | image_url: width: 640
+          | image_tag: widths: '240, 360, 480, 640', sizes: sizes, loading: load, alt: product.featured_image.alt | default: product.title, class: 'pcard__img'
+        }}
+        {%- if second -%}
+          {{
+            second
+            | image_url: width: 640
+            | image_tag: widths: '240, 360, 480, 640', sizes: sizes, loading: 'lazy', alt: '', class: 'pcard__img pcard__img--hover'
+          }}
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'pcard__img placeholder' }}
+      {%- endif -%}
+      <b class="pcard__tag">{{ product.price | money }}</b>
+      {%- unless product.available -%}
+        <span class="pcard__badge">{{ 'general.sold_out' | t }}</span>
+      {%- elsif product.compare_at_price > product.price -%}
+        <span class="pcard__badge pcard__badge--sale">{{ 'general.sale' | t }}</span>
+      {%- endunless -%}
+    </div>
+    <h3 class="pcard__title">{{ product.title }}</h3>
+    <span class="pcard__go">{{ 'general.view_kit' | t }} {% render 'icon', name: 'arrow' %}</span>
+  </a>
+</article>

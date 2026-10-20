@@ -1,0 +1,26 @@
+<section class="cta-banner">
+  <div class="wrap cta-banner__in" data-reveal>
+    <div>
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="display">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p class="muted">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    {%- if section.settings.button_label != blank -%}
+      <a class="btn btn--ink" href="{{ section.settings.button_link | default: routes.root_url }}">{{ section.settings.button_label }} {% render 'icon', name: 'arrow' %}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Call to action",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Join the crew" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "AMBASSADOR PROGRAM." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Share your link, earn on every order made through it." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Join and get paid" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [ { "name": "Call to action" } ]
+}
+{% endschema %}

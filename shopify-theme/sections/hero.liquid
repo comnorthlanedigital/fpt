@@ -1,0 +1,71 @@
+{%- liquid
+  assign hero_collection = section.settings.collection
+  if hero_collection == blank
+    assign hero_collection = collections.all
+  endif
+  assign path_id = 'badge-' | append: section.id
+-%}
+<section class="hero" data-hero data-section-id="{{ section.id }}">
+  <div class="wrap hero__in">
+    <div class="hero__copy">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow" data-hero-in>{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1 class="hero__title">
+        <span class="line"><span class="line__in" data-hero-in>{{ section.settings.line_1 }}</span></span>
+        <span class="line"><span class="line__in" data-hero-in><span class="mark">{{ section.settings.line_2 }}</span></span></span>
+      </h1>
+      {%- if section.settings.text != blank -%}<p class="hero__text" data-hero-in>{{ section.settings.text }}</p>{%- endif -%}
+      <div class="hero__cta" data-hero-in>
+        {%- if section.settings.button_label != blank -%}
+          <a class="btn btn--gold" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }} {% render 'icon', name: 'arrow' %}</a>
+        {%- endif -%}
+        {%- if section.settings.button_2_label != blank -%}
+          <a class="btn btn--line" href="{{ section.settings.button_2_link | default: routes.all_products_collection_url }}">{{ section.settings.button_2_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hero__fan" aria-hidden="false">
+      {%- for product in hero_collection.products limit: 3 -%}
+        <a class="fan-card fan-card--{{ forloop.index }}" href="{{ product.url }}" data-fan>
+          {%- if product.featured_image -%}
+            {{ product.featured_image | image_url: width: 640 | image_tag: widths: '240, 360, 480, 640', sizes: '(min-width: 1000px) 20vw, 34vw', loading: 'eager', alt: product.title }}
+          {%- endif -%}
+        </a>
+      {%- endfor -%}
+
+      <div class="badge" aria-hidden="true">
+        <svg class="badge__ring" viewBox="0 0 200 200"><defs><path id="{{ path_id }}" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text><textPath href="#{{ path_id }}" textLength="495" lengthAdjust="spacing">{{ section.settings.badge_text }}</textPath></text></svg>
+        {%- if settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 240 | image_tag: loading: 'eager', alt: '' }}
+        {%- else -%}
+          <img src="{{ 'fpt-logo.png' | asset_url }}" alt="" width="120" height="105" loading="eager">
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.sticker_price != blank -%}
+        <div class="sticker" aria-hidden="true">{{ section.settings.sticker_label }}<b>{{ section.settings.sticker_price }}</b></div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "New season. Every era." },
+    { "type": "text", "id": "line_1", "label": "Heading, line 1", "default": "KITS FOR" },
+    { "type": "text", "id": "line_2", "label": "Heading, line 2 (highlighted)", "default": "THE STANDS." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Every club. Every country. Every era. Over 3,000 jerseys with your name and number made right." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop new drops" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "button_2_label", "label": "Second button label", "default": "Customize yours" },
+    { "type": "url", "id": "button_2_link", "label": "Second button link" },
+    { "type": "collection", "id": "collection", "label": "Collection for the 3 photo cards", "info": "The first 3 products are shown. Reorder the collection to change them." },
+    { "type": "text", "id": "badge_text", "label": "Rotating badge text", "default": "SINCE 2017 ✦ 270K+ ORDERS ✦ 3,000+ STYLES ✦ " },
+    { "type": "text", "id": "sticker_label", "label": "Sticker label", "default": "kits from" },
+    { "type": "text", "id": "sticker_price", "label": "Sticker price (leave empty to hide)", "default": "$16" }
+  ],
+  "presets": [ { "name": "Hero" } ]
+}
+{% endschema %}

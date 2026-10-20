@@ -1,0 +1,106 @@
+<footer class="footer">
+  <div class="wrap footer__in">
+    <div class="footer__brand">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 300 | image_tag: loading: 'lazy', alt: shop.name, class: 'footer__logo', widths: '150, 300', sizes: '150px' }}
+      {%- else -%}
+        <img class="footer__logo" src="{{ 'fpt-logo.png' | asset_url }}" alt="{{ shop.name | escape }}" width="150" height="132" loading="lazy">
+      {%- endif -%}
+      {%- if section.settings.tagline != blank -%}<p>{{ section.settings.tagline }}</p>{%- endif -%}
+      <ul class="social">
+        {%- assign networks = 'instagram,tiktok,facebook,youtube' | split: ',' -%}
+        {%- for net in networks -%}
+          {%- assign key = 'social_' | append: net -%}
+          {%- if settings[key] != blank -%}
+            <li><a href="{{ settings[key] }}" target="_blank" rel="noopener" aria-label="{{ net | capitalize }}">{% render 'icon', name: net %}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    {%- for block in section.blocks -%}
+      <div class="footer__col" {{ block.shopify_attributes }}>
+        {%- case block.type -%}
+          {%- when 'menu' -%}
+            {%- if block.settings.title != blank -%}<h4>{{ block.settings.title }}</h4>{%- endif -%}
+            <ul>
+              {%- for link in block.settings.menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          {%- when 'text' -%}
+            {%- if block.settings.title != blank -%}<h4>{{ block.settings.title }}</h4>{%- endif -%}
+            <div class="rte">{{ block.settings.text }}</div>
+          {%- when 'newsletter' -%}
+            <h4>{{ block.settings.title }}</h4>
+            {%- form 'customer', class: 'newsletter' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              {%- if form.posted_successfully? -%}
+                <p class="newsletter__ok" role="status">{{ 'general.newsletter_thanks' | t }}</p>
+              {%- else -%}
+                <label class="sr-only" for="NewsletterEmail-{{ block.id }}">{{ 'general.email' | t }}</label>
+                <div class="newsletter__row">
+                  <input id="NewsletterEmail-{{ block.id }}" type="email" name="contact[email]" placeholder="{{ 'general.email' | t }}" required autocomplete="email">
+                  <button type="submit" class="btn btn--gold btn--sm">{{ 'general.subscribe' | t }}</button>
+                </div>
+                {%- if form.errors -%}<p class="form-error" role="alert">{{ form.errors | default_errors }}</p>{%- endif -%}
+              {%- endif -%}
+            {%- endform -%}
+        {%- endcase -%}
+      </div>
+    {%- endfor -%}
+  </div>
+
+  <div class="footer__word" aria-hidden="true">{{ shop.name | upcase | remove: ' ' }}</div>
+
+  <div class="wrap footer__legal">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+    {%- if section.settings.show_payment -%}
+      <span class="payments">{{ shop.enabled_payment_types | payment_type_svg_tag: class: 'payment-icon' }}</span>
+    {%- endif -%}
+    <span>{{ powered_by_link }}</span>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "tagline", "label": "Tagline", "default": "Every club. Every era. Kits for the stands." },
+    { "type": "checkbox", "id": "show_payment", "label": "Show payment icons", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Heading", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Heading", "default": "Help" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Questions? Email customercare@fptsportz.com</p>" }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Heading", "default": "Join the crew" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "menu" },
+      { "type": "text" },
+      { "type": "newsletter" }
+    ]
+  }
+}
+{% endschema %}

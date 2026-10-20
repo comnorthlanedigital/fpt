@@ -133,6 +133,40 @@
     });
   }
 
+  /* ---------- crew slideshow ---------- */
+  function initCrew(root = document) {
+    $$('[data-crew]', root).forEach((box) => {
+      if (box.dataset.init) return; box.dataset.init = '1';
+      const slides = $$('[data-crew-slide]', box), dots = $$('[data-crew-dot]', box), now = $('[data-crew-now]', box);
+      if (slides.length < 2) return;
+      const MS = 5500; box.style.setProperty('--crew-ms', MS + 'ms');
+      const auto = box.dataset.autoplay === 'true' && !reduceMotion && !inEditor();
+      if (!auto) box.classList.add('is-static');
+      let i = 0, timer = null, visible = true, paused = false;
+      const go = (n) => {
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s, k) => { s.classList.toggle('is-active', k === i); s.setAttribute('aria-hidden', String(k !== i)); });
+        dots.forEach((d, k) => { d.setAttribute('aria-selected', String(k === i)); d.toggleAttribute('data-done', k < i); });
+        if (now) now.textContent = String(i + 1).padStart(2, '0');
+        restart();
+      };
+      const stop = () => { clearTimeout(timer); timer = null; };
+      const restart = () => { stop(); if (auto && visible && !paused) timer = setTimeout(() => go(i + 1), MS); };
+      $('[data-crew-next]', box)?.addEventListener('click', () => go(i + 1));
+      $('[data-crew-prev]', box)?.addEventListener('click', () => go(i - 1));
+      dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
+      let x0 = null;
+      box.addEventListener('pointerdown', (e) => { x0 = e.clientX; });
+      box.addEventListener('pointerup', (e) => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 45) go(i + (dx < 0 ? 1 : -1)); });
+      box.addEventListener('pointercancel', () => { x0 = null; });
+      box.addEventListener('mouseenter', () => { paused = true; stop(); });
+      box.addEventListener('mouseleave', () => { paused = false; restart(); });
+      box.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') go(i + 1); if (e.key === 'ArrowLeft') go(i - 1); });
+      if ('IntersectionObserver' in window) new IntersectionObserver((en) => { visible = en[0].isIntersecting; visible ? restart() : stop(); }, { threshold: 0.3 }).observe(box);
+      go(0);
+    });
+  }
+
   /* ---------- jersey preview (home customizer + product personalization) ---------- */
   const JERSEY_THEMES = [
     { id: 'gold', label: 'Black & Gold', body: '#0c0c0b', trim: '#d6a93f', text: '#f0cf6a', stripe: '#d6a93f' },
@@ -330,7 +364,7 @@
   /* ---------- boot ---------- */
   function init(root = document) {
     initHeader(root); initReveal(root); initCounters(root); initHero(root); initMarquee(root); initLookbook(root);
-    initJersey(root); initProduct(root); initRecs(root); initFilters(root);
+    initCrew(root); initJersey(root); initProduct(root); initRecs(root); initFilters(root);
   }
   function boot() {
     initSmoothScroll(); initCart(); init();

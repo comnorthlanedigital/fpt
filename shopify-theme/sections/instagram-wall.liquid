@@ -1,0 +1,76 @@
+<section class="ig">
+  <div class="wrap ig__in">
+    <div class="ig__copy" data-reveal>
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="display">{{ section.settings.heading }}</h2>
+      <p class="muted">{{ section.settings.text }}</p>
+      <ul class="ig__how">
+        <li><b>1</b> Wear your kit</li>
+        <li><b>2</b> Post it and tag <strong>{{ section.settings.handle }}</strong></li>
+        <li><b>3</b> Get featured on this page</li>
+      </ul>
+      <a class="btn btn--gold" href="{{ section.settings.url }}" target="_blank" rel="noopener">Follow {{ section.settings.handle }} {% render 'icon', name: 'instagram' %}</a>
+    </div>
+
+    <div class="ig__phone" data-reveal data-ig-phone>
+      <div class="phone">
+        <div class="phone__notch" aria-hidden="true"></div>
+        <div class="phone__head">
+          <span class="avatar"><img src="{{ 'fpt-logo.png' | asset_url }}" alt="" width="52" height="46" loading="lazy"></span>
+          <div><b>{{ section.settings.handle | remove: '@' }}</b><small>{{ section.settings.followers }}</small></div>
+          <span class="follow">Follow</span>
+        </div>
+        <ul class="phone__stories" aria-hidden="true">
+          {%- for block in section.blocks limit: 5 -%}
+            {%- assign n = forloop.index0 | modulo: 4 | plus: 1 -%}
+            <li class="story"><span class="story__ring"><img src="{% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 120 }}{% else %}{{ 'crew-' | append: n | append: '.jpg' | asset_url }}{% endif %}" alt="" width="52" height="52" loading="lazy"></span><small>{{ block.settings.label | default: 'crew' }}</small></li>
+          {%- endfor -%}
+        </ul>
+        <div class="phone__grid">
+          {%- for block in section.blocks -%}
+            {%- assign n = forloop.index0 | modulo: 4 | plus: 1 -%}
+            <a class="post" href="{{ block.settings.link | default: section.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }} aria-label="{{ block.settings.label | default: 'Instagram post' | escape }}">
+              <img src="{% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 400 }}{% else %}{{ 'crew-' | append: n | append: '.jpg' | asset_url }}{% endif %}" alt="" width="400" height="400" loading="lazy">
+              <span class="post__over" aria-hidden="true">&#9825; {{ block.settings.likes | default: '2.4K' }}</span>
+            </a>
+          {%- endfor -%}
+        </div>
+      </div>
+      <span class="ig__tag" aria-hidden="true">{{ section.settings.hashtag }}</span>
+    </div>
+  </div>
+  <div class="ig__marquee" data-marquee data-speed="38" aria-hidden="true">
+    <div class="marquee__track" data-marquee-track>
+      {%- for i in (1..8) -%}<span class="marquee__item">{{ section.settings.handle }} <em>&#10022;</em> {{ section.settings.hashtag }} <em>&#10022;</em></span>{%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram wall",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Tag us" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "GET FEATURED." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Every week we repost the best fits from the stands. Wear it, post it, tag us." },
+    { "type": "text", "id": "handle", "label": "Instagram handle", "default": "@fptsportz" },
+    { "type": "text", "id": "hashtag", "label": "Hashtag", "default": "#FPTSPORTZ" },
+    { "type": "text", "id": "followers", "label": "Small line under the name", "default": "Kits for the stands" },
+    { "type": "url", "id": "url", "label": "Instagram link", "default": "https://instagram.com/fptsportz" }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Post",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave empty to use a sample photo." },
+        { "type": "text", "id": "label", "label": "Name under the story ring", "default": "crew" },
+        { "type": "text", "id": "likes", "label": "Likes shown on hover", "default": "2.4K" },
+        { "type": "url", "id": "link", "label": "Post link" }
+      ]
+    }
+  ],
+  "max_blocks": 9,
+  "presets": [ { "name": "Instagram wall", "blocks": [ { "type": "post" }, { "type": "post" }, { "type": "post" }, { "type": "post" }, { "type": "post" }, { "type": "post" } ] } ]
+}
+{% endschema %}

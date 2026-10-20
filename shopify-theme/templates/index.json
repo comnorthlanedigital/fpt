@@ -319,6 +319,114 @@
         "heading": "GOOD TO KNOW",
         "first_open": true
       }
+    },
+    "crew": {
+      "type": "crew-slider",
+      "blocks": {
+        "c0": {
+          "type": "slide",
+          "settings": {
+            "handle": "@fptsportz",
+            "caption": "Tag us to get featured.",
+            "link": "",
+            "link_label": "Shop the look"
+          }
+        },
+        "c1": {
+          "type": "slide",
+          "settings": {
+            "handle": "@baileyerin_",
+            "caption": "Gold & black, game day.",
+            "link": "",
+            "link_label": "Shop the look"
+          }
+        },
+        "c2": {
+          "type": "slide",
+          "settings": {
+            "handle": "@heidi.moyo",
+            "caption": "Chelsea retro, Sunday best.",
+            "link": "shopify://collections/retro-vintage-jersey",
+            "link_label": "Shop retro"
+          }
+        },
+        "c3": {
+          "type": "slide",
+          "settings": {
+            "handle": "@jonathanmidd",
+            "caption": "Arsenal 05/06 long sleeve.",
+            "link": "shopify://collections/retro-vintage-jersey",
+            "link_label": "Shop retro"
+          }
+        }
+      },
+      "block_order": [
+        "c0",
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "eyebrow": "The crew",
+        "heading": "WORN BY THE STANDS.",
+        "autoplay": true
+      }
+    },
+    "insta": {
+      "type": "instagram-wall",
+      "blocks": {
+        "p0": {
+          "type": "post",
+          "settings": {
+            "label": "fpt",
+            "likes": "1.8K"
+          }
+        },
+        "p1": {
+          "type": "post",
+          "settings": {
+            "label": "bailey",
+            "likes": "3.1K"
+          }
+        },
+        "p2": {
+          "type": "post",
+          "settings": {
+            "label": "heidi",
+            "likes": "2.4K"
+          }
+        },
+        "p3": {
+          "type": "post",
+          "settings": {
+            "label": "jonathan",
+            "likes": "5.2K"
+          }
+        },
+        "p4": {
+          "type": "post",
+          "settings": {
+            "label": "crew",
+            "likes": "2.9K"
+          }
+        },
+        "p5": {
+          "type": "post",
+          "settings": {
+            "label": "retro",
+            "likes": "4.4K"
+          }
+        }
+      },
+      "block_order": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -327,6 +435,8 @@
     "stats",
     "drops",
     "lookbook",
+    "crew",
+    "insta",
     "customizer",
     "tiles",
     "steps",

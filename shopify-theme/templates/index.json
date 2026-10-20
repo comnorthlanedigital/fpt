@@ -324,36 +324,28 @@
           "type": "slide",
           "settings": {
             "handle": "@fptsportz",
-            "caption": "Tag us to get featured.",
-            "link": "",
-            "link_label": "Shop the look"
+            "caption": "Tag us to get featured."
           }
         },
         "c1": {
           "type": "slide",
           "settings": {
             "handle": "@baileyerin_",
-            "caption": "Gold & black, game day.",
-            "link": "",
-            "link_label": "Shop the look"
+            "caption": "Gold & black, game day."
           }
         },
         "c2": {
           "type": "slide",
           "settings": {
             "handle": "@heidi.moyo",
-            "caption": "Chelsea retro, Sunday best.",
-            "link": "",
-            "link_label": "Shop the look"
+            "caption": "Chelsea retro, Sunday best."
           }
         },
         "c3": {
           "type": "slide",
           "settings": {
             "handle": "@jonathanmidd",
-            "caption": "Arsenal 05/06 long sleeve.",
-            "link": "",
-            "link_label": "Shop the look"
+            "caption": "Arsenal 05/06 long sleeve."
           }
         }
       },

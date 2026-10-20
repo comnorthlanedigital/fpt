@@ -1,0 +1,7 @@
+{%- comment -%}Sample photo URL by number (1-4). Usage: {% render 'crew-photo', n: 2 %}{%- endcomment -%}
+{%- case n -%}
+  {%- when 1 -%}{{ 'crew-1.jpg' | asset_url }}
+  {%- when 2 -%}{{ 'crew-2.jpg' | asset_url }}
+  {%- when 3 -%}{{ 'crew-3.jpg' | asset_url }}
+  {%- else -%}{{ 'crew-4.jpg' | asset_url }}
+{%- endcase -%}

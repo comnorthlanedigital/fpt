@@ -23,14 +23,14 @@
         <ul class="phone__stories" aria-hidden="true">
           {%- for block in section.blocks limit: 5 -%}
             {%- assign n = forloop.index0 | modulo: 4 | plus: 1 -%}
-            <li class="story"><span class="story__ring"><img src="{% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 120 }}{% else %}{{ 'crew-' | append: n | append: '.jpg' | asset_url }}{% endif %}" alt="" width="52" height="52" loading="lazy"></span><small>{{ block.settings.label | default: 'crew' }}</small></li>
+            <li class="story"><span class="story__ring"><img src="{% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 120 }}{% else %}{% render 'crew-photo', n: n %}{% endif %}" alt="" width="52" height="52" loading="lazy"></span><small>{{ block.settings.label | default: 'crew' }}</small></li>
           {%- endfor -%}
         </ul>
         <div class="phone__grid">
           {%- for block in section.blocks -%}
             {%- assign n = forloop.index0 | modulo: 4 | plus: 1 -%}
             <a class="post" href="{{ block.settings.link | default: section.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }} aria-label="{{ block.settings.label | default: 'Instagram post' | escape }}">
-              <img src="{% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 400 }}{% else %}{{ 'crew-' | append: n | append: '.jpg' | asset_url }}{% endif %}" alt="" width="400" height="400" loading="lazy">
+              <img src="{% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 400 }}{% else %}{% render 'crew-photo', n: n %}{% endif %}" alt="" width="400" height="400" loading="lazy">
               <span class="post__over" aria-hidden="true">&#9825; {{ block.settings.likes | default: '2.4K' }}</span>
             </a>
           {%- endfor -%}

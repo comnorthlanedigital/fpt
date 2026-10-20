@@ -2,12 +2,11 @@
   <div class="crew__slides">
     {%- for block in section.blocks -%}
       {%- assign n = forloop.index0 | modulo: 4 | plus: 1 -%}
-      {%- assign fallback = 'crew-' | append: n | append: '.jpg' -%}
       <figure class="crew__slide{% if forloop.first %} is-active{% endif %}" data-crew-slide {{ block.shopify_attributes }} aria-roledescription="slide" aria-label="{{ forloop.index }} / {{ forloop.length }}">
         {%- if block.settings.image != blank -%}
           {{ block.settings.image | image_url: width: 1400 | image_tag: widths: '600, 900, 1200, 1400', sizes: '100vw', loading: 'lazy', alt: block.settings.handle, class: 'crew__img' }}
         {%- else -%}
-          <img class="crew__img" src="{{ fallback | asset_url }}" alt="{{ block.settings.handle | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" width="1100" height="1100">
+          <img class="crew__img" src="{% render 'crew-photo', n: n %}" alt="{{ block.settings.handle | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" width="1100" height="1100">
         {%- endif -%}
         <figcaption class="crew__cap">
           <span class="crew__handle">{{ block.settings.handle }}</span>

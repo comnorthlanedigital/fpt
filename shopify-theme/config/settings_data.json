@@ -1,18 +1,1 @@
-{
-  "current": {
-    "color_bg": "#050605",
-    "color_panel": "#0b0f0c",
-    "color_green": "#0b3d27",
-    "color_green_dark": "#0e2a1d",
-    "color_gold": "#e8c35a",
-    "color_gold_deep": "#c9973a",
-    "color_text": "#f4efe2",
-    "color_muted": "#a9a690",
-    "logo_width": 60,
-    "cart_type": "drawer",
-    "smooth_scroll": true,
-    "animations": true,
-    "personalization_tag": "no-personalization",
-    "social_instagram": "https://instagram.com/fptsportz"
-  }
-}
+{ "current": {} }

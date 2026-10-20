@@ -417,4 +417,3 @@ body.no-scroll{overflow:hidden}
   .crew__handle{font-size:clamp(56px,7.6vw,130px)}
 }
 
-.not-found__path{display:inline-block;margin:0 auto 26px;padding:6px 12px;border:1px dashed var(--c-gold);color:var(--c-gold);font-size:13px;word-break:break-all}

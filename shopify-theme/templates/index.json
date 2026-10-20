@@ -118,9 +118,7 @@
     },
     "customizer": {
       "type": "jersey-customizer",
-      "settings": {
-        "button_link": "shopify://collections/premier-league-jersey"
-      }
+      "settings": {}
     },
     "tiles": {
       "type": "collection-tiles",
@@ -264,8 +262,7 @@
         "eyebrow": "Join the crew",
         "heading": "AMBASSADOR PROGRAM.",
         "text": "Share your link, earn on every order made through it.",
-        "button_label": "Join and get paid",
-        "button_link": "/pages/join-and-get-paid"
+        "button_label": "Join and get paid"
       }
     },
     "faq": {
@@ -346,8 +343,8 @@
           "settings": {
             "handle": "@heidi.moyo",
             "caption": "Chelsea retro, Sunday best.",
-            "link": "shopify://collections/retro-vintage-jersey",
-            "link_label": "Shop retro"
+            "link": "",
+            "link_label": "Shop the look"
           }
         },
         "c3": {
@@ -355,8 +352,8 @@
           "settings": {
             "handle": "@jonathanmidd",
             "caption": "Arsenal 05/06 long sleeve.",
-            "link": "shopify://collections/retro-vintage-jersey",
-            "link_label": "Shop retro"
+            "link": "",
+            "link_label": "Shop the look"
           }
         }
       },

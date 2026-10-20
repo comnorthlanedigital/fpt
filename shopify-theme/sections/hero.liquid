@@ -33,14 +33,14 @@
         </a>
       {%- endfor -%}
 
-      <div class="badge" aria-hidden="true">
+      <{% if settings.social_instagram != blank %}a href="{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="{{ 'general.instagram' | t }}"{% else %}div aria-hidden="true"{% endif %} class="badge">
         <svg class="badge__ring" viewBox="0 0 200 200"><defs><path id="{{ path_id }}" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text><textPath href="#{{ path_id }}" textLength="495" lengthAdjust="spacing">{{ section.settings.badge_text }}</textPath></text></svg>
         {%- if settings.logo != blank -%}
           {{ settings.logo | image_url: width: 240 | image_tag: loading: 'eager', alt: '' }}
         {%- else -%}
           <img src="{{ 'fpt-logo.png' | asset_url }}" alt="" width="120" height="105" loading="eager">
         {%- endif -%}
-      </div>
+      </{% if settings.social_instagram != blank %}a{% else %}div{% endif %}>
 
       {%- if section.settings.sticker_price != blank -%}
         <div class="sticker" aria-hidden="true">{{ section.settings.sticker_label }}<b>{{ section.settings.sticker_price }}</b></div>

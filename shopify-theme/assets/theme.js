@@ -74,7 +74,7 @@
   function initReveal(root = document) {
     const items = $$('[data-reveal]:not(.is-in)', root);
     if (!items.length) return;
-    if (!T.animations || reduceMotion || inEditor() || !('IntersectionObserver' in window)) { items.forEach((el) => el.classList.add('is-in')); return; }
+    if (!T.animations || !('IntersectionObserver' in window)) { items.forEach((el) => el.classList.add('is-in')); return; }
     const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
     items.forEach((el) => io.observe(el));
   }
@@ -84,7 +84,7 @@
       const end = Number(el.dataset.count) || 0;
       const plain = el.hasAttribute('data-plain');
       const show = (v) => { el.textContent = plain ? String(Math.round(v)) : Math.round(v).toLocaleString(); };
-      if (!T.animations || reduceMotion || inEditor() || !hasGsap() || !('IntersectionObserver' in window)) { show(end); return; }
+      if (!T.animations || !hasGsap() || !('IntersectionObserver' in window)) { show(end); return; }
       show(0);
       const io = new IntersectionObserver((entries) => {
         if (!entries[0].isIntersecting) return; io.disconnect();
@@ -100,8 +100,9 @@
     $$('[data-hero]', root).forEach((hero) => {
       if (hero.dataset.init) return; hero.dataset.init = '1';
       hero.classList.add('is-ready');
-      if (!T.animations || reduceMotion || inEditor() || !hasGsap()) return;
+      if (!T.animations || !hasGsap()) return;
       const g = window.gsap;
+      if (reduceMotion) { g.from($$('[data-hero-in], .fan-card, .badge, .sticker', hero), { opacity: 0, duration: 0.8, stagger: 0.06 }); return; }
       g.from($$('.line__in', hero), { yPercent: 110, duration: 1.1, stagger: 0.1, ease: 'expo.out' });
       g.from($$('[data-hero-in]:not(.line__in)', hero), { y: 24, opacity: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', delay: 0.3 });
       g.from($$('.fan-card', hero), { y: 140, opacity: 0, duration: 1.1, stagger: 0.12, ease: 'expo.out', delay: 0.2 });
@@ -124,7 +125,7 @@
   function initLookbook(root = document) {
     $$('[data-lookbook]', root).forEach((wall) => {
       if (wall.dataset.init) return; wall.dataset.init = '1';
-      if (!T.animations || reduceMotion || inEditor() || !hasGsap() || !window.ScrollTrigger) return;
+      if (!T.animations || reduceMotion || !hasGsap() || !window.ScrollTrigger) return;
       window.gsap.registerPlugin(window.ScrollTrigger);
       $$('.polaroid', wall).forEach((c) => {
         const s = Number(c.dataset.speed) || 1;

@@ -29,6 +29,9 @@
       {%- if section.settings.show_search -%}
         <button type="button" class="icon-btn" data-search-toggle aria-label="{{ 'general.search' | t }}" aria-expanded="false" aria-controls="HeaderSearch">{% render 'icon', name: 'search' %}</button>
       {%- endif -%}
+      {%- if settings.social_instagram != blank -%}
+        <a class="icon-btn header__ig" href="{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="{{ 'general.instagram' | t }}">{% render 'icon', name: 'instagram' %}</a>
+      {%- endif -%}
       {%- if shop.customer_accounts_enabled -%}
         <a class="icon-btn header__account" href="{{ routes.account_url }}" aria-label="{{ 'general.account' | t }}">{% render 'icon', name: 'account' %}</a>
       {%- endif -%}
@@ -61,6 +64,9 @@
           {%- endif -%}
         </li>
       {%- endfor -%}
+      {%- if settings.social_instagram != blank -%}
+        <li><a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">Instagram</a></li>
+      {%- endif -%}
     </ul>
   </nav>
 </header>

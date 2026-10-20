@@ -1,0 +1,39 @@
+{%- liquid
+  assign dc = section.settings.collection
+  if dc == blank
+    assign dc = collections.all
+  endif
+-%}
+<section class="deals">
+  <div class="wrap deals__head" data-reveal>
+    <div>
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="display">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p class="muted">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    <a class="link" href="{{ dc.url }}">{{ 'general.view_all' | t }}</a>
+  </div>
+  <div class="deals__rail" tabindex="0" role="region" aria-label="{{ section.settings.heading | escape }}">
+    {%- for product in dc.products limit: section.settings.products_count -%}
+      <div class="deals__item">{% render 'product-card', product: product, image_sizes: '(min-width: 1000px) 24vw, 62vw' %}</div>
+    {%- endfor -%}
+    <a class="deals__end" href="{{ dc.url }}">
+      <span>{{ 'general.view_all' | t }}<br>{{ 'collection.products_count' | t: count: dc.all_products_count }}</span>
+      {% render 'icon', name: 'arrow' %}
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product row",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Quick picks" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "POPULAR RIGHT NOW." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Swipe through what shoppers are grabbing." },
+    { "type": "range", "id": "products_count", "label": "Products", "min": 4, "max": 12, "step": 1, "default": 8 }
+  ],
+  "presets": [ { "name": "Product row" } ]
+}
+{% endschema %}

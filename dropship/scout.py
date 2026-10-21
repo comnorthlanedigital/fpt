@@ -73,9 +73,9 @@ def clean(it, kw):
     }
 
 def price_for(cost):
-    """Retail price target: ~3.2x landed cost, snapped into the $19.99-$69.99 impulse band."""
-    p = max(19.99, min(69.99, cost * 3.2))
-    return math.floor(p) + 0.99 if p >= 20 else 19.99
+    """Retail price target: ~3.2x landed cost, capped at $69.99. No floor: a $2 gadget does not sell for $20."""
+    p = min(69.99, cost * 3.2)
+    return math.floor(p) + 0.99
 
 def score(c):
     cost = c["cost"]
@@ -94,7 +94,8 @@ def score(c):
     s += 25 * max(0, min(1, (margin - 0.30) / 0.30))                       # margin 30% -> 60%
     if c["ship_max"]:
         s += 15 * max(0, min(1, (18 - c["ship_max"]) / 10))                # delivery <=8d full, >=18d none
-    if cost < 1.5:  s -= 12                                                # commodity trash
+    if profit < 10: s -= 3 * (10 - profit)                                 # ads cost ~$8-15 per sale: thin profit cannot pay for them
+    if cost < 5:    s -= 12                                                # commodity: sells for a few dollars everywhere
     if cost > 22:   s -= 10                                                # too pricey for impulse
     if c["sold"] > 300_000: s -= 8                                         # saturated everywhere
     flags = []

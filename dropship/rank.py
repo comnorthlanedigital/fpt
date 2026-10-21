@@ -8,7 +8,7 @@ final = screen score (0-100ish) + 0.45 * demand (0-100). Writes <date>-ranked.md
 """
 import csv, datetime, json, os, sys, time, urllib.parse
 sys.path.insert(0, os.path.dirname(__file__))
-import signals
+import signals, scout, re
 
 def main():
     argv = sys.argv[1:]
@@ -29,6 +29,20 @@ def main():
             json.dump(cache, open(cache_f, "w"), indent=1)
         print(f"[{i}/{len(kws)}] {kw}: demand {cache[kw]['demand']}", file=sys.stderr)
         time.sleep(0.5)
+    kept = []
+    for r in rows:                                   # re-score with current rules + drop off-topic matches
+        toks = [t.rstrip("s") for t in re.findall(r"[a-z]+", r["keyword"].lower()) if len(t) > 2]
+        title = r["title"].lower()
+        if toks and sum(t in title for t in toks) / len(toks) < 0.5:
+            continue
+        c = {"cost": float(r["cost"]), "sold": int(float(r["sold"])), "rating": float(r["rating"]), "title": r["title"],
+             "choice": str(r["choice"]).lower() == "true", "ship_max": int(float(r["ship_max"])) if r["ship_max"] not in ("", "None") else None}
+        sc = scout.score(c)
+        if not sc or sc["margin"] < 0.3:
+            continue
+        r.update(score=sc["score"], retail=sc["retail"], profit=sc["profit"], margin=sc["margin"], be_roas=sc["be_roas"], flags=sc["flags"])
+        kept.append(r)
+    rows = kept
     for r in rows:
         d = cache[r["keyword"]]
         r["demand"] = d["demand"]; r["amazon_rank"] = d["amazon_rank"]; r["yt_median_views"] = d["yt_median_views"]

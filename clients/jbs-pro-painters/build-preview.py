@@ -26,9 +26,9 @@ for s in SITES:
     # JS string refs 'img/x.jpg' -> IMG["x"]
     html = re.sub(r"""(['"])img/([\w-]+)\.jpg\1(?=\s*[,}+)\]])""", lambda m: f'IMG["{m.group(2)}"]', html)
     # <img src="img/x.jpg"> -> data-i
-    html = re.sub(r'src="img/([\w-]+)\.jpg"', lambda m: f'data-pv="{m.group(1)}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="', html)
+    html = re.sub(r'src="img/([\w-]+)\.jpg"', lambda m: f'src="{uri(m.group(1))}"', html)
     # put the table first in <head> so JS strings can use IMG; assign <img> sources once DOM exists
-    head_js = '<script>const IMG=' + json.dumps({n: uri(n) for n in used}, separators=(',', ':')) + ';addEventListener("DOMContentLoaded",()=>document.querySelectorAll("img[data-pv]").forEach(i=>{i.src=IMG[i.dataset.pv]}));</script>'
+    head_js = '<script>const IMG=' + json.dumps({n: uri(n) for n in used}, separators=(',', ':')) + ';</script>'
     html = html.replace('</title>', '</title>' + head_js, 1)
     out = f'{ROOT}/preview/JBS-{s}.html'
     open(out, 'w', encoding='utf-8').write(html)

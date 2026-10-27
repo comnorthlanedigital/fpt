@@ -13,14 +13,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#050a1c;--bg2:#0a1330;--card:#0d1838;--line:#ffffff21;--ink:#edf1fa;--mute:#a9b5d2;--blue:#2b63f0;--blue2:#7da3ff;--silver:#d5dcea}
+:root{--bg:#050a1c;--bg2:#0a1330;--card:#0d1838;--line:#ffffff21;--ink:#edf1fa;--mute:#a9b5d2;--blue:#2459e6;--blue2:#7da3ff;--silver:#d5dcea}
 *{box-sizing:border-box;margin:0}html{overflow-x:clip}
 body{background:var(--bg);color:var(--ink);font:400 17px/1.65 "Hanken Grotesk",system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}a{color:inherit}.wrap{width:min(1240px,100% - 40px);margin-inline:auto}
 .syne{font-family:Syne,sans-serif;font-weight:800;letter-spacing:-.03em;line-height:.95;text-transform:uppercase}
 .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue2);font-weight:600}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 30px;border-radius:99px;background:var(--blue);color:#fff;font:600 16px "Hanken Grotesk";text-decoration:none;border:0;cursor:pointer;transition:background .2s}
-.btn:hover{background:#1f50d4}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue2);outline-offset:3px}
+.btn:hover{background:#1a47c2}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue2);outline-offset:3px}
 /* preloader */
 .pre{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-content:center;justify-items:center;gap:18px;animation:preOut .5s 3s forwards}
 .pre img{width:120px;border-radius:24px}.pre i{width:160px;height:2px;background:#ffffff1f;position:relative;overflow:hidden}.pre i::after{content:"";position:absolute;inset:0;background:var(--blue);transform:scaleX(0);transform-origin:left;animation:ld 1.1s ease forwards}
@@ -48,7 +48,7 @@ img{display:block;max-width:100%}a{color:inherit}.wrap{width:min(1240px,100% - 4
 .stage{position:relative;height:min(78svh,720px);border-radius:28px;overflow:hidden;background:var(--card);box-shadow:0 30px 90px #0009,0 0 0 1px var(--line)}
 .fr{position:absolute;inset:0;opacity:0;visibility:hidden}.fr:first-child{opacity:1;visibility:visible}.fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.fr .aft{clip-path:inset(0 100% 0 0)}
 .fr .ln{position:absolute;top:0;bottom:0;left:0;width:2px;background:#fff;z-index:3}
-.lab{position:absolute;top:16px;z-index:4;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:6px 14px;border-radius:99px;background:#050a1ccc}.lab.l{left:16px}.lab.r{right:16px;background:var(--blue)}
+.lab{position:absolute;top:16px;z-index:4;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:6px 14px;border-radius:99px;background:#050a1ccc}.lab.l{left:16px}.lab.r{right:16px;background:var(--blue);color:#fff}
 /* reduced motion: static chapters */
 .pin.rm{height:auto;padding:70px 0}.pin.rm .wrap{grid-template-columns:1fr}.pin.rm .stage{height:auto;display:grid;gap:18px;background:none;box-shadow:none;border-radius:0}.pin.rm .fr{position:relative;opacity:1;visibility:visible;display:grid;grid-template-columns:1fr 1fr;gap:8px;height:360px}.pin.rm .fr img{position:relative}.pin.rm .fr .aft{clip-path:none}.pin.rm .ln,.pin.rm .prog,.pin.rm .lab{display:none}
 /* commercial rows */

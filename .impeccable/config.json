@@ -1,0 +1,53 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "buried-raster",
+        "value": "*",
+        "files": [
+          "clients/jbs-pro-painters/sites-v2/*/index.html"
+        ],
+        "createdAt": "2026-10-27T02:34:49.762Z",
+        "reason": "false positive: opacity-0 images are the before/after states revealed by the toggle or scroll; they are visible when active (agent judgment)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument serif",
+        "files": [
+          "clients/jbs-pro-painters/sites-v2/b-swatch/**"
+        ],
+        "createdAt": "2026-10-27T02:34:49.773Z",
+        "reason": "chosen for the paint-chip/paper concept (agent judgment; ask user if unhappy)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument sans",
+        "files": [
+          "clients/jbs-pro-painters/sites-v2/b-swatch/**"
+        ],
+        "createdAt": "2026-10-27T02:34:49.784Z",
+        "reason": "pairs with Instrument Serif in the paper concept (agent judgment)"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "clients/jbs-pro-painters/sites-v2/b-swatch/**"
+        ],
+        "createdAt": "2026-10-27T02:34:49.795Z",
+        "reason": "paper-stock background is the core idea of the paint-chip concept (agent judgment)"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "clients/jbs-pro-painters/sites-v2/*/index.html"
+        ],
+        "createdAt": "2026-10-27T02:34:57.674Z",
+        "reason": "false positive: content sits inside .wrap (20px minimum gutter, 100px+ on desktop); full-bleed section backgrounds and a pinned full-height wrapper are intentional (agent judgment)"
+      }
+    ]
+  }
+}

@@ -27,13 +27,12 @@ const LINKS = [
   { label: 'Texture studio', href: 'JBS-texture-studio.html', id: 'texture' }, { label: 'Estimate', href: '#estimate', cta: true },
 ]
 const JOBS = [
+  { id: 'bath', title: 'Bathroom', place: 'Interior', before: bathBefore, after: bathAfter, thumb: bathSm },
   { id: 'home', title: 'Exterior repaint', place: 'Gilbert', before: homeBefore, after: homeAfter, thumb: homeSm },
   { id: 'kitchen', title: 'Cabinet refinish', place: 'Queen Creek', before: kitchenBefore, after: kitchenAfter, thumb: kitchenSm },
   { id: 'door', title: 'Front door stain', place: 'Wood refinish', before: doorBefore, after: doorAfter, thumb: doorSm },
-  { id: 'bath', title: 'Bold bathroom', place: 'Interior', before: bathBefore, after: bathAfter, thumb: bathSm },
   { id: 'gdoor', title: 'Garage doors', place: 'Exterior', before: gdoorBefore, after: gdoorAfter, thumb: gdoorSm },
   { id: 'tl', title: 'Restaurant exterior', place: 'Commercial, Gilbert', before: tlBefore, after: tlAfter, thumb: tlSm },
-  { id: 'stripe', title: 'Accent wall', place: 'Interior detail', before: stripeBefore, after: stripeAfter, thumb: stripeSm },
 ]
 const ROLL_H = 64
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v))

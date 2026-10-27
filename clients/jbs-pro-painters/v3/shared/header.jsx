@@ -53,7 +53,7 @@ export function Header({ logo, links, current }) {
             <nav aria-label="Menu">
               {links.map((l, i) => (
                 <motion.a key={l.label} href={l.href} onClick={() => setOpen(false)} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 + i * 0.06, duration: 0.6, ease }}>
-                  <small>{String(i + 1).padStart(2, '0')}</small>{l.label}
+                  {l.label}
                 </motion.a>
               ))}
             </nav>

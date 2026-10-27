@@ -19,8 +19,6 @@ import bathBefore from '../../img/bath-before.jpg'; import bathAfter from '../..
 import gdoorBefore from '../../img/gdoor-before.jpg'; import gdoorAfter from '../../img/gdoor-after.jpg'; import gdoorSm from '../../img/gdoor-after-sm.jpg'
 import tlBefore from '../../img/tl-before.jpg'; import tlAfter from '../../img/tl-after.jpg'; import tlSm from '../../img/tl-after-sm.jpg'
 import stripeBefore from '../../img/stripe-before.jpg'; import stripeAfter from '../../img/stripe-after.jpg'; import stripeSm from '../../img/stripe-after-sm.jpg'
-import whB3 from '../../img/wh-b3.jpg'; import whA2 from '../../img/wh-a2.jpg'
-import whA3 from '../../img/wh-a3-sm.jpg'; import whRail from '../../img/wh-rail-sm.jpg'; import tlPatio from '../../img/tl-patio-sm.jpg'
 import owner from '../../img/owner-new.jpg'
 
 const LINKS = [
@@ -36,7 +34,6 @@ const JOBS = [
   { id: 'tl', title: 'Restaurant exterior', place: 'Commercial, Gilbert', before: tlBefore, after: tlAfter, thumb: tlSm },
   { id: 'stripe', title: 'Accent wall', place: 'Interior detail', before: stripeBefore, after: stripeAfter, thumb: stripeSm },
 ]
-const WAREHOUSE = { id: 'wh', title: 'Warehouse walls', place: 'Commercial', before: whB3, after: whA2 }
 const ROLL_H = 64
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v))
 const loadImg = (src) => new Promise((res) => { const i = new Image(); i.onload = () => res(i); i.src = src })
@@ -344,16 +341,6 @@ function App() {
         <Coats />
 
         <Services />
-
-        <section className="wh" aria-labelledby="wh-t">
-          <Reveal as="h2" id="wh-t" className="wh__h">Raw concrete.<br />Finished white.</Reveal>
-          <Reveal className="wh__p"><p>Restaurants, warehouses and shops get the same care as a front door. This wall paints itself when you reach it.</p></Reveal>
-          <RollStage job={WAREHOUSE} autoStart />
-          <div className="wh__row">
-            {[[whA3, 'Dock doors and walls painted white'], [whRail, 'A freshly painted white stair railing'], [tlPatio, 'Restaurant patio and entry after painting']].map(([s, a], i) => <Reveal key={a} delay={i * 0.08} as="figure"><img src={s} alt={a} loading="lazy" /></Reveal>)}
-          </div>
-        </section>
-
         <section className="own" aria-labelledby="own-t">
           <Reveal className="own__ph"><img src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /></Reveal>
           <div>

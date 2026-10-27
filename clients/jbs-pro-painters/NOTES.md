@@ -35,3 +35,6 @@ Saved in `assets/batch-4/`. Low-res (about 480px wide), fine for cards/thumbnail
 
 ## Batch 5 photos (owner-supplied): commercial warehouse project
 Saved in `assets/batch-5/`. One large industrial job: raw gray concrete walls with floor masking (1, 2, 3, 9 = before/prep) -> white painted walls, white stair railing, yellow-banded columns, painted dock doors (4-8 = after). Batch 4 warehouse photos (4, 6, 7, 8) look like the same site. Strong case study: pairs 3 -> 8, 2 -> 6, 4 railing. Ask owner: client/location (or keep anonymous), scope (walls, columns, doors, railings), approx square footage, timeline. Photos are about 480px wide, ask for originals for large display.
+
+## Batch 6 photos (owner-supplied): interior repaints
+Saved in `assets/batch-6/`. Empty-house interiors with new wood-look flooring: warm cream walls (1, 2, 3) and a bold deep charcoal/gray whole-house scheme with matching doors, trim and ceilings (4-9, looks like one two-story home with fireplace and stairs, plus the tan stucco exterior from batches 3/4 may be the same house). Good "color + trim + doors" interior case study. Ask: is this one job, was flooring done by JB'S or another trade, paint colors/finish names, and whether before photos exist. Mostly warm/dim lighting, so color-correct lightly for the web.

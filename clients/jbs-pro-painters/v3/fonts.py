@@ -8,8 +8,9 @@ SITES = {
  'coats': ['Unbounded:wght@500;700;800', 'Albert+Sans:wght@400;500;600'],
  'board': ['Big+Shoulders+Display:wght@700;800;900', 'Barlow:wght@400;500;600', 'Permanent+Marker'],
  'lights': ['Bricolage+Grotesque:opsz,wght@12..96,500..800', 'Schibsted+Grotesk:wght@400;500;600'],
- 'home': ['Onest:wght@400;500;600;700'],
- 'texture': ['Onest:wght@400;500;600;700'],
+ 'home': ['Gilda+Display','Onest:wght@400;500;600;700'],
+ 'texture': ['Gilda+Display','Onest:wght@400;500;600;700'],
+ 'models': ['Gilda+Display','Onest:wght@400;500;600;700'],
  'studio': ['Anybody:wdth,wght@100..150,500..900', 'Rethink+Sans:wght@400;500;600'],
 }
 def get(url, binary=False):

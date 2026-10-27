@@ -23,8 +23,7 @@ import stripeBefore from '../../img/stripe-before.jpg'; import stripeAfter from 
 import owner from '../../img/owner-new.jpg'
 
 const LINKS = [
-  { label: 'Work', href: '#work' }, { label: 'Process', href: '#process' }, { label: 'Services', href: '#services' },
-  { label: '3D studio', href: 'JBS-3d-studio.html', id: 'studio' }, { label: 'Estimate', href: '#estimate', cta: true },
+  { label: 'Work', href: '#work' }, { label: 'Process', href: '#process' }, { label: 'Services', href: '#services' }, { label: 'About', href: '#about' }, { label: 'Estimate', href: '#estimate', cta: true },
 ]
 const JOBS = [
   { id: 'bath', title: 'Bathroom', place: 'Interior', before: bathBefore, after: bathAfter, thumb: bathSm },
@@ -287,7 +286,7 @@ function Coats() {
 }
 
 /* the headline's last word repaints itself in real job colors */
-const WORD_COLORS = ['#2459e6', '#b01f2a', '#46594f', '#5b3720']
+const WORD_COLORS = ['#7da3ff', '#f0848d', '#8fc7a6', '#d6ad84']
 function Cycle() {
   const [i, setI] = useState(0)
   const reduce = useReducedMotion()
@@ -295,26 +294,38 @@ function Cycle() {
   return <motion.span className="h1__w" animate={{ color: WORD_COLORS[i] }} transition={{ duration: 0.9, ease }}>change.</motion.span>
 }
 
-function SvcRow({ name, text, i }) {
+const SVC_IMG = [homeSm, bathSm, kitchenSm, doorSm, tlSm, stripeSm]
+const SVC_ALT = ['A stucco home repainted in neutral tones', 'A bathroom finished in deep green', 'Kitchen cabinets painted deep navy', 'A front door restained in rich brown', 'A restaurant exterior finished in white with black trim', 'An accent wall with red and white stripes']
+
+function SvcRow({ name, text, i, on, setOn }) {
   const ref = useRef(null)
   const seen = useInView(ref, { once: true, margin: '0px 0px -10% 0px' })
   return (
-    <motion.li ref={ref} className="svc__row" initial="hidden" animate={seen ? 'rest' : 'hidden'} whileHover="hover" whileFocus="hover"
+    <motion.li ref={ref} className="svc__row" data-on={on} initial="hidden" animate={seen ? 'rest' : 'hidden'} whileHover="hover" whileFocus="hover"
+      onHoverStart={() => setOn(i)} onFocus={() => setOn(i)} tabIndex={0}
       variants={{ hidden: { opacity: 0, y: 28 }, rest: { opacity: 1, y: 0, transition: { duration: 0.8, ease, delay: i * 0.05 } }, hover: { opacity: 1, y: 0 } }}>
       <motion.span className="svc__paint" variants={{ hidden: { scaleX: 0 }, rest: { scaleX: 0 }, hover: { scaleX: 1 } }} transition={{ duration: 0.55, ease }} />
-      <motion.span className="svc__name" variants={{ hidden: { color: 'var(--ink)' }, rest: { color: 'var(--ink)' }, hover: { color: '#fff', x: 10 } }} transition={{ duration: 0.4, ease }}>{name}</motion.span>
-      <motion.span className="svc__txt" variants={{ hidden: { color: 'var(--mute)' }, rest: { color: 'var(--mute)' }, hover: { color: '#dbe4ff' } }} transition={{ duration: 0.3 }}>{text}</motion.span>
+      <motion.span className="svc__name" variants={{ hidden: { x: 0 }, rest: { x: 0 }, hover: { x: 12 } }} transition={{ duration: 0.4, ease }}>{name}</motion.span>
+      <span className="svc__txt">{text}</span>
     </motion.li>
   )
 }
 
 function Services() {
+  const [on, setOn] = useState(0)
   return (
     <section className="svc" id="services" aria-labelledby="svc-t">
-      <Reveal as="h2" id="svc-t" className="svc__h">Inside. Outside.<br />Home. Business.</Reveal>
-      <ul className="svc__list">
-        {SERVICES.map(([name, text], i) => <SvcRow key={name} name={name} text={text} i={i} />)}
-      </ul>
+      <div className="svc__in">
+        <div className="svc__l">
+          <Reveal as="h2" id="svc-t" className="svc__h">Inside. Outside.<br />Home. Business.</Reveal>
+          <ul className="svc__list">
+            {SERVICES.map(([name, text], i) => <SvcRow key={name} name={name} text={text} i={i} on={on === i} setOn={setOn} />)}
+          </ul>
+        </div>
+        <div className="svc__r" aria-hidden="true">
+          <AnimatePresence mode="popLayout"><motion.img key={on} src={SVC_IMG[on]} alt={SVC_ALT[on]} initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.7, ease }} /></AnimatePresence>
+        </div>
+      </div>
     </section>
   )
 }
@@ -345,10 +356,12 @@ function App() {
           </motion.div>
         </section>
 
+        <div className="band" aria-hidden="true">{['Licensed', 'Insured', 'Owner-operated', 'Quality', 'Precision', 'Perfection'].map((t, i) => <span key={t}>{t}{i < 5 && <i />}</span>)}</div>
+
         <Coats />
 
         <Services />
-        <section className="own" aria-labelledby="own-t">
+        <section className="own" id="about" aria-labelledby="own-t">
           <motion.div className="own__ph" initial={{ clipPath: 'inset(12% 12% 12% 12% round 22px)', opacity: 0 }} whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 22px)', opacity: 1 }} viewport={{ once: true, margin: '0px 0px -12% 0px' }} transition={{ duration: 1.1, ease }}><motion.img initial={{ scale: 1.25 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ duration: 1.4, ease }} src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /></motion.div>
           <div>
             <Reveal as="h2" id="own-t">Owner-operated<br />by Jonathan Bernal.</Reveal>

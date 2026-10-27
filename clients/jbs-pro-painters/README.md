@@ -70,3 +70,6 @@ Main page and Texture Studio now use Onest (weights 400-700, headings 600), larg
 
 ## Deploy (Netlify Drop)
 Run `clients/jbs-pro-painters/make-netlify-zip.sh` -> `zips/jbs-pro-painters-netlify.zip` (index = main page, 3D studio, texture studio, 404, short URLs /3d-studio and /texture-studio, headers, robots.txt). Drag the zip onto https://app.netlify.com/drop. Then in Netlify: Forms -> quote -> Notifications, add jbspropainters@gmail.com so estimate requests are emailed. Add the domain, then a sitemap.xml with absolute URLs.
+
+## Round 9: main site only (studios shelved)
+Studio pages (3D, texture) are no longer linked or shipped; code stays in `v3/sites/models|texture|studio-house` for later. The main page was redesigned in the logo's palette (deep navy ground, silver type, royal-blue accents, Gilda Display + Onest), with a trust band, services list that swaps a real photo on hover, and a navy owner/estimate finish. `make-netlify-zip.sh` now ships only `index.html`, `404.html`, `og.jpg`, `robots.txt`.

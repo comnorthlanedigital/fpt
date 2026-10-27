@@ -50,3 +50,9 @@ Design contracts: `.impeccable/surfaces/`. Open items before launch: owner photo
 - The other round 3 concepts moved to `preview/old-concepts/` (sources still in `v3/sites/`).
 - Build: `node clients/jbs-pro-painters/v3/build.mjs home studio` (no-sound pages alias `shared/sound.js` to `shared/silent.js`).
 - New owner photo candidate saved at `assets/batch-10/` (now used as the owner photo on both pages).
+
+## Texture studio (round 5)
+- `preview/JBS-texture-studio.html` replaces the 3D house page. A real JB'S project photo (Gilbert home finished, the same home before, a stucco corner) with a hand-placed wall mask; pick a texture (smooth, fine sand, orange peel, knockdown, skip trowel), texture depth and a real job color; a 2.6x magnifier follows the pointer; "Hold to see original". The chosen finish goes into the estimate form. Linked from the main site nav as "Texture studio".
+- Engine: `v3/sites/texture/texture.js` (procedural height fields, light-from-top-left relief, color that keeps the photo's own light and shadow), scenes and wall polygons in `scenes.js` (percent coordinates, add `?mask` to the page URL to see the mask in pink). Edges are approximate; it is labelled a preview.
+- The 3D house version lives on in `preview/old-concepts/JBS-color-studio.html` and `v3/sites/studio-house/`.
+- To add a project photo: add a scene in `scenes.js` with wall polygons and holes (windows, doors, garage doors).

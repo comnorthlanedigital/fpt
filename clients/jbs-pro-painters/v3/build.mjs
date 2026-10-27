@@ -13,11 +13,12 @@ const META = {
   board: ['The Job Board', '#37373f', 'Real JB\'S Pro Painters jobs taped to the wall. Drag them around and flip one to see where it started. Interior and exterior painting in Gilbert, Mesa, Chandler and more.'],
   lights: ['Flip the switch', '#07080d', 'Flip the switch and watch dark rooms come alive. Real before and after interiors and warehouses by JB\'S Pro Painters LLC across the East Valley. Free estimates.'],
   home: ['Painters in the East Valley', '#0a1433', 'Roll a real before photo into the finished job, then watch a JB\'S Pro Painters job go on coat by coat. Interior and exterior painting for homes and businesses across the East Valley. Free estimates, call (602) 473-0415.'],
+  texture: ['Texture Studio', '#16181f', 'Pick a real JB\'S Pro Painters project, choose a wall texture (smooth, sand, orange peel, knockdown, skip trowel) and color, and look closer with the magnifier. Then request the finish with a free estimate.'],
   studio: ['Color Studio', '#16181f', 'Spin a 3D house and try real JB\'S Pro Painters colors on the walls, trim and doors, then send the scheme with a free estimate request.'],
 }
 const sites = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(META)
-const OUT = { home: 'JBS-home.html', studio: 'JBS-color-studio.html' } // no-sound pages
-const SILENT = new Set(['home', 'studio'])
+const OUT = { home: 'JBS-home.html', studio: 'old-concepts/JBS-color-studio.html', texture: 'JBS-texture-studio.html' } // no-sound pages
+const SILENT = new Set(['home', 'studio', 'texture'])
 const b64 = (f) => fs.readFileSync(path.join(here, 'img', f)).toString('base64')
 fs.mkdirSync(path.join(here, '..', 'preview'), { recursive: true })
 fs.copyFileSync(path.join(here, 'img', 'og.jpg'), path.join(here, '..', 'preview', 'og.jpg'))

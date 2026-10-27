@@ -25,7 +25,7 @@ import owner from '../../img/owner-new.jpg'
 
 const LINKS = [
   { label: 'Work', href: '#work' }, { label: 'Process', href: '#process' }, { label: 'Services', href: '#services' },
-  { label: 'Color studio', href: 'JBS-color-studio.html', id: 'studio' }, { label: 'Estimate', href: '#estimate', cta: true },
+  { label: 'Texture studio', href: 'JBS-texture-studio.html', id: 'texture' }, { label: 'Estimate', href: '#estimate', cta: true },
 ]
 const JOBS = [
   { id: 'home', title: 'Exterior repaint', place: 'Gilbert', before: homeBefore, after: homeAfter, thumb: homeSm },

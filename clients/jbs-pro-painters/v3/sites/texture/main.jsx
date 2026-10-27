@@ -143,7 +143,7 @@ function App() {
         <section className="hero">
           <div className="hero__l">
             <Words as="h1" text="Feel the finish first." delay={0.1} />
-            <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.15 }}>Pick a real JB&rsquo;S project, choose a wall texture and color, then slide the magnifier over the wall to see it up close.</motion.p>
+            <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.15 }}>Pick a real project, choose a wall texture and color, then slide the magnifier over the wall to see it up close.</motion.p>
             <motion.div initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.35 }}><Kit {...{ sceneId, setSceneId, kind, setKind, strength, setStrength, color, setColor, setCompare }} /></motion.div>
           </div>
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.1, ease, delay: 0.25 }}><Stage def={def} kind={kind} strength={strength} color={color} compare={compare} /></motion.div>

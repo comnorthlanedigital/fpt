@@ -196,7 +196,7 @@ function RollStage({ job, autoStart = false, hero = false }) {
         <div className="stage__tag"><b>{job.title}</b><span>{job.place}</span></div>
         <AnimatePresence>{!touched && !done && <motion.div className="stage__hint" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>Drag the roller across the wall</motion.div>}</AnimatePresence>
         <div className="stage__bar" onPointerDown={(e) => e.stopPropagation()}>
-          <span className="stage__pct" aria-live="polite">{done ? 'Finished. A real JB’S job.' : `${Math.round(pct * 100)}% painted`}</span>
+          <span className="stage__pct" aria-live="polite">{done ? 'Finished. A real project.' : `${Math.round(pct * 100)}% painted`}</span>
           {done ? <button type="button" className="chipbtn" onClick={reset}>Roll it again</button> : <button type="button" className="chipbtn chipbtn--solid" onClick={auto} disabled={busy}>{busy ? 'Rolling...' : 'Roll it for me'}</button>}
         </div>
       </div>
@@ -329,7 +329,7 @@ function App() {
           <div className="hero__top">
             <Words as="h1" text="Watch a wall" delay={0.1}><span className="wd"><motion.span className="wd__i" initial={{ y: '115%', rotate: 4 }} animate={{ y: 0, rotate: 0 }} transition={{ duration: 0.9, ease, delay: 0.37 }}><Cycle /></motion.span></span></Words>
             <motion.div className="hero__side" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.2 }}>
-              <p>Every photo here is a real JB&rsquo;S job. Roll it on and see the finish.</p>
+              <p>Every photo here is a real project. Roll it on and see the finish.</p>
               <a className="btn" href="#estimate">Get a free estimate</a>
             </motion.div>
           </div>

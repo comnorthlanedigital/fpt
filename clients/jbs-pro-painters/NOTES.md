@@ -32,3 +32,6 @@ Saved in `assets/batch-4/`. Low-res (about 480px wide), fine for cards/thumbnail
 - Garage before (5) / after (9): same two-car garage, bare walls and concrete -> painted walls and brown floor coating (looks like an epoxy/floor coating; confirm with owner what product/service it was before we claim it).
 - Large commercial warehouse interiors (4, 6, 7, 8): big commercial/industrial scope (loading dock doors, stairwell). Ask which of these were painted by JB'S and what the job was.
 - Tan stucco two-story home (1, 2, 3): exterior; same tone as batch 3 photo 7, probably one job. Ask if a before/after exists.
+
+## Batch 5 photos (owner-supplied): commercial warehouse project
+Saved in `assets/batch-5/`. One large industrial job: raw gray concrete walls with floor masking (1, 2, 3, 9 = before/prep) -> white painted walls, white stair railing, yellow-banded columns, painted dock doors (4-8 = after). Batch 4 warehouse photos (4, 6, 7, 8) look like the same site. Strong case study: pairs 3 -> 8, 2 -> 6, 4 railing. Ask owner: client/location (or keep anonymous), scope (walls, columns, doors, railings), approx square footage, timeline. Photos are about 480px wide, ask for originals for large display.

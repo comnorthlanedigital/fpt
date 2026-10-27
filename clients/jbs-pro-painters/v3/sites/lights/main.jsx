@@ -36,11 +36,11 @@ function useLight() {
   const [day, setDay] = useState(false)
   useMotionValueEvent(light, 'change', (v) => {
     const r = document.documentElement.style
-    r.setProperty('--b', (0.22 + 0.78 * v ** 0.8).toFixed(3))
-    setDay(v > 0.6)
+    r.setProperty('--b', (0.5 + 0.5 * v ** 0.8).toFixed(3))
+    setDay(v > 0.68)
     sound.intensity(v)
   })
-  useEffect(() => { document.documentElement.style.setProperty('--b', '0.22') }, [])
+  useEffect(() => { document.documentElement.style.setProperty('--b', '0.5') }, [])
   return [light, day]
 }
 
@@ -59,12 +59,12 @@ function Hero({ light, lit, flip }) {
     <section className="hero">
       <div className="hero__txt">
         <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease }}>Flip the switch.</motion.h1>
-        <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.2 }}>Interior and exterior painting across the East Valley. Shine the light around, or just turn it on: a dark room becomes a finished one.</motion.p>
+        <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.2 }}>Interior and exterior painting across the East Valley. Move the light around the room, or flip the switch and see it finished.</motion.p>
         <motion.div className="hero__row" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.35 }}>
           <WallSwitch lit={lit} onFlip={() => { flip(); setUsed(true) }} />
           <a className="btn" href="#estimate">Get a free estimate</a>
         </motion.div>
-        <AnimatePresence>{!used && !reduce && <motion.span className="hero__hint" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>It&rsquo;s dark in here.</motion.span>}</AnimatePresence>
+        <AnimatePresence>{!used && !reduce && <motion.span className="hero__hint" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>Flip the switch, or move your light around.</motion.span>}</AnimatePresence>
       </div>
       <div className="hero__panel" ref={panel} onPointerMove={move} onPointerDown={move}>
         <img className="lit" src={charStairs} alt="An open living space with charcoal walls, stairs and a fireplace, finished by JB'S Pro Painters" fetchpriority="high" />
@@ -81,6 +81,7 @@ function Room({ room, i }) {
     <article className={`room${i % 2 ? ' room--r' : ''}${room.tall ? ' room--tall' : ''}`}>
       <Reveal className="room__ph" y={40}>
         <AnimatePresence initial={false} mode="popLayout"><motion.img key={after ? 'a' : 'b'} className="lit" src={after ? room.a : room.b} alt={`${room.t}, ${after ? 'finished' : 'before'}`} loading="lazy" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} /></AnimatePresence>
+        <button type="button" className="room__inset" onClick={() => swap(!after)} aria-label={`Show the ${after ? 'before' : 'finished'} photo`}><img className="lit" src={after ? room.b : room.a} alt="" loading="lazy" /><i>{after ? 'Before' : 'After'}</i></button>
       </Reveal>
       <div className="room__txt">
         <Reveal as="h3">{room.t}</Reveal>
@@ -115,7 +116,7 @@ function Warehouse() {
     <section className="wh" aria-labelledby="wh-t">
       <div className="wh__head"><Reveal as="h2" id="wh-t">Big rooms need<br />big switches.</Reveal><Reveal as="p" delay={0.1}>A warehouse wall, raw concrete to finished white.</Reveal></div>
       <div className="wh__stage">
-        <AnimatePresence initial={false}><motion.img key={on ? 'a' : 'b'} className="wh__img" src={on ? whA2 : whB3} alt={on ? 'A long warehouse wall painted clean white' : 'A long raw gray concrete warehouse wall before painting'} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: on ? 0.9 : 0.4 }} /></AnimatePresence>
+        <AnimatePresence initial={false}><motion.img key={on ? 'a' : 'b'} className="wh__img lit" src={on ? whA2 : whB3} alt={on ? 'A long warehouse wall painted clean white' : 'A long raw gray concrete warehouse wall before painting'} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: on ? 0.9 : 0.4 }} /></AnimatePresence>
         <div className="wh__sw"><WallSwitch lit={on} onFlip={flip} /></div>
       </div>
       <div className="wh__row">{[[whA1, 'Warehouse interior with white walls and yellow-banded columns'], [whA3, 'Dock doors and walls painted white'], [whB2, 'Raw gray warehouse wall with pipes, masked for painting']].map(([s, a], i) => <Reveal key={i} delay={i * 0.08} as="figure"><img className="lit" src={s} alt={a} loading="lazy" /></Reveal>)}</div>
@@ -150,7 +151,7 @@ function App() {
   const [light, day] = useLight()
   const [lit, setLit] = useState(false)
   const reduce = useReducedMotion()
-  const bg = useTransform(light, [0, 0.6, 1], ['#07080d', '#1a1a20', '#efeae0'])
+  const bg = useTransform(light, [0, 0.5, 0.85, 1], ['#07080d', '#14141a', '#d9d4c8', '#efeae0'])
   const flip = () => {
     const next = !lit; setLit(next)
     sound.clack()
@@ -164,7 +165,7 @@ function App() {
     <motion.div className="app" data-day={day} style={{ background: bg }}>
       <SoundToggle on={snd} toggle={toggleSnd} />
       <header className="head">
-        <a href="#top" aria-label="JB'S Pro Painters LLC"><img src={logoSm} alt="JB'S Pro Painters LLC logo" width="44" height="44" /></a>
+        <a href="#top" aria-label="JB'S Pro Painters LLC" className="head__logo"><img src={logoSm} alt="JB'S Pro Painters LLC logo" width="48" height="48" /></a>
         <label className="dim"><span>Dimmer</span><DimmerInput light={light} onSlide={slide} /></label>
         <a className="head__tel" href={`tel:${CONTACT.tel}`}>{CONTACT.phone}</a>
       </header>
@@ -177,7 +178,7 @@ function App() {
         <section className="own" aria-labelledby="own-t">
           <Reveal className="own__ph"><img className="lit" src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /><span>Placeholder photo</span></Reveal>
           <div>
-            <Reveal as="h2" id="own-t">Jonathan Bernal<br />runs every job.</Reveal>
+            <Reveal as="h2" id="own-t">Owner-operated<br />by Jonathan Bernal.</Reveal>
             <Reveal delay={0.1} as="p" className="own__p">Operated by the owner, licensed and insured. Care and precision for homes and businesses across the East Valley, inside and out. Quality, precision, perfection.</Reveal>
             <Reveal delay={0.15} as="blockquote">&ldquo;{REVIEW.quote}&rdquo;<footer>{REVIEW.who}</footer></Reveal>
             <Reveal delay={0.2} as="p" className="own__areas">Serving {AREAS.join(', ')} and more.</Reveal>

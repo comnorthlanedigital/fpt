@@ -10,6 +10,7 @@ import logo3d from '../../img/logo3d.jpg'
 import stripeBefore from '../../img/stripe-before-sm.jpg'; import whB2 from '../../img/wh-b2-sm.jpg'; import whB4 from '../../img/wh-b4-sm.jpg'
 import bathBefore from '../../img/bath-before-sm.jpg'; import lionProcess from '../../img/lion-process-sm.jpg'
 import bathAfter from '../../img/bath-after-sm.jpg'; import doorAfter from '../../img/door-after-sm.jpg'; import tlAfter from '../../img/tl-after-sm.jpg'; import homeAfter from '../../img/home-after-sm.jpg'
+import doorBefore from '../../img/door-before-sm.jpg'; import tlBefore from '../../img/tl-before-sm.jpg'; import homeBefore from '../../img/home-before-sm.jpg'
 import whB1 from '../../img/wh-b1-sm.jpg'; import whB3 from '../../img/wh-b3-sm.jpg'
 import whA1 from '../../img/wh-a1-sm.jpg'; import whA2 from '../../img/wh-a2-sm.jpg'; import whA3 from '../../img/wh-a3-sm.jpg'; import whA4 from '../../img/wh-a4-sm.jpg'
 import owner from '../../img/owner-sm.jpg'
@@ -17,26 +18,29 @@ import owner from '../../img/owner-sm.jpg'
 const clamp01 = (v) => Math.min(1, Math.max(0, v))
 
 /* A wavy coat edge with drips, as a clip path in bounding-box units. p = how far this coat has risen. */
-function wave(p, t) {
-  const base = 1.1 - p * 1.32, amp = Math.sin(p * Math.PI), N = 36
+const DRIPS = [[0.12, 0.016, 0.1], [0.31, 0.022, 0.17], [0.47, 0.014, 0.08], [0.66, 0.02, 0.15], [0.83, 0.016, 0.11], [0.94, 0.012, 0.07]]
+function edgeY(x, p, t) {
+  const base = 1.1 - p * 1.32, amp = Math.sin(p * Math.PI)
+  let y = base + 0.028 * Math.sin(x * 7 + t) * (0.3 + amp) + 0.01 * Math.sin(x * 17 - t * 1.4) * amp
+  for (const [xc, w, len] of DRIPS) y += len * amp * Math.exp(-(((x - xc) / w) ** 2)) * (0.75 + 0.25 * Math.sin(t + xc * 20))
+  return y
+}
+function wave(p, t, edgeOnly = false) {
+  const N = 110
   let d = ''
-  for (let i = 0; i <= N; i++) {
-    const x = i / N
-    const y = base + 0.03 * Math.sin(x * 9 + t) * (0.3 + amp) + 0.012 * Math.sin(x * 23 - t * 1.6) * amp + Math.max(0, Math.sin(x * 13 + 1.2)) ** 7 * 0.14 * amp
-    d += `${i ? 'L' : 'M'}${x.toFixed(3)},${y.toFixed(3)}`
-  }
-  return `${d}L1,1.3L0,1.3Z`
+  for (let i = 0; i <= N; i++) { const x = i / N; d += `${i ? 'L' : 'M'}${x.toFixed(4)},${edgeY(x, p, t).toFixed(4)}` }
+  return edgeOnly ? d : `${d}L1,1.3L0,1.3Z`
 }
 
 function Blobs({ mx, my }) {
   const reduce = useReducedMotion()
   const time = useTime()
-  const cfg = [[42, 90, 16], [30, 60, 14], [24, 40, 13], [18, 28, 12], [12, 20, 11]]
+  const cfg = [[46, 90, 16], [34, 64, 14], [26, 46, 13], [20, 32, 12], [15, 24, 11], [11, 18, 10], [8, 14, 9]]
   return (
     <svg className="hero__blobs" aria-hidden="true">
       <defs>
         <filter id="goo"><feGaussianBlur stdDeviation="11" /><feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -10" /></filter>
-        <linearGradient id="chrome" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#f4f7fc" /><stop offset=".45" stopColor="#8ea1c4" /><stop offset="1" stopColor="#2459e6" /></linearGradient>
+        <radialGradient id="chrome" cx=".32" cy=".28" r=".85"><stop offset="0" stopColor="#ffffff" /><stop offset=".18" stopColor="#dfe6f3" /><stop offset=".5" stopColor="#8ea1c4" /><stop offset=".82" stopColor="#2f4f9e" /><stop offset="1" stopColor="#0d1c4a" /></radialGradient>
       </defs>
       <g filter="url(#goo)" fill="url(#chrome)">
         {cfg.map(([r, k, d], i) => <Blob key={i} r={r} k={k} d={d} i={i} mx={mx} my={my} time={time} reduce={reduce} />)}
@@ -79,9 +83,15 @@ function Hero() {
   )
 }
 
-function Print({ src, alt, p, range, rot = 0, className = '' }) {
+function Print({ src, alt, p, range, rot = 0, className = '', tag, before, beforeAlt }) {
   const y = useTransform(p, [0, 1], range)
-  return <motion.figure className={`print ${className}`} style={{ y, rotate: rot }}><img src={src} alt={alt} loading="lazy" /></motion.figure>
+  return (
+    <motion.figure className={`print ${className}`} style={{ y, rotate: rot }}>
+      <img src={src} alt={alt} loading="lazy" />
+      {tag && <figcaption className="print__tag">{tag}</figcaption>}
+      {before && <span className="print__before"><img src={before} alt={beforeAlt} loading="lazy" /><i>Before</i></span>}
+    </motion.figure>
+  )
 }
 
 function Coats() {
@@ -91,6 +101,9 @@ function Coats() {
   const time = useTime()
   const d1 = useTransform([p, time], ([v, t]) => wave(clamp01((v - 0.2) / 0.3), reduce ? 0 : t / 1400))
   const d2 = useTransform([p, time], ([v, t]) => wave(clamp01((v - 0.55) / 0.3), reduce ? 0 : t / 1400))
+  const e1 = useTransform([p, time], ([v, t]) => wave(clamp01((v - 0.2) / 0.3), reduce ? 0 : t / 1400, true))
+  const e2 = useTransform([p, time], ([v, t]) => wave(clamp01((v - 0.55) / 0.3), reduce ? 0 : t / 1400, true))
+  const t1 = useTransform(p, [0.14, 0.32], [1, 0]), t2 = useTransform(p, [0.5, 0.68], [1, 0])
   const [at, setAt] = useState(0)
   const seen = useRef(0)
   useMotionValueEvent(p, 'change', (v) => {
@@ -98,7 +111,6 @@ function Coats() {
     if (i !== seen.current) { seen.current = i; setAt(i); sound.whoosh(true, 0.9); setTimeout(() => sound.drip(), 350) }
     sound.intensity(v)
   })
-  const o1 = useTransform(p, [0, 0.2], [0, 0]) // placeholder keeps hook order stable
   return (
     <section className="coats" ref={ref} aria-label="The three coats of a job">
       <div className="coats__stick">
@@ -108,29 +120,31 @@ function Coats() {
         </defs></svg>
 
         <div className="coat coat--1">
-          <div className="coat__txt"><h2>Primer.</h2><p>Floors masked, edges taped, surfaces patched and primed before any color goes on.</p></div>
+          <motion.div className="coat__txt" style={{ opacity: t1 }}><h2>Primer.</h2><p>Floors masked, edges taped, surfaces patched and primed before any color goes on.</p></motion.div>
           <div className="coat__prints">
-            <Print src={stripeBefore} alt="A bedroom wall taped off with blue painter's tape for stripes" p={p} range={[20, -50]} rot={-2} className="a" />
-            <Print src={whB2} alt="A raw gray warehouse wall with the floor masked in paper and tape" p={p} range={[60, -80]} rot={1.5} className="b" />
-            <Print src={whB4} alt="A tall gray warehouse wall and door, masked before painting" p={p} range={[0, -30]} rot={-1} className="c" />
+            <Print src={stripeBefore} alt="A bedroom wall taped off with blue painter's tape for stripes" p={p} range={[20, -50]} rot={-2} className="a" tag="Taped off" />
+            <Print src={whB2} alt="A raw gray warehouse wall with the floor masked in paper and tape" p={p} range={[60, -80]} rot={1.5} className="b" tag="Masked" />
+            <Print src={whB4} alt="A tall gray warehouse wall and door, masked before painting" p={p} range={[0, -30]} rot={-1} className="c" tag="Masked" />
           </div>
         </div>
         <div className="coat coat--2" style={{ clipPath: 'url(#cp1)' }}>
-          <div className="coat__txt"><h2>Base.</h2><p>Edges cut in by hand, then the first color goes on.</p></div>
+          <motion.div className="coat__txt" style={{ opacity: t2 }}><h2>Base.</h2><p>Edges cut in by hand, then the first color goes on.</p></motion.div>
           <div className="coat__prints coat__prints--2">
-            <Print src={bathBefore} alt="A bathroom with deep green cut in along the trim and ceiling, walls still cream" p={p} range={[80, -40]} rot={1.5} className="a" />
-            <Print src={lionProcess} alt="A restaurant exterior partway through repainting" p={p} range={[20, -70]} rot={-1.5} className="b" />
+            <Print src={bathBefore} alt="A bathroom with deep green cut in along the trim and ceiling, walls still cream" p={p} range={[80, -40]} rot={1.5} className="a" tag="Cut in" />
+            <Print src={lionProcess} alt="A restaurant exterior partway through repainting" p={p} range={[20, -70]} rot={-1.5} className="b" tag="Mid-job" />
           </div>
         </div>
         <div className="coat coat--3" style={{ clipPath: 'url(#cp2)' }}>
           <div className="coat__txt"><h2>Finish.</h2><p>The last coat, the clean lines, the result.</p><a className="btn btn--ink" href="#estimate">Get a free estimate</a></div>
           <div className="coat__prints coat__prints--3">
-            <Print src={bathAfter} alt="The finished bathroom in deep green" p={p} range={[90, -30]} rot={-1} className="a" />
-            <Print src={doorAfter} alt="A front door restained in rich brown" p={p} range={[40, -60]} rot={1} className="b" />
-            <Print src={tlAfter} alt="A restaurant exterior finished in white with black trim" p={p} range={[110, -20]} rot={-1.5} className="c" />
-            <Print src={homeAfter} alt="A Gilbert home finished in neutral tones" p={p} range={[10, -50]} rot={1.5} className="d" />
+            <Print src={bathAfter} alt="The finished bathroom in deep green" p={p} range={[90, -30]} rot={-1} className="a" tag="Finished" before={bathBefore} beforeAlt="The same bathroom with deep green cut in and the walls still cream" />
+            <Print src={doorAfter} alt="A front door restained in rich brown" p={p} range={[40, -60]} rot={1} className="b" tag="Finished" before={doorBefore} beforeAlt="The same front door, weathered gray wood" />
+            <Print src={tlAfter} alt="A restaurant exterior finished in white with black trim" p={p} range={[110, -20]} rot={-1.5} className="c" tag="Finished" before={tlBefore} beforeAlt="The same restaurant exterior before repainting" />
+            <Print src={homeAfter} alt="A Gilbert home finished in neutral tones" p={p} range={[10, -50]} rot={1.5} className="d" tag="Finished" before={homeBefore} beforeAlt="The same Gilbert home in orange stucco before repainting" />
           </div>
         </div>
+        <svg className="edge" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true"><motion.path d={e1} className="edge__hi" /></svg>
+        <svg className="edge" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true"><motion.path d={e2} className="edge__hi" /></svg>
         <ol className="coats__nav" data-at={at} aria-label="Progress">
           {['Primer', 'Base', 'Finish'].map((n, i) => <li key={n} data-on={at >= i} data-now={at === i}><i />{n}</li>)}
         </ol>
@@ -187,7 +201,7 @@ function App() {
         <section className="own" aria-labelledby="own-t">
           <Reveal className="own__ph"><img src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /><span>Placeholder photo</span></Reveal>
           <div>
-            <Reveal as="h2" id="own-t">Operated by the owner.</Reveal>
+            <Reveal as="h2" id="own-t">Owner-operated by Jonathan Bernal.</Reveal>
             <Reveal delay={0.1} as="p" className="own__p">Jonathan Bernal brings care and precision to homes and businesses across the East Valley, inside and out. Licensed and insured. Quality, precision, perfection.</Reveal>
             <Reveal delay={0.15} as="blockquote">&ldquo;{REVIEW.quote}&rdquo;<footer>{REVIEW.who}</footer></Reveal>
             <Reveal delay={0.2} as="p" className="own__areas">Serving {AREAS.join(', ')} and more.</Reveal>

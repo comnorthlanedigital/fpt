@@ -8,6 +8,7 @@ import { createHouse } from './house'
 import { SoundToggle, useSound, Estimate, Footer, MobileBar, Reveal, CONTACT, AREAS, REVIEW, sound, ease } from '../../shared/ui'
 import logoSm from '../../img/logo-sm.jpg'
 import kitchenA from '../../img/kitchen-after-sm.jpg'; import gdoorA from '../../img/gdoor-after-sm.jpg'; import doorA from '../../img/door-after-sm.jpg'; import stripeA from '../../img/stripe-after-sm.jpg'; import homeA from '../../img/home-after.jpg'
+import kitchenB from '../../img/kitchen-before-sm.jpg'; import gdoorB from '../../img/gdoor-before-sm.jpg'; import doorB from '../../img/door-before-sm.jpg'; import stripeB from '../../img/stripe-before-sm.jpg'
 import owner from '../../img/owner-sm.jpg'
 
 // Colors sampled by eye from real JB'S jobs plus a few neutrals. Names describe the look, not a paint brand.
@@ -50,7 +51,19 @@ function Stage({ house, setHouse, colors }) {
       {gl ? <canvas ref={cv} role="img" aria-label="A 3D illustration of a stucco house you can spin and recolor" /> : <img className="stage__fallback" src={homeA} alt="A finished Gilbert home by JB'S Pro Painters" />}
       {!gl && <p className="stage__nogl">3D preview needs WebGL. Showing a real finished home instead.</p>}
       <AnimatePresence>{gl && !touched && <motion.span className="stage__hint" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>Drag to spin the house</motion.span>}</AnimatePresence>
-      {gl && <div className="stage__zoom" onPointerDown={(e) => e.stopPropagation()}><button type="button" aria-label="Zoom in" onClick={() => house?.zoom(-3)}>+</button><button type="button" aria-label="Zoom out" onClick={() => house?.zoom(3)}>&minus;</button></div>}
+      {gl && <div className="stage__zoom" onPointerDown={(e) => e.stopPropagation()}>
+        <button type="button" aria-label="Zoom in" onClick={() => house?.zoom(-3)}><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg></button>
+        <button type="button" aria-label="Zoom out" onClick={() => house?.zoom(3)}><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M5 12h14" /></svg></button></div>}
+    </div>
+  )
+}
+
+function Pair({ after, before, alt, altBefore }) {
+  const [b, setB] = useState(false)
+  return (
+    <div className="pair">
+      <AnimatePresence initial={false}><motion.img key={b ? 'b' : 'a'} src={b ? before : after} alt={b ? altBefore : alt} loading="lazy" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.45 }} /></AnimatePresence>
+      <div className="pair__seg" role="group" aria-label="Before or after"><button aria-pressed={b} onClick={() => { setB(true); sound.tick(0.8) }}>Before</button><button aria-pressed={!b} onClick={() => { setB(false); sound.tick(1.3) }}>After</button></div>
     </div>
   )
 }
@@ -105,8 +118,8 @@ function App() {
         <section className="real" aria-labelledby="real-t">
           <Reveal as="h2" id="real-t">The same colors, on real walls.</Reveal>
           <div className="real__row">
-            {[[kitchenA, 'Deep navy', 'Kitchen cabinets, Queen Creek', 'Kitchen cabinets painted deep navy'], [gdoorA, 'Garage-door green', 'Garage doors, exterior', 'Garage doors painted deep green-gray on a stucco home'], [doorA, 'Walnut stain', 'Front door refinish', 'A front door restained in rich brown'], [stripeA, 'Racing red', 'Accent wall, interior', 'An accent wall with bold red and white stripes']].map(([s, c, cap, alt], i) => (
-              <Reveal key={c} delay={i * 0.08} as="figure"><img src={s} alt={alt} loading="lazy" /><figcaption><i style={{ background: PALETTE.find((p) => p[0] === c)[1] }} /><span><b>{c}</b>{cap}</span></figcaption></Reveal>
+            {[[kitchenA, kitchenB, 'Deep navy', 'Kitchen cabinets, Queen Creek', 'Kitchen cabinets painted deep navy', 'Oak kitchen cabinets before painting'], [gdoorA, gdoorB, 'Garage-door green', 'Garage doors, exterior', 'Garage doors painted deep green-gray on a stucco home', 'Tan garage doors before painting'], [doorA, doorB, 'Walnut stain', 'Front door refinish', 'A front door restained in rich brown', 'A weathered gray wood front door before'], [stripeA, stripeB, 'Racing red', 'Accent wall, interior', 'An accent wall with bold red and white stripes', 'A wall taped off for stripes']].map(([a, b, c, cap, alt, altB], i) => (
+              <Reveal key={c} delay={i * 0.08} as="figure"><Pair after={a} before={b} alt={alt} altBefore={altB} /><figcaption><i style={{ background: PALETTE.find((p) => p[0] === c)[1] }} /><span><b>{c}</b>{cap}</span></figcaption></Reveal>
             ))}
           </div>
         </section>
@@ -114,8 +127,8 @@ function App() {
         <section className="own" aria-labelledby="own-t">
           <Reveal className="own__ph"><img src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /><span>Placeholder photo</span></Reveal>
           <div>
-            <Reveal as="h2" id="own-t">Jonathan Bernal<br />runs every job.</Reveal>
-            <Reveal delay={0.1} as="p" className="own__p">Operated by the owner, licensed and insured. Care and precision for homes and businesses across the East Valley, inside and out. Interior, exterior, cabinets, doors and commercial. Quality, precision, perfection.</Reveal>
+            <Reveal as="h2" id="own-t">Owner-operated<br />by Jonathan Bernal.</Reveal>
+            <Reveal delay={0.1} as="p" className="own__p">Licensed and insured. Care and precision for homes and businesses across the East Valley, inside and out. Interior, exterior, cabinets, doors and commercial. Quality, precision, perfection.</Reveal>
             <Reveal delay={0.15} as="blockquote">&ldquo;{REVIEW.quote}&rdquo;<footer>{REVIEW.who}</footer></Reveal>
             <Reveal delay={0.2} as="p" className="own__areas">Serving {AREAS.join(', ')} and more.</Reveal>
           </div>

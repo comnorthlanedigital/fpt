@@ -39,7 +39,7 @@ function drawCover(c, img, W, H) {
 /* The signature moment: the finished photo only exists where the roller has been. */
 function RollStage({ job, autoStart = false, hero = false }) {
   const reduce = useReducedMotion()
-  const wrap = useRef(null), cv = useRef(null), mask = useRef(null), tiny = useRef(null), after = useRef(null)
+  const wrap = useRef(null), cv = useRef(null), mask = useRef(null), tiny = useRef(null), after = useRef(null), edge = useRef(null)
   const last = useRef(null), stamps = useRef(0), dpr = useRef(1), lastCalc = useRef(0)
   const [done, setDone] = useState(false)
   const [pct, setPct] = useState(0)
@@ -59,6 +59,17 @@ function RollStage({ job, autoStart = false, hero = false }) {
     c.drawImage(mask.current, 0, 0)
     c.globalCompositeOperation = 'source-in'; drawCover(c, after.current, W, H)
     c.globalCompositeOperation = 'source-over'
+    // wet edge: a thin sheen on the lit side of the paint front and a soft lap shadow on the other
+    const e = edge.current, ex = e.getContext('2d'), d = dpr.current * 3
+    if (e.width !== W || e.height !== H) { e.width = W; e.height = H }
+    ex.globalCompositeOperation = 'source-over'; ex.clearRect(0, 0, W, H)
+    ex.drawImage(mask.current, 0, 0); ex.globalCompositeOperation = 'destination-out'; ex.drawImage(mask.current, d, d)
+    ex.globalCompositeOperation = 'source-in'; ex.fillStyle = '#fff'; ex.fillRect(0, 0, W, H)
+    c.globalAlpha = 0.55; c.drawImage(e, 0, 0); c.globalAlpha = 1
+    ex.globalCompositeOperation = 'source-over'; ex.clearRect(0, 0, W, H)
+    ex.drawImage(mask.current, 0, 0); ex.globalCompositeOperation = 'destination-out'; ex.drawImage(mask.current, -d, -d)
+    ex.globalCompositeOperation = 'source-in'; ex.fillStyle = '#0a1433'; ex.fillRect(0, 0, W, H)
+    c.globalAlpha = 0.32; c.drawImage(e, 0, 0); c.globalAlpha = 1
   }, [])
 
   const fit = useCallback(() => {
@@ -74,7 +85,7 @@ function RollStage({ job, autoStart = false, hero = false }) {
   }, [redraw])
 
   useEffect(() => {
-    mask.current = document.createElement('canvas'); tiny.current = document.createElement('canvas'); tiny.current.width = 40; tiny.current.height = 25
+    mask.current = document.createElement('canvas'); edge.current = document.createElement('canvas'); tiny.current = document.createElement('canvas'); tiny.current.width = 40; tiny.current.height = 25
     fit()
     const ro = new ResizeObserver(fit); ro.observe(wrap.current)
     return () => ro.disconnect()
@@ -132,7 +143,8 @@ function RollStage({ job, autoStart = false, hero = false }) {
     const p = point(e), dt = Math.max(8, performance.now() - t0.current); t0.current = performance.now()
     const lp = last.current || p, speed = Math.hypot(p.x - lp.x, p.y - lp.y) / dt
     sound.roll(clamp(speed / 1.4, 0, 1))
-    x.set(p.x); y.set(p.y); stampTo(p.x, p.y)
+    const py = clamp(p.y, ROLL_H, wrap.current.clientHeight - 16)
+    x.set(p.x); y.set(py); stampTo(p.x, py)
   }
   const onUp = () => { down.current = false; last.current = null; sound.roll(0); const p = coverage(true); if (p > 0.74 && !done) finish() }
 
@@ -244,7 +256,7 @@ function App() {
         <section className="own" aria-labelledby="own-t">
           <Reveal className="own__ph"><img src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /><span>Placeholder photo</span></Reveal>
           <div>
-            <Reveal as="h2" id="own-t">Jonathan Bernal<br />runs every job.</Reveal>
+            <Reveal as="h2" id="own-t">Owner-operated<br />by Jonathan Bernal.</Reveal>
             <Reveal delay={0.1} as="p" className="own__p">Operated by the owner, licensed and insured. Jonathan brings care and precision to homes and businesses across the East Valley, inside and out. Quality, precision and perfection on every wall.</Reveal>
             <Reveal delay={0.15} as="blockquote">&ldquo;{REVIEW.quote}&rdquo;<footer>{REVIEW.who}</footer></Reveal>
             <Reveal delay={0.2} as="p" className="own__areas">Serving {AREAS.join(', ')} and more.</Reveal>

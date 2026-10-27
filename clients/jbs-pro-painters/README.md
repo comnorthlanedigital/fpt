@@ -32,3 +32,14 @@ Source in `sites-v2/`, standalone single-file versions (double-click to open) in
 - `JBS-c-raw-to-ready.html`: brand-true cinematic scroll story. 3D logo hero, pinned scroll-scrubbed before/after chapters, raw-vs-ready warehouse rows, service list with photo peek.
 All three: free-estimate form with validation, honeypot and Netlify/mailto fallback, meta/OG tags, favicon, alt text, privacy and terms dialogs (sample drafts for owner review), mobile call/text/estimate bar, reduced-motion support.
 Still to do per launch checklist once a site is chosen: real domain (canonical, sitemap.xml, robots.txt, HTTPS redirect), analytics + cookie banner, custom 404, final privacy/terms text, higher-res originals of the photos (most are 480px wide).
+
+## Round 3 sites (React + framer-motion, synthesized sound)
+Source in `v3/` (shared pieces in `v3/shared/`, one folder per site in `v3/sites/`), single-file builds in `preview/JBS-v3-*.html` (fonts, photos and code all inline, no network needed).
+Build: `python3 -I clients/jbs-pro-painters/v3/fonts.py && python3 -I clients/jbs-pro-painters/v3/images.py && node clients/jbs-pro-painters/v3/build.mjs [roller coats board lights studio]` (images.py reads `sites-v2/_pool`, made by `build-v2.py --pool`).
+- `roller`: drag a paint roller to reveal the finished photo (canvas mask), jobs picker, auto "Roll it for me", warehouse rolls itself.
+- `coats`: 3D logo hero with chrome liquid blobs; Primer / Base / Finish coats pour over each other on scroll, finish prints carry their before; draggable warehouse strip.
+- `board`: jobs taped to a charcoal wall, drag prints, tap to flip to the before; taped headline, tape labels.
+- `lights`: dark page with a flashlight, a working wall switch, global dimmer, rooms with before/after, services as switches.
+- `studio`: procedural 3D house (three.js), recolor walls/trim/garage/front door with real job colors, scheme goes into the estimate form; same colors on real walls with before/after.
+Sound is opt-in (Sound button), synthesized with Web Audio (`v3/shared/sound.js`, adapted from `src/audio.ts`).
+Design contracts: `.impeccable/surfaces/`. Open items before launch: owner photo, full review text and permission, approval to show the restaurant (signage is visible in the photos), original hi-res photos, real domain, analytics + cookie banner, custom 404, final legal text.

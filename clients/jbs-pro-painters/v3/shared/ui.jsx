@@ -13,7 +13,7 @@ export const SERVICES = [
   ['Commercial repaints', 'Restaurants, warehouses and shops, planned around your space.'],
   ['Accent walls and details', 'Stripes and color blocks, taped and cut sharp.'],
 ]
-export const REVIEW = { quote: 'JB’S Pro Painters LLC did an outstanding job painting the exterior…', who: 'Kenneth R., Facebook review' }
+export const REVIEW = { quote: 'JB’S Pro Painters LLC did an outstanding job painting the exterior…', who: 'Kenneth R., Facebook review (excerpt)' }
 
 /* ---------- sound ---------- */
 export function useSound(bedName) {
@@ -36,8 +36,12 @@ export function SoundToggle({ on, toggle, className = '' }) {
   }, [on])
   return (
     <button type="button" className={`snd ${className}`} onClick={toggle} aria-pressed={on} aria-label={on ? 'Turn sound off' : 'Turn sound on'}>
+      <svg className="snd__ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" />
+        {on ? <><path d="M15.5 9a4 4 0 0 1 0 6" /><path d="M18 6.5a7.5 7.5 0 0 1 0 11" /></> : <path d="M16 9.5l5 5M21 9.5l-5 5" />}
+      </svg>
       <span className="snd__bars" aria-hidden="true">{[0, 1, 2, 3].map((i) => <i key={i} ref={(el) => (bars.current[i] = el)} style={on ? undefined : { transform: 'scaleY(.25)' }} />)}</span>
-      <span>{on ? 'Sound on' : 'Sound off'}</span>
+      <span className="snd__t">{on ? 'Sound on' : 'Sound off'}</span>
     </button>
   )
 }
@@ -97,7 +101,7 @@ export function Estimate({ id = 'estimate', title, lead, extra, children }) {
           <label className="full">Details<textarea name="message" placeholder="Rooms, size, timing, colors you like" /></label>
           <button className="est__go" type="submit" disabled={state === 'sending'}>{state === 'sending' ? 'Sending...' : 'Send my estimate request'}</button>
           <p className="ok full" role="status">{state === 'done' ? msg : ''}</p>
-          <p className="note full">We use these details only to answer your request. <LegalLink which="privacy">Privacy policy</LegalLink></p>
+          <p className="note full">We’ll use these details to reply about your estimate. <LegalLink which="privacy">Privacy policy</LegalLink></p>
         </form>
       </div>
     </section>
@@ -133,8 +137,14 @@ export function Footer() {
 }
 
 export function MobileBar() {
+  // appears once the first screen has been scrolled past, so it never covers the hero's own action
+  const [show, setShow] = useState(false)
+  useEffect(() => {
+    const f = () => setShow(window.scrollY > window.innerHeight * 0.75)
+    f(); addEventListener('scroll', f, { passive: true }); return () => removeEventListener('scroll', f)
+  }, [])
   return (
-    <nav className="mbar" aria-label="Contact">
+    <nav className="mbar" data-show={show} aria-label="Contact">
       <a href={`tel:${CONTACT.tel}`}>Call</a><a href={`sms:${CONTACT.tel}`}>Text</a><a href="#estimate" className="mbar__go">Free estimate</a>
     </nav>
   )

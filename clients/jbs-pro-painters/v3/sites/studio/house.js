@@ -2,7 +2,7 @@
 import {
   Scene, PerspectiveCamera, WebGLRenderer, Mesh, Group, BoxGeometry, CylinderGeometry, SphereGeometry, ExtrudeGeometry, Shape,
   PlaneGeometry, CircleGeometry, MeshStandardMaterial, HemisphereLight, DirectionalLight, Color, CanvasTexture, RepeatWrapping,
-  PCFShadowMap, SRGBColorSpace, ACESFilmicToneMapping, Fog,
+  PCFShadowMap, SRGBColorSpace, NoToneMapping, Fog,
 } from 'three'
 
 const noiseTex = (size, repeat) => {
@@ -17,12 +17,12 @@ export function createHouse(canvas, colors) {
   const renderer = new WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' })
   renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1))
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = PCFShadowMap
-  renderer.outputColorSpace = SRGBColorSpace; renderer.toneMapping = ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05
+  renderer.outputColorSpace = SRGBColorSpace; renderer.toneMapping = NoToneMapping
   const scene = new Scene()
   const camera = new PerspectiveCamera(32, 1, 0.1, 120)
 
-  scene.add(new HemisphereLight(0xdbe8ff, 0x6f6b5a, 1.05))
-  const sun = new DirectionalLight(0xfff1dc, 2.6); sun.position.set(9, 13, 11); sun.castShadow = true
+  scene.add(new HemisphereLight(0xeef3ff, 0x8a8574, 1.9))
+  const sun = new DirectionalLight(0xfff4e6, 1.25); sun.position.set(9, 13, 11); sun.castShadow = true
   sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -16, right: 16, top: 16, bottom: -16, near: 1, far: 50 }); sun.shadow.bias = -0.0006; sun.shadow.normalBias = 0.02
   scene.add(sun)
 
@@ -93,7 +93,7 @@ export function createHouse(canvas, colors) {
     raf = requestAnimationFrame(frame)
     if (auto) cam.az += 0.0016
     cam.az += cam.vaz; cam.pol = Math.min(1.5, Math.max(0.95, cam.pol + cam.vpol)); cam.vaz *= 0.92; cam.vpol *= 0.9
-    for (const k in mats) mats[k].color.lerp(want[k], 0.14)
+    for (const k in mats) mats[k].color.lerp(want[k], 0.09)
     place(); renderer.render(scene, camera)
   }
   place()

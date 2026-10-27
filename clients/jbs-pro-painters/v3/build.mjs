@@ -13,12 +13,13 @@ const META = {
   board: ['The Job Board', '#37373f', 'Real JB\'S Pro Painters jobs taped to the wall. Drag them around and flip one to see where it started. Interior and exterior painting in Gilbert, Mesa, Chandler and more.'],
   lights: ['Flip the switch', '#07080d', 'Flip the switch and watch dark rooms come alive. Real before and after interiors and warehouses by JB\'S Pro Painters LLC across the East Valley. Free estimates.'],
   home: ['Painters in the East Valley', '#0a1433', 'Roll a real before photo into the finished job, then watch a JB\'S Pro Painters job go on coat by coat. Interior and exterior painting for homes and businesses across the East Valley. Free estimates, call (602) 473-0415.'],
+  models: ['3D Paint Studio', '#12141a', 'Pick a 3D model of a house, bathroom or kitchen, paint every surface in real colors and finishes, and send the plan straight into a free estimate request from JB\'S Pro Painters.'],
   texture: ['Texture Studio', '#16181f', 'Pick a real JB\'S Pro Painters project, choose a wall texture (smooth, sand, orange peel, knockdown, skip trowel) and color, and look closer with the magnifier. Then request the finish with a free estimate.'],
   studio: ['Color Studio', '#16181f', 'Spin a 3D house and try real JB\'S Pro Painters colors on the walls, trim and doors, then send the scheme with a free estimate request.'],
 }
 const sites = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(META)
-const OUT = { home: 'JBS-home.html', studio: 'old-concepts/JBS-color-studio.html', texture: 'JBS-texture-studio.html' } // no-sound pages
-const SILENT = new Set(['home', 'studio', 'texture'])
+const OUT = { home: 'JBS-home.html', studio: 'old-concepts/JBS-color-studio.html', texture: 'JBS-texture-studio.html', models: 'JBS-3d-studio.html' } // no-sound pages
+const SILENT = new Set(['home', 'studio', 'texture', 'models'])
 const b64 = (f) => fs.readFileSync(path.join(here, 'img', f)).toString('base64')
 fs.mkdirSync(path.join(here, '..', 'preview'), { recursive: true })
 fs.copyFileSync(path.join(here, 'img', 'og.jpg'), path.join(here, '..', 'preview', 'og.jpg'))
@@ -32,7 +33,7 @@ for (const s of sites) {
 <title>${title}</title><meta name="description" content="${desc}"><meta name="theme-color" content="${color}">
 <meta property="og:type" content="website"><meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:image" content="og.jpg"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/jpeg;base64,${b64('logo-sm.jpg')}"><link rel="apple-touch-icon" href="data:image/jpeg;base64,${b64('logo-sq.jpg')}">
-</head><body><form name="quote" data-netlify="true" netlify-honeypot="bot" hidden><input name="form-name"><input name="request"><input name="name"><input name="phone"><input name="email"><input name="city"><input name="project"><input name="color"><input name="message"><input name="bot"></form><div id="root"></div><script type="module" src="./main.jsx"></script></body></html>`)
+</head><body><form name="quote" data-netlify="true" netlify-honeypot="bot" hidden><input name="form-name"><input name="request"><input name="name"><input name="phone"><input name="email"><input name="city"><input name="project"><input name="color"><input name="message"><input name="paint_plan"><input name="bot"></form><div id="root"></div><script type="module" src="./main.jsx"></script></body></html>`)
   const out = path.join(here, 'dist', s)
   await build({
     root, base: './', configFile: false, logLevel: 'warn', plugins: [react()],

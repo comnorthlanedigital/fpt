@@ -22,7 +22,7 @@ const PALETTE = [
 const nameOf = (hex) => (PALETTE.find((p) => p[1].toLowerCase() === hex.toLowerCase()) || ['Custom'])[0]
 
 const LINKS = [
-  { label: 'Home', href: 'JBS-home.html', id: 'home' }, { label: 'Texture studio', href: '#top', id: 'texture' }, { label: 'Real jobs', href: '#real' }, { label: 'Estimate', href: '#estimate', cta: true },
+  { label: 'Home', href: 'JBS-home.html', id: 'home' }, { label: '3D studio', href: 'JBS-3d-studio.html', id: 'studio' }, { label: 'Texture studio', href: '#top', id: 'texture' }, { label: 'Real jobs', href: '#real' }, { label: 'Estimate', href: '#estimate', cta: true },
 ]
 const cache = new Map()
 const getScene = (def) => { if (!cache.has(def.id)) cache.set(def.id, loadScene(def)); return cache.get(def.id) }

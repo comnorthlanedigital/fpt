@@ -24,7 +24,7 @@ import owner from '../../img/owner-new.jpg'
 
 const LINKS = [
   { label: 'Work', href: '#work' }, { label: 'Process', href: '#process' }, { label: 'Services', href: '#services' },
-  { label: 'Texture studio', href: 'JBS-texture-studio.html', id: 'texture' }, { label: 'Estimate', href: '#estimate', cta: true },
+  { label: '3D studio', href: 'JBS-3d-studio.html', id: 'studio' }, { label: 'Estimate', href: '#estimate', cta: true },
 ]
 const JOBS = [
   { id: 'bath', title: 'Bathroom', place: 'Interior', before: bathBefore, after: bathAfter, thumb: bathSm },

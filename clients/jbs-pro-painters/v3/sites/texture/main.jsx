@@ -30,7 +30,8 @@ const LENS = 190, ZOOM = 2.6
 /* The real photo. Only the wall changes; a magnifier shows the texture up close. */
 function Stage({ def, kind, strength, color, compare }) {
   const wrap = useRef(null), cv = useRef(null), lens = useRef(null), sc = useRef(null), raf = useRef(0), pos = useRef(null)
-  const [ready, setReady] = useState(false)
+  const [loaded, setLoaded] = useState(null) // id of the scene the canvas data belongs to
+  const ready = loaded === def.id
   const [lensOn, setLensOn] = useState(false)
   const [touched, setTouched] = useState(false)
   const debug = typeof location !== 'undefined' && /[?&]mask/.test(location.search)
@@ -47,10 +48,10 @@ function Stage({ def, kind, strength, color, compare }) {
     const c = cv.current; if (c.width !== s.W) { c.width = s.W; c.height = s.H }
     c.getContext('2d').putImageData(compare ? s.orig : render(s, { kind, strength, color, showMask: debug }), 0, 0)
     drawLens()
-  }, [kind, strength, color, compare, debug, drawLens])
+  }, [kind, strength, color, compare, debug, drawLens, loaded])
 
-  useEffect(() => { setReady(false); let live = true; getScene(def).then((s) => { if (live) { sc.current = s; setReady(true) } }); return () => { live = false } }, [def])
-  useEffect(() => { cancelAnimationFrame(raf.current); raf.current = requestAnimationFrame(draw) }, [draw, ready])
+  useEffect(() => { let live = true; getScene(def).then((s) => { if (live) { sc.current = s; setLoaded(def.id) } }); return () => { live = false } }, [def])
+  useEffect(() => { if (!ready) return; cancelAnimationFrame(raf.current); raf.current = requestAnimationFrame(draw) }, [draw, ready, def.id])
 
   const move = (e) => {
     const r = wrap.current.getBoundingClientRect()

@@ -26,3 +26,25 @@ then `frontend-design-direction`, `motion-*` and `accessibility` as needed. Bran
 2. **Simplicity first.** Minimum code that solves the problem. No speculative features, single-use abstractions or impossible-case error handling.
 3. **Surgical changes.** Touch only what you must; match existing style; remove only the orphans your own change created. Mention unrelated dead code, don't delete it.
 4. **Goal-driven execution.** Turn tasks into verifiable goals, state a brief plan with a check per step, and loop until verified.
+
+## Launch checklist (every finished client/demo site)
+Run through this before calling any site done, and report each item as done / n/a / needs-owner-input:
+1. Privacy policy page and Terms & Conditions page (use only facts from the client; flag missing legal details, don't invent them)
+2. No secrets in front-end code (API keys, tokens); use server-side/env or the host's form handling
+3. Force HTTPS (redirect rule for the host, e.g. Netlify `_redirects`/`netlify.toml`; HSTS where available)
+4. Cookie consent banner (only needed if analytics/cookies are used; must gate analytics until accepted)
+5. Meta title + description on every page, canonical URL
+6. Social preview image (og:image / twitter:card, 1200x630)
+7. Favicon (+ apple-touch-icon)
+8. `sitemap.xml` and `robots.txt`
+9. Alt text on every meaningful image (empty alt for decorative)
+10. Compress images (WebP/AVIF or optimized JPEG, responsive sizes, lazy-load below the fold)
+11. Check page load speed (Lighthouse/PageSpeed; fix LCP, CLS, blocking scripts)
+12. Color contrast fixed to WCAG AA
+13. Mobile friendly (verify at 390px, no horizontal scroll, tap targets)
+14. Custom 404 page
+15. Fix broken links (crawl internal and external links)
+16. Form validation (client + server side, clear errors)
+17. Spam/bot protection on forms (honeypot, optionally captcha/Turnstile) [asked as "ask ban protection", interpreted as anti-bot]
+18. Analytics set up (privacy-friendly where possible; needs the client's account/ID)
+19. One clear primary call to action per page/section

@@ -52,3 +52,12 @@ Saved in `assets/batch-8/`.
 - Stucco home two-tone (2): same house as batch 7 photos 6 (light exterior) with navy-gray accent section added: before 7-6 -> after 8-2.
 - Navy cabinets (5): corner view, same kitchen as batch 7.
 - Commercial building (7): large tilt-up/office-warehouse exterior, gray body, dark navy accent columns; probably the same project family as the warehouse interiors. Confirm.
+
+## Batch 9 (owner-supplied)
+Saved in `assets/batch-9/`.
+- **New brand assets:** `10-logo-new-3d.jpg` (1536px, 3D silver-on-navy logo with blue roof) and `11-business-card.jpg`. The card confirms: "Operated by owner", Jonathan Bernal, 602-473-0415, jbspropainters@gmail.com, Facebook "Jbs Pro Painters LLC", "Residential / Commercial / Interior / Exterior", and **"LIC . INS"** (licensed and insured, no license number shown). Palette matches what the sites use (navy, blue, silver).
+- **Front door refinish:** 2 (weathered gray wood) -> 5 (restained deep brown). Clean before/after; wood staining/refinishing is a service to list if the owner confirms.
+- **Two-story house exterior:** 7 (tan) -> 8 (cream/white), 13 is the prep stage with windows masked (looks like the same house family). Confirm.
+- **Accent wall:** 9 (taped) -> 12 (red and white stripes on pink room). Good detail/craft shot.
+- **Thirsty Lion:** 4 (before/mid) -> 6 (after, patio and signage). 1: navy-painted steel column cap on a roof, also used on the commercial building in 3.
+- **Third-party names visible:** photo 3 shows "AAA Sun Control, LLC" and "Tuff Shed" signs. Don't publish that photo without checking, or crop/blur the signs.

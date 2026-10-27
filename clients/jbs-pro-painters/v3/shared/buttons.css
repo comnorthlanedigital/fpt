@@ -1,0 +1,33 @@
+/* One slim button system. Imported last so it wins over page styles. */
+.btn,.est__go,.chipbtn,.btn--ghost,.hd__pbtn,.legal__x{
+  position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:42px;height:42px;padding:0 18px;border-radius:8px;border:1.5px solid var(--b-bg,var(--accent));
+  background:var(--b-bg,var(--accent));color:var(--b-ink,#fff);font:600 14.5px/1 var(--body);letter-spacing:.005em;text-decoration:none;cursor:pointer;
+  transition:color .35s cubic-bezier(.16,1,.3,1),border-color .35s,transform .25s cubic-bezier(.16,1,.3,1),box-shadow .35s;
+  box-shadow:0 1px 0 #ffffff26 inset,0 6px 14px -8px var(--b-glow,#2459e699);
+}
+.btn::before,.est__go::before,.chipbtn::before,.btn--ghost::before{
+  content:"";position:absolute;inset:-1px;z-index:-1;background:var(--b-sweep,#0e1630);transform:translateX(-101%);
+  transition:transform .55s cubic-bezier(.16,1,.3,1);border-radius:inherit;
+}
+.btn::after,.est__go::after{
+  content:"";flex:none;width:15px;height:15px;background:currentColor;transition:transform .45s cubic-bezier(.16,1,.3,1);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.btn:hover::before,.btn:focus-visible::before,.est__go:hover::before,.chipbtn:hover::before,.btn--ghost:hover::before{transform:none}
+.btn:hover,.est__go:hover,.chipbtn:hover,.btn--ghost:hover{border-color:var(--b-sweep,#0e1630);filter:none;transform:translateY(-1px);box-shadow:0 1px 0 #ffffff26 inset,0 12px 22px -10px var(--b-glow,#2459e699)}
+.btn:hover::after,.est__go:hover::after{transform:translateX(4px)}
+.btn:active,.est__go:active,.chipbtn:active,.btn--ghost:active{transform:translateY(0) scale(.97);transition-duration:.1s}
+.btn--sm{height:38px;min-height:38px;padding:0 16px;font-size:14px}
+.btn--ink{--b-bg:#e7ecf8;--b-ink:#0e1630;--b-sweep:#fff;--b-glow:#0004}
+.btn--ghost{--b-bg:transparent;--b-ink:#fff;--b-sweep:#fff;border-color:#ffffff80;box-shadow:none}.btn--ghost::after{display:none}.btn--ghost:hover{color:#12141a;border-color:#fff}
+.chipbtn{height:38px;min-height:38px;padding:0 14px;font-size:14px;--b-bg:#0e1630e6;--b-sweep:#fff;border-color:#ffffff66;pointer-events:auto}.chipbtn:hover{color:#0e1630;border-color:#fff}
+.chipbtn--solid{--b-bg:var(--accent);--b-sweep:#fff;border-color:var(--accent)}.chipbtn--solid:hover{color:var(--accent);border-color:#fff}.chipbtn:disabled{opacity:.7;cursor:progress}
+.est__go{width:100%;--b-bg:var(--cta,var(--accent));--b-sweep:#fff;height:48px}.est__go:hover{color:#0e1630;border-color:#fff}.est__go:disabled{opacity:.6;cursor:progress}
+.hd .btn{--b-sweep:#fff}.hd .btn:hover{color:#0e1630;border-color:#fff}
+.btn--ink:hover{color:#0e1630}
+.mbar a{border-radius:10px!important;min-height:44px!important;font-size:14.5px!important}
+.mbar{border-radius:14px!important;padding:5px!important}
+.hd__pcta .btn{height:46px;font-size:15.5px}
+@media(prefers-reduced-motion:reduce){.btn,.est__go,.chipbtn,.btn--ghost{transition:none}.btn::before,.est__go::before,.chipbtn::before{transition:none}}

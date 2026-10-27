@@ -4,9 +4,10 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useVe
 import '../../fonts/home.css'
 import '../../shared/shared.css'
 import './style.css'
-import { Estimate, Footer, MobileBar, Reveal, CONTACT, SERVICES, AREAS, REVIEW, sound, ease } from '../../shared/ui'
+import '../../shared/buttons.css'
+import { Estimate, Footer, MobileBar, Reveal, Words, CONTACT, SERVICES, AREAS, REVIEW, sound, ease } from '../../shared/ui'
 import { Header } from '../../shared/header'
-import logoSm from '../../img/logo-sm.jpg'
+import logoSm from '../../img/logo-sq.jpg'
 import logo3d from '../../img/logo3d.jpg'
 import stripeBeforeSm from '../../img/stripe-before-sm.jpg'; import whB2 from '../../img/wh-b2-sm.jpg'; import whB4 from '../../img/wh-b4-sm.jpg'
 import bathBeforeSm from '../../img/bath-before-sm.jpg'; import lionProcess from '../../img/lion-process-sm.jpg'
@@ -295,18 +296,25 @@ function Cycle() {
   return <motion.span className="h1__w" animate={{ color: WORD_COLORS[i] }} transition={{ duration: 0.9, ease }}>change.</motion.span>
 }
 
+function SvcRow({ name, text, i }) {
+  const ref = useRef(null)
+  const seen = useInView(ref, { once: true, margin: '0px 0px -10% 0px' })
+  return (
+    <motion.li ref={ref} className="svc__row" initial="hidden" animate={seen ? 'rest' : 'hidden'} whileHover="hover" whileFocus="hover"
+      variants={{ hidden: { opacity: 0, y: 28 }, rest: { opacity: 1, y: 0, transition: { duration: 0.8, ease, delay: i * 0.05 } }, hover: { opacity: 1, y: 0 } }}>
+      <motion.span className="svc__paint" variants={{ hidden: { scaleX: 0 }, rest: { scaleX: 0 }, hover: { scaleX: 1 } }} transition={{ duration: 0.55, ease }} />
+      <motion.span className="svc__name" variants={{ hidden: { color: 'var(--ink)' }, rest: { color: 'var(--ink)' }, hover: { color: '#fff', x: 10 } }} transition={{ duration: 0.4, ease }}>{name}</motion.span>
+      <motion.span className="svc__txt" variants={{ hidden: { color: 'var(--mute)' }, rest: { color: 'var(--mute)' }, hover: { color: '#dbe4ff' } }} transition={{ duration: 0.3 }}>{text}</motion.span>
+    </motion.li>
+  )
+}
+
 function Services() {
   return (
     <section className="svc" id="services" aria-labelledby="svc-t">
       <Reveal as="h2" id="svc-t" className="svc__h">Inside. Outside.<br />Home. Business.</Reveal>
       <ul className="svc__list">
-        {SERVICES.map(([name, text]) => (
-          <motion.li key={name} className="svc__row" initial="rest" whileHover="hover" whileFocus="hover" animate="rest" onHoverStart={() => sound.roll(0.5, 1.2)} onHoverEnd={() => sound.roll(0)}>
-            <motion.span className="svc__paint" variants={{ rest: { scaleX: 0 }, hover: { scaleX: 1 } }} transition={{ duration: 0.55, ease }} />
-            <motion.span className="svc__name" variants={{ rest: { color: 'var(--ink)' }, hover: { color: '#fff' } }} transition={{ duration: 0.3 }}>{name}</motion.span>
-            <motion.span className="svc__txt" variants={{ rest: { color: 'var(--mute)' }, hover: { color: '#dbe4ff' } }} transition={{ duration: 0.3 }}>{text}</motion.span>
-          </motion.li>
-        ))}
+        {SERVICES.map(([name, text], i) => <SvcRow key={name} name={name} text={text} i={i} />)}
       </ul>
     </section>
   )
@@ -320,29 +328,29 @@ function App() {
       <main id="top">
         <section className="hero" id="work">
           <div className="hero__top">
-            <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease }}>Watch a wall <Cycle /></motion.h1>
+            <Words as="h1" text="Watch a wall" delay={0.1}><span className="wd"><motion.span className="wd__i" initial={{ y: '115%', rotate: 4 }} animate={{ y: 0, rotate: 0 }} transition={{ duration: 0.9, ease, delay: 0.37 }}><Cycle /></motion.span></span></Words>
             <motion.div className="hero__side" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.2 }}>
               <p>Every photo here is a real JB&rsquo;S job. Roll it on and see the finish.</p>
               <a className="btn" href="#estimate">Get a free estimate</a>
             </motion.div>
           </div>
-          <AnimatePresence mode="wait"><motion.div key={job.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}><RollStage job={job} hero /></motion.div></AnimatePresence>
-          <div className="jobs" role="tablist" aria-label="Choose a job">
+          <motion.div initial={{ opacity: 0, y: 50, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 1.1, ease, delay: 0.35 }}><AnimatePresence mode="wait"><motion.div key={job.id} initial={{ opacity: 0, filter: 'blur(8px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} exit={{ opacity: 0, filter: 'blur(8px)' }} transition={{ duration: 0.35 }}><RollStage job={job} hero /></motion.div></AnimatePresence></motion.div>
+          <motion.div className="jobs" role="tablist" aria-label="Choose a job" initial="hide" animate="show" variants={{ hide: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.9 } } }}>
             {JOBS.map((j) => (
-              <button key={j.id} role="tab" aria-selected={job.id === j.id} className="jobs__b" onClick={() => { setJob(j); sound.thud(0.2, 140) }}>
+              <motion.button key={j.id} role="tab" aria-selected={job.id === j.id} className="jobs__b" variants={{ hide: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } } }} whileHover={{ y: -4 }} whileTap={{ scale: 0.97 }} onClick={() => { setJob(j); sound.thud(0.2, 140) }}>
                 <img src={j.thumb} alt="" loading="lazy" />
                 <span>{j.title}</span>
                 {job.id === j.id && <motion.i layoutId="jobline" className="jobs__line" transition={{ type: 'spring', stiffness: 500, damping: 40 }} />}
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         <Coats />
 
         <Services />
         <section className="own" aria-labelledby="own-t">
-          <Reveal className="own__ph"><img src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /></Reveal>
+          <motion.div className="own__ph" initial={{ clipPath: 'inset(12% 12% 12% 12% round 22px)', opacity: 0 }} whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 22px)', opacity: 1 }} viewport={{ once: true, margin: '0px 0px -12% 0px' }} transition={{ duration: 1.1, ease }}><motion.img initial={{ scale: 1.25 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ duration: 1.4, ease }} src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /></motion.div>
           <div>
             <Reveal as="h2" id="own-t">Owner-operated<br />by Jonathan Bernal.</Reveal>
             <Reveal delay={0.1} as="p" className="own__p">Operated by the owner, licensed and insured. Jonathan brings care and precision to homes and businesses across the East Valley, inside and out. Quality, precision and perfection on every wall.</Reveal>

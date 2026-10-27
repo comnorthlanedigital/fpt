@@ -4,11 +4,12 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import '../../fonts/texture.css'
 import '../../shared/shared.css'
 import './style.css'
+import '../../shared/buttons.css'
 import { SCENES } from './scenes'
 import { KINDS, loadScene, render, tile } from './texture'
-import { Estimate, Footer, MobileBar, Reveal, AREAS, REVIEW, ease } from '../../shared/ui'
+import { Estimate, Footer, MobileBar, Reveal, Words, AREAS, REVIEW, ease } from '../../shared/ui'
 import { Header } from '../../shared/header'
-import logoSm from '../../img/logo-sm.jpg'
+import logoSm from '../../img/logo-sq.jpg'
 import kitchenA from '../../img/kitchen-after-sm.jpg'; import gdoorA from '../../img/gdoor-after-sm.jpg'; import doorA from '../../img/door-after-sm.jpg'; import stripeA from '../../img/stripe-after-sm.jpg'
 import kitchenB from '../../img/kitchen-before-sm.jpg'; import gdoorB from '../../img/gdoor-before-sm.jpg'; import doorB from '../../img/door-before-sm.jpg'; import stripeB from '../../img/stripe-before-sm.jpg'
 import owner from '../../img/owner-new.jpg'
@@ -141,11 +142,11 @@ function App() {
       <main id="top">
         <section className="hero">
           <div className="hero__l">
-            <motion.h1 initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease }}>Feel the finish first.</motion.h1>
+            <Words as="h1" text="Feel the finish first." delay={0.1} />
             <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.15 }}>Pick a real JB&rsquo;S project, choose a wall texture and color, then slide the magnifier over the wall to see it up close.</motion.p>
-            <Kit {...{ sceneId, setSceneId, kind, setKind, strength, setStrength, color, setColor, setCompare }} />
+            <motion.div initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.35 }}><Kit {...{ sceneId, setSceneId, kind, setKind, strength, setStrength, color, setColor, setCompare }} /></motion.div>
           </div>
-          <Stage def={def} kind={kind} strength={strength} color={color} compare={compare} />
+          <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.1, ease, delay: 0.25 }}><Stage def={def} kind={kind} strength={strength} color={color} compare={compare} /></motion.div>
         </section>
         <p className="fine">Preview only. Textures are simulated on the photo and edges are approximate, so we always bring real samples to your wall.</p>
 

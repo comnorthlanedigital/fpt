@@ -58,6 +58,7 @@ async function sendLead(form) {
   return 'mailto'
 }
 
+const F = ({ as = 'div', className, children }) => { const M = motion[as]; return <M className={className} variants={{ hide: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } } }}>{children}</M> }
 export function Estimate({ id = 'estimate', title, lead, extra, aside, children }) {
   const [errs, setErrs] = useState({})
   const [state, setState] = useState('idle')
@@ -89,21 +90,21 @@ export function Estimate({ id = 'estimate', title, lead, extra, aside, children 
           <p className="est__sub">Call or text. {CONTACT.email}</p>
           {aside}
         </div>
-        <form ref={ref} name="quote" method="post" onSubmit={submit} noValidate className="est__form">
+        <motion.form ref={ref} name="quote" method="post" onSubmit={submit} noValidate className="est__form" initial="hide" whileInView="show" viewport={{ once: true, margin: '0px 0px -10% 0px' }} variants={{ hide: {}, show: { transition: { staggerChildren: 0.06 } } }}>
           <input type="hidden" name="form-name" value="quote" /><input type="hidden" name="request" value="Free estimate" />
           {extra}
           <p className="hp" aria-hidden="true"><label>Leave empty<input name="bot" tabIndex={-1} autoComplete="off" /></label></p>
-          <label>Name<input name="name" autoComplete="name" required aria-invalid={!!errs.name} aria-describedby="e-name" /><span id="e-name" className="err" role="alert">{errs.name}</span></label>
-          <label>Phone<input name="phone" type="tel" inputMode="tel" autoComplete="tel" required aria-invalid={!!errs.phone} aria-describedby="e-phone" /><span id="e-phone" className="err" role="alert">{errs.phone}</span></label>
-          <label>Email (optional)<input name="email" type="email" autoComplete="email" aria-invalid={!!errs.email} aria-describedby="e-email" /><span id="e-email" className="err" role="alert">{errs.email}</span></label>
-          <label>City<select name="city">{[...AREAS, 'Other'].map((c) => <option key={c}>{c}</option>)}</select></label>
-          <label className="full">Project<select name="project">{['Exterior painting', 'Interior painting', 'Cabinets', 'Doors / wood stain', 'Commercial', 'Something else'].map((c) => <option key={c}>{c}</option>)}</select></label>
+          <F as="label">Name<input name="name" autoComplete="name" required aria-invalid={!!errs.name} aria-describedby="e-name" /><span id="e-name" className="err" role="alert">{errs.name}</span></F>
+          <F as="label">Phone<input name="phone" type="tel" inputMode="tel" autoComplete="tel" required aria-invalid={!!errs.phone} aria-describedby="e-phone" /><span id="e-phone" className="err" role="alert">{errs.phone}</span></F>
+          <F as="label">Email (optional)<input name="email" type="email" autoComplete="email" aria-invalid={!!errs.email} aria-describedby="e-email" /><span id="e-email" className="err" role="alert">{errs.email}</span></F>
+          <F as="label">City<select name="city">{[...AREAS, 'Other'].map((c) => <option key={c}>{c}</option>)}</select></F>
+          <F as="label" className="full">Project<select name="project">{['Exterior painting', 'Interior painting', 'Cabinets', 'Doors / wood stain', 'Commercial', 'Something else'].map((c) => <option key={c}>{c}</option>)}</select></F>
           {children}
-          <label className="full">Details<textarea name="message" placeholder="Rooms, size, timing, colors you like" /></label>
+          <F as="label" className="full">Details<textarea name="message" placeholder="Rooms, size, timing, colors you like" /></F>
           <button className="est__go" type="submit" disabled={state === 'sending'}>{state === 'sending' ? 'Sending...' : 'Send my estimate request'}</button>
           <p className="ok full" role="status">{state === 'done' ? msg : ''}</p>
           <p className="note full">We’ll use these details to reply about your estimate. <LegalLink which="privacy">Privacy policy</LegalLink></p>
-        </form>
+        </motion.form>
       </div>
     </section>
   )
@@ -153,6 +154,19 @@ export function MobileBar() {
 
 /* ---------- small helpers ---------- */
 export const ease = [0.16, 1, 0.3, 1]
+
+/* Headline that rises word by word out of a mask. */
+export function Words({ text, className, delay = 0, as = 'span', children }) {
+  const M = motion[as]
+  return (
+    <M className={className} aria-label={text}>
+      {text.split(' ').map((w, i) => (
+        <span key={i} className="wd" aria-hidden="true"><motion.span className="wd__i" initial={{ y: '115%', rotate: 4 }} animate={{ y: 0, rotate: 0 }} transition={{ duration: 0.9, ease, delay: delay + i * 0.07 }}>{w}&nbsp;</motion.span></span>
+      ))}
+      {children}
+    </M>
+  )
+}
 export function Reveal({ children, delay = 0, y = 28, className, as = 'div', ...rest }) {
   const M = motion[as]
   return <M className={className} initial={{ opacity: 0, y }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '0px 0px -8% 0px' }} transition={{ duration: 0.8, ease, delay }} {...rest}>{children}</M>

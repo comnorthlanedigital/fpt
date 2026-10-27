@@ -59,3 +59,8 @@ Design contracts: `.impeccable/surfaces/`. Open items before launch: owner photo
 
 ## Clean pass (round 6)
 Main page and Texture Studio now use Onest (weights 400-700, headings 600), larger spacing and a quiet two-part header: a trust strip ("Licensed - Insured - Owner-operated", phone) over a sticky white bar with plain underline nav, phone, Free estimate, and a simple Menu button on phones. Header lives in `v3/shared/header.jsx|css`. Fonts: `v3/fonts.py` (home, texture sets).
+
+## Header, buttons, motion (round 7)
+- Header: dark navy (matches the logo's own background), logo feathered into it, hides on scroll down and returns on scroll up, thin progress line, animated hamburger and a full-screen numbered menu on phones. `v3/shared/header.jsx|css`.
+- Buttons: one slim system in `v3/shared/buttons.css` (42px, 8px radius, sweep-fill on hover, arrow that slides, press-down on tap). Imported last in each page so it wins.
+- Motion added: word-by-word headline reveal (`Words` in `shared/ui.jsx`), stage entrance, staggered job thumbnails and service rows, owner photo clip reveal, staggered estimate form.

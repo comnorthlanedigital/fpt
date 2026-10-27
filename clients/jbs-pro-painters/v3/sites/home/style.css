@@ -129,3 +129,7 @@ h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.1;text-wrap:balance
 @media(max-width:900px){.hero__top{gap:20px}}
 @media(max-width:700px){body{font-size:17px}.hero{padding:28px 20px 40px}.hero h1{font-size:clamp(36px,10.4vw,48px)}.hero__side p{display:block;font-size:17px}.svc__row{padding:24px 2px}.stage__wall{height:clamp(300px,calc(100svh - 360px),500px)}}
 .hero__top{align-items:center}.hero__side{padding-bottom:0}
+
+.hero{padding-top:104px}@media(max-width:700px){.hero{padding-top:84px}}
+
+.wd{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em}.wd__i{display:inline-block;will-change:transform}

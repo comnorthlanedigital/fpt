@@ -73,3 +73,6 @@ Run `clients/jbs-pro-painters/make-netlify-zip.sh` -> `zips/jbs-pro-painters-net
 
 ## Round 9: main site only (studios shelved)
 Studio pages (3D, texture) are no longer linked or shipped; code stays in `v3/sites/models|texture|studio-house` for later. The main page was redesigned in the logo's palette (deep navy ground, silver type, royal-blue accents, Gilda Display + Onest), with a trust band, services list that swaps a real photo on hover, and a navy owner/estimate finish. `make-netlify-zip.sh` now ships only `index.html`, `404.html`, `og.jpg`, `robots.txt`.
+
+## Conversion pass (round 10)
+Hero states the offer with two buttons (free estimate + call/text) and the review; trust band; How it works (3 steps + CTA); services CTA; cities section; FAQ (only owner-confirmed facts, no prices/warranty/timelines); short 4-field estimate form (name, phone, project, city; details optional); mobile call/text bar after 160px; HousePainter JSON-LD; title/description rewritten. Still needed from owner/you: analytics + cookie banner, domain/sitemap/canonical, real reviews, license number, response-time promise if he wants to make one.

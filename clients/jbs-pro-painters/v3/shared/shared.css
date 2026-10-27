@@ -32,6 +32,8 @@ a{text-underline-offset:.2em;text-decoration-thickness:1px}
 .est__form input[aria-invalid=true]{border-color:var(--bad,#ff9d9d)}
 .err{font-size:14px;letter-spacing:0;text-transform:none;font-weight:400;color:var(--bad,#ff9d9d);min-height:0}
 .hp{position:absolute;left:-9999px}
+.is-hid{display:none!important}
+.est__more{grid-column:1/-1;justify-self:start;background:none;border:0;color:var(--accent2,#8fb0ff);font:600 15px var(--body);padding:4px 0;cursor:pointer;text-decoration:underline;text-underline-offset:.2em}
 .est__go{grid-column:1/-1;min-height:56px;border:0;border-radius:99px;background:var(--cta,var(--accent));color:var(--cta-ink,#fff);font-weight:700;font-size:17px;cursor:pointer;transition:filter .2s}
 .est__go:hover{filter:brightness(1.1)}.est__go:disabled{opacity:.6;cursor:progress}
 .ok{font-weight:600;min-height:1.4em}.note{font-size:14px;opacity:.8}

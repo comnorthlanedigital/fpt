@@ -321,10 +321,60 @@ function Services() {
           <ul className="svc__list">
             {SERVICES.map(([name, text], i) => <SvcRow key={name} name={name} text={text} i={i} on={on === i} setOn={setOn} />)}
           </ul>
+          <Reveal className="svc__cta"><a className="btn" href="#estimate">Get a free estimate</a></Reveal>
         </div>
         <div className="svc__r" aria-hidden="true">
           <AnimatePresence mode="popLayout"><motion.img key={on} src={SVC_IMG[on]} alt={SVC_ALT[on]} initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.7, ease }} /></AnimatePresence>
         </div>
+      </div>
+    </section>
+  )
+}
+
+function HowItWorks() {
+  const steps = [['Tell us about the job', 'Send the short form, or just call or text Jonathan.'], ['Get your free estimate', 'Jonathan looks at what you need and gets back to you.'], ['We paint, you enjoy it', 'Prep, protect and paint, inside or out, home or business.']]
+  return (
+    <section className="how" aria-labelledby="how-t">
+      <div className="how__in">
+        <Reveal as="h2" id="how-t">Three steps to a finished wall.</Reveal>
+        <ol className="how__row">{steps.map(([t, d], i) => <Reveal as="li" key={t} delay={i * 0.08}><span>{i + 1}</span><h3>{t}</h3><p>{d}</p></Reveal>)}</ol>
+        <Reveal className="how__cta"><a className="btn" href="#estimate">Start with a free estimate</a><a className="how__tel" href={`tel:${CONTACT.tel}`}>or call {CONTACT.phone}</a></Reveal>
+      </div>
+    </section>
+  )
+}
+
+function Areas() {
+  return (
+    <section className="areas" aria-labelledby="areas-t">
+      <div className="areas__in">
+        <Reveal as="h2" id="areas-t">Painting across the East Valley.</Reveal>
+        <Reveal as="p" delay={0.08}>We paint homes and businesses in these cities and nearby. Not sure we cover you? Call or text and ask.</Reveal>
+        <ul>{[...AREAS, 'And nearby'].map((a, i) => <motion.li key={a} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease, delay: i * 0.05 }}>{a}</motion.li>)}</ul>
+      </div>
+    </section>
+  )
+}
+
+const FAQS = [
+  ['Is the estimate really free?', 'Yes. Send the form or call or text (602) 473-0415 and ask for a free estimate.'],
+  ['Do you paint homes and businesses?', 'Both. We paint houses, restaurants, warehouses and shops, inside and out.'],
+  ['What can you paint?', 'Exteriors, interiors, kitchen cabinets, doors and wood stain, accent walls, and commercial repaints.'],
+  ['Where do you work?', 'Gilbert, Mesa, Chandler, Tempe, Scottsdale, Queen Creek and nearby. If you are close, just ask.'],
+  ['Are you licensed and insured?', 'Yes, JB\u2019S Pro Painters is licensed and insured. Ask Jonathan for details when he contacts you.'],
+  ['Who will I deal with?', 'The business is owner-operated by Jonathan Bernal, so you talk with the owner.'],
+]
+function Faq() {
+  return (
+    <section className="faq" aria-labelledby="faq-t">
+      <div className="faq__in">
+        <Reveal as="h2" id="faq-t">Questions people ask.</Reveal>
+        <div className="faq__list">
+          {FAQS.map(([q, a], i) => (
+            <Reveal key={q} delay={i * 0.04}><details><summary><span>{q}</span><i aria-hidden="true" /></summary><p>{a}</p></details></Reveal>
+          ))}
+        </div>
+        <Reveal className="faq__cta"><p>Still have a question? Jonathan is happy to answer it.</p><a className="btn" href={`tel:${CONTACT.tel}`}>Call or text {CONTACT.phone}</a></Reveal>
       </div>
     </section>
   )
@@ -340,8 +390,10 @@ function App() {
           <div className="hero__top">
             <Words as="h1" text="Watch a wall" delay={0.1}><span className="wd"><motion.span className="wd__i" initial={{ y: '115%', rotate: 4 }} animate={{ y: 0, rotate: 0 }} transition={{ duration: 0.9, ease, delay: 0.37 }}><Cycle /></motion.span></span></Words>
             <motion.div className="hero__side" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease, delay: 0.2 }}>
-              <p>Every photo here is a real project. Roll it on and see the finish.</p>
-              <a className="btn" href="#estimate">Get a free estimate</a>
+              <p className="hero__lead">Interior and exterior painting for homes and businesses across the East Valley. Licensed, insured and owner-operated.</p>
+              <div className="hero__cta"><a className="btn" href="#estimate">Get a free estimate</a><a className="btn btn--ghost" href={`tel:${CONTACT.tel}`}>Call or text {CONTACT.phone}</a></div>
+              <p className="hero__proof"><b>&ldquo;{REVIEW.quote}&rdquo;</b> {REVIEW.who}</p>
+              <p className="hero__note">Every photo below is a real project. Roll it on and see the finish.</p>
             </motion.div>
           </div>
           <motion.div initial={{ opacity: 0, y: 50, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 1.1, ease, delay: 0.35 }}><AnimatePresence mode="wait"><motion.div key={job.id} initial={{ opacity: 0, filter: 'blur(8px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} exit={{ opacity: 0, filter: 'blur(8px)' }} transition={{ duration: 0.35 }}><RollStage job={job} hero /></motion.div></AnimatePresence></motion.div>
@@ -360,7 +412,13 @@ function App() {
 
         <Coats />
 
+        <HowItWorks />
+
         <Services />
+
+        <Areas />
+
+        <Faq />
         <section className="own" id="about" aria-labelledby="own-t">
           <motion.div className="own__ph" initial={{ clipPath: 'inset(12% 12% 12% 12% round 22px)', opacity: 0 }} whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 22px)', opacity: 1 }} viewport={{ once: true, margin: '0px 0px -12% 0px' }} transition={{ duration: 1.1, ease }}><motion.img initial={{ scale: 1.25 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ duration: 1.4, ease }} src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /></motion.div>
           <div>
@@ -371,7 +429,7 @@ function App() {
           </div>
         </section>
 
-        <Estimate title="Get a free estimate." lead="Tell us about the project. Jonathan will get back to you." aside={<img className="est__logo" src={logo3d} alt="JB'S Pro Painters LLC logo: silver lettering, blue roof outline and a paintbrush swoosh on deep navy" loading="lazy" />} />
+        <Estimate compact title="Get your free estimate." lead="Name, phone and the type of job is all we need. Jonathan will get back to you." aside={<img className="est__logo" src={logo3d} alt="JB'S Pro Painters LLC logo: silver lettering, blue roof outline and a paintbrush swoosh on deep navy" loading="lazy" />} />
       </main>
       <Footer /><MobileBar />
     </>

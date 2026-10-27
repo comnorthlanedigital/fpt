@@ -59,7 +59,8 @@ async function sendLead(form) {
 }
 
 const F = ({ as = 'div', className, children }) => { const M = motion[as]; return <M className={className} variants={{ hide: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } } }}>{children}</M> }
-export function Estimate({ id = 'estimate', title, lead, extra, aside, children }) {
+export function Estimate({ id = 'estimate', title, lead, extra, aside, compact = false, children }) {
+  const [more, setMore] = useState(!compact)
   const [errs, setErrs] = useState({})
   const [state, setState] = useState('idle')
   const [msg, setMsg] = useState('')
@@ -96,12 +97,13 @@ export function Estimate({ id = 'estimate', title, lead, extra, aside, children 
           <p className="hp" aria-hidden="true"><label>Leave empty<input name="bot" tabIndex={-1} autoComplete="off" /></label></p>
           <F as="label">Name<input name="name" autoComplete="name" required aria-invalid={!!errs.name} aria-describedby="e-name" /><span id="e-name" className="err" role="alert">{errs.name}</span></F>
           <F as="label">Phone<input name="phone" type="tel" inputMode="tel" autoComplete="tel" required aria-invalid={!!errs.phone} aria-describedby="e-phone" /><span id="e-phone" className="err" role="alert">{errs.phone}</span></F>
-          <F as="label">Email (optional)<input name="email" type="email" autoComplete="email" aria-invalid={!!errs.email} aria-describedby="e-email" /><span id="e-email" className="err" role="alert">{errs.email}</span></F>
+          <F as="label" className={more ? '' : 'is-hid'}>Email (optional)<input name="email" type="email" autoComplete="email" aria-invalid={!!errs.email} aria-describedby="e-email" /><span id="e-email" className="err" role="alert">{errs.email}</span></F>
           <F as="label">City<select name="city">{[...AREAS, 'Other'].map((c) => <option key={c}>{c}</option>)}</select></F>
-          <F as="label" className="full">Project<select name="project">{['Exterior painting', 'Interior painting', 'Cabinets', 'Doors / wood stain', 'Commercial', 'Something else'].map((c) => <option key={c}>{c}</option>)}</select></F>
+          <F as="label" className={compact ? '' : 'full'}>Project<select name="project">{['Exterior painting', 'Interior painting', 'Cabinets', 'Doors / wood stain', 'Commercial', 'Something else'].map((c) => <option key={c}>{c}</option>)}</select></F>
           {children}
-          <F as="label" className="full">Details<textarea name="message" placeholder="Rooms, size, timing, colors you like" /></F>
-          <button className="est__go" type="submit" disabled={state === 'sending'}>{state === 'sending' ? 'Sending...' : 'Send my estimate request'}</button>
+          <F as="label" className={`full${more ? '' : ' is-hid'}`}>Details<textarea name="message" placeholder="Rooms, size, timing, colors you like" /></F>
+          {compact && !more && <button type="button" className="est__more full" onClick={() => setMore(true)}>+ Add details or an email (optional)</button>}
+          <button className="est__go" type="submit" disabled={state === 'sending'}>{state === 'sending' ? 'Sending...' : compact ? 'Get my free estimate' : 'Send my estimate request'}</button>
           <p className="ok full" role="status">{state === 'done' ? msg : ''}</p>
           <p className="note full">We’ll use these details to reply about your estimate. <LegalLink which="privacy">Privacy policy</LegalLink></p>
         </motion.form>
@@ -142,7 +144,7 @@ export function MobileBar() {
   // appears once the first screen has been scrolled past, so it never covers the hero's own action
   const [show, setShow] = useState(false)
   useEffect(() => {
-    const f = () => setShow(window.scrollY > window.innerHeight * 0.75)
+    const f = () => setShow(window.scrollY > 160)
     f(); addEventListener('scroll', f, { passive: true }); return () => removeEventListener('scroll', f)
   }, [])
   return (

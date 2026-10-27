@@ -47,6 +47,15 @@
         ],
         "createdAt": "2026-10-27T02:34:57.674Z",
         "reason": "false positive: content sits inside .wrap (20px minimum gutter, 100px+ on desktop); full-bleed section backgrounds and a pinned full-height wrapper are intentional (agent judgment)"
+      },
+      {
+        "rule": "organic-clip-path",
+        "value": "*",
+        "files": [
+          "clients/jbs-pro-painters/preview/JBS-v3-board.html"
+        ],
+        "createdAt": "2026-10-27T03:13:36.447Z",
+        "reason": "the sawtooth polygons depict the torn end of crepe painter's tape (a regular zigzag, not a photographic subject edge); agent judgment"
       }
     ]
   }

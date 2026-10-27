@@ -45,3 +45,10 @@ Saved in `assets/batch-7/`.
 - Garage doors (5 after / 9 before): same two garage doors, tan -> deep green-gray, on a stucco home with paver drive. Clean before/after pair. Photo 6 is the same house exterior (stucco arches, light tone), probably also this job.
 - Interior charcoal job continues (1 kitchen with white cabinets and gray walls, 2 dark hallway with doors, 3 fireplace room); same house as batch 6.
 Ask owner: confirm these are one customer/house each, paint colors, and permission to show them.
+
+## Batch 8 photos (owner-supplied)
+Saved in `assets/batch-8/`.
+- Thirsty Lion Gastropub & Grill exterior (1, 3, 4, 6, 8, 9): 4 is the before/mid-job (olive-gray stucco, white test patches), 3 is the in-progress tan/brown, 1/6 are finished (white with black trim, red accents), 8 is the patio, 9 the entry doors. Strong commercial restaurant case study, replaces the single Thirsty Lion shot we had. This is a third-party brand: the site already says only "Gilbert restaurant"; get the owner's OK before naming it.
+- Stucco home two-tone (2): same house as batch 7 photos 6 (light exterior) with navy-gray accent section added: before 7-6 -> after 8-2.
+- Navy cabinets (5): corner view, same kitchen as batch 7.
+- Commercial building (7): large tilt-up/office-warehouse exterior, gray body, dark navy accent columns; probably the same project family as the warehouse interiors. Confirm.

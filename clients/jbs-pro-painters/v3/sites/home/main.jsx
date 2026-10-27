@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { createRoot } from 'react-dom/client'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useVelocity, animate, useReducedMotion, useInView, useScroll, useTime, useMotionValueEvent } from 'framer-motion'
-import '../../fonts/roller.css'
+import '../../fonts/home.css'
 import '../../shared/shared.css'
 import './style.css'
 import { Estimate, Footer, MobileBar, Reveal, CONTACT, SERVICES, AREAS, REVIEW, sound, ease } from '../../shared/ui'

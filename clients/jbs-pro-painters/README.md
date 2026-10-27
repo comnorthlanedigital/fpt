@@ -56,3 +56,6 @@ Design contracts: `.impeccable/surfaces/`. Open items before launch: owner photo
 - Engine: `v3/sites/texture/texture.js` (procedural height fields, light-from-top-left relief, color that keeps the photo's own light and shadow), scenes and wall polygons in `scenes.js` (percent coordinates, add `?mask` to the page URL to see the mask in pink). Edges are approximate; it is labelled a preview.
 - The 3D house version lives on in `preview/old-concepts/JBS-color-studio.html` and `v3/sites/studio-house/`.
 - To add a project photo: add a scene in `scenes.js` with wall polygons and holes (windows, doors, garage doors).
+
+## Clean pass (round 6)
+Main page and Texture Studio now use Onest (weights 400-700, headings 600), larger spacing and a quiet two-part header: a trust strip ("Licensed - Insured - Owner-operated", phone) over a sticky white bar with plain underline nav, phone, Free estimate, and a simple Menu button on phones. Header lives in `v3/shared/header.jsx|css`. Fonts: `v3/fonts.py` (home, texture sets).

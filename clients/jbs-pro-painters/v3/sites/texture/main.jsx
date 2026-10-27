@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import '../../fonts/studio.css'
+import '../../fonts/texture.css'
 import '../../shared/shared.css'
 import './style.css'
 import { SCENES } from './scenes'

@@ -12,7 +12,7 @@ h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;letter-spacin
 .btn:hover{background:#1c47c0}
 
 
-.hero{padding:96px max(20px,3vw) 36px}
+.hero{padding:44px max(20px,3vw) 36px}
 .hero__top{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:end;margin:10px 0 28px}
 .hero h1{font-size:clamp(44px,7vw,96px);line-height:.98}
 .hero__side{display:grid;gap:20px;justify-items:start;padding-bottom:8px}.hero__side p{font-size:19px;max-width:30ch;color:var(--mute)}
@@ -91,4 +91,41 @@ h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;letter-spacin
 :root{--hd-bg:#f3f2eef2;--hd-bg-solid:#f3f2ee;--hd-ink:#0a1433;--hd-panel:#0a1433}
 @media(max-width:900px){.coat{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:10px;align-content:start;padding-top:84px}.coat__prints{height:100%;min-height:0}}
 @media(max-width:700px){.coats__nav{bottom:22px}.coat h2{font-size:clamp(40px,12vw,64px);margin-bottom:10px}.coat p{font-size:17px}.coat .btn{margin-top:14px;min-height:50px}.coat__prints{height:50svh}
- .coat--1 .a{width:44%}.coat--1 .b{width:46%;top:8%}.coat--1 .c{display:none}.coat--3 .a{left:0;width:44%;top:0}.coat--3 .b{left:50%;width:46%;top:4%}.coat--3 .c{left:2%;right:auto;width:44%;top:50%}.coat--3 .d{right:0;bottom:2%;width:48%}.coat--3 .print__before{width:32%;right:8px;bottom:8px}.coat--2 .a{width:42%}.coat--2 .b{width:44%;bottom:0}.print__tag{left:10px;top:10px}.hero{padding-top:78px}}
+ .coat--1 .a{width:44%}.coat--1 .b{width:46%;top:8%}.coat--1 .c{display:none}.coat--3 .a{left:0;width:44%;top:0}.coat--3 .b{left:50%;width:46%;top:4%}.coat--3 .c{left:2%;right:auto;width:44%;top:50%}.coat--3 .d{right:0;bottom:2%;width:48%}.coat--3 .print__before{width:32%;right:8px;bottom:8px}.coat--2 .a{width:42%}.coat--2 .b{width:44%;bottom:0}.print__tag{left:10px;top:10px}}
+
+/* ===== clean pass: Onest, lighter weights, more air, quiet header ===== */
+:root{--display:'Onest',system-ui,sans-serif;--body:'Onest',system-ui,sans-serif;--navy:#0e1630;--ink:#0e1630;--mute:#4a5170;
+ --est-h2:600 clamp(34px,4.4vw,56px)/1.08 var(--display);--est-ph:600 clamp(30px,3.6vw,44px)/1.1 var(--display);--est-track:-.02em;
+ --hd-bg:#fff;--hd-ink:#0e1630;--hd-line:#e3e4e8;--tb-bg:#0e1630}
+body{font-size:18px;line-height:1.65;letter-spacing:0}
+h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
+.btn,.chipbtn,.est__go{border-radius:12px;font-weight:600}
+.btn{min-height:54px}
+.hero{padding:44px max(20px,3vw) 56px;max-width:1240px;margin:0 auto}
+.hero__top{margin:0 0 36px;gap:48px;align-items:end}
+.hero h1{font-size:clamp(40px,5.6vw,72px);line-height:1.06;letter-spacing:-.03em}
+.hero__side p{font-size:19px;max-width:36ch;line-height:1.6}
+.hero__side{gap:24px}
+.stage__tag b{font-weight:600}.stage__pct{font-weight:600}
+.jobs{margin-top:20px;gap:14px}.jobs__b{font-weight:500;font-size:14px;line-height:1.3}
+.coat h2{font-weight:600;font-size:clamp(44px,7.2vw,92px);letter-spacing:-.035em;line-height:1}
+.coat p{font-size:clamp(18px,1.5vw,21px);line-height:1.6;max-width:34ch}
+.svc{max-width:1240px;margin:0 auto;padding:clamp(80px,10vw,140px) max(20px,3vw)}
+.svc__h{font-size:clamp(34px,4.6vw,58px);margin-bottom:56px}
+.svc__row{padding:32px 4px;gap:10px 48px}
+.svc__name{font:600 clamp(24px,2.6vw,34px)/1.2 var(--display);letter-spacing:-.015em}
+.svc__txt{font-size:18px;line-height:1.6}
+.own{padding:clamp(80px,10vw,140px) max(20px,3vw);gap:clamp(36px,6vw,96px)}
+.own h2{font-size:clamp(34px,4.4vw,56px);line-height:1.1}
+.own__p{font-size:19px;line-height:1.65;margin-top:24px;max-width:48ch}
+.own blockquote{font:500 clamp(20px,2vw,26px)/1.4 var(--display);letter-spacing:-.01em;margin-top:36px;max-width:30ch}
+.own blockquote footer{font:500 15px var(--body);margin-top:14px}
+.own__areas{margin-top:28px;font-weight:500;font-size:16px}
+.est{padding:clamp(80px,10vw,130px) 0}
+.est__form{border-radius:18px;gap:20px}
+.est__copy>p{font-size:19px;line-height:1.6}
+.est__form label{font-size:12px;letter-spacing:.06em;font-weight:600}
+.coats__nav{font-weight:600;letter-spacing:.1em}
+@media(max-width:900px){.hero__top{gap:20px}}
+@media(max-width:700px){body{font-size:17px}.hero{padding:28px 20px 40px}.hero h1{font-size:clamp(36px,10.4vw,48px)}.hero__side p{display:block;font-size:17px}.svc__row{padding:24px 2px}.stage__wall{height:clamp(300px,calc(100svh - 360px),500px)}}
+.hero__top{align-items:center}.hero__side{padding-bottom:0}

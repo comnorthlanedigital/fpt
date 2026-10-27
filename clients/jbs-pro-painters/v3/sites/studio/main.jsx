@@ -5,7 +5,8 @@ import '../../fonts/studio.css'
 import '../../shared/shared.css'
 import './style.css'
 import { createHouse } from './house'
-import { SoundToggle, useSound, Estimate, Footer, MobileBar, Reveal, CONTACT, AREAS, REVIEW, sound, ease } from '../../shared/ui'
+import { Estimate, Footer, MobileBar, Reveal, CONTACT, AREAS, REVIEW, sound, ease } from '../../shared/ui'
+import { Header } from '../../shared/header'
 import logoSm from '../../img/logo-sm.jpg'
 import kitchenA from '../../img/kitchen-after-sm.jpg'; import gdoorA from '../../img/gdoor-after-sm.jpg'; import doorA from '../../img/door-after-sm.jpg'; import stripeA from '../../img/stripe-after-sm.jpg'; import homeA from '../../img/home-after.jpg'
 import kitchenB from '../../img/kitchen-before-sm.jpg'; import gdoorB from '../../img/gdoor-before-sm.jpg'; import doorB from '../../img/door-before-sm.jpg'; import stripeB from '../../img/stripe-before-sm.jpg'
@@ -15,6 +16,9 @@ import owner from '../../img/owner-sm.jpg'
 const PALETTE = [
   ['Deep navy', '#1f3563'], ['Garage-door green', '#46594f'], ['Charcoal', '#54535a'], ['Racing red', '#b01f2a'], ['Walnut stain', '#5b3720'], ['Stone neutral', '#b7ab98'], ['Bone white', '#ece8df'],
   ['Soft gray', '#9a9ca3'], ['Warm sand', '#cdb99a'], ['Sage', '#8a9a82'], ['Slate blue', '#5c7185'], ['Near black', '#1b1b1f'], ['Bright white', '#f7f7f4'], ['Clay', '#a9715a'],
+]
+const LINKS = [
+  { label: 'Home', href: 'JBS-home.html', id: 'home' }, { label: 'Color studio', href: '#top', id: 'studio' }, { label: 'Real colors', href: '#real' }, { label: 'Estimate', href: '#estimate', cta: true },
 ]
 const ZONES = [['walls', 'Walls'], ['trim', 'Trim'], ['garage', 'Garage door'], ['door', 'Front door']]
 const PRESETS = [
@@ -94,15 +98,13 @@ function Studio({ colors, setColors, house }) {
 }
 
 function App() {
-  const [on, toggle] = useSound('studio')
   const [colors, setColors] = useState(START)
   const [house, setHouse] = useState(null)
   const summary = useMemo(() => ZONES.map(([id, l]) => `${l}: ${nameOf(colors[id])}`).join(', '), [colors])
   useEffect(() => { document.documentElement.style.setProperty('--wall', colors.walls) }, [colors.walls])
   return (
     <>
-      <SoundToggle on={on} toggle={toggle} />
-      <header className="top"><a href="#top" aria-label="JB'S Pro Painters LLC"><img src={logoSm} alt="JB'S Pro Painters LLC logo" width="46" height="46" /></a><a className="top__tel" href={`tel:${CONTACT.tel}`}>{CONTACT.phone}</a></header>
+      <Header logo={logoSm} current="studio" links={LINKS} />
       <main id="top">
         <section className="hero">
           <div className="hero__l">
@@ -115,7 +117,7 @@ function App() {
         </section>
         <p className="fine">3D illustration only. Real paint looks different outdoors, so we always bring samples.</p>
 
-        <section className="real" aria-labelledby="real-t">
+        <section className="real" id="real" aria-labelledby="real-t">
           <Reveal as="h2" id="real-t">The same colors, on real walls.</Reveal>
           <div className="real__row">
             {[[kitchenA, kitchenB, 'Deep navy', 'Kitchen cabinets, Queen Creek', 'Kitchen cabinets painted deep navy', 'Oak kitchen cabinets before painting'], [gdoorA, gdoorB, 'Garage-door green', 'Garage doors, exterior', 'Garage doors painted deep green-gray on a stucco home', 'Tan garage doors before painting'], [doorA, doorB, 'Walnut stain', 'Front door refinish', 'A front door restained in rich brown', 'A weathered gray wood front door before'], [stripeA, stripeB, 'Racing red', 'Accent wall, interior', 'An accent wall with bold red and white stripes', 'A wall taped off for stripes']].map(([a, b, c, cap, alt, altB], i) => (

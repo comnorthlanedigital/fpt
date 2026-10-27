@@ -58,7 +58,7 @@ async function sendLead(form) {
   return 'mailto'
 }
 
-export function Estimate({ id = 'estimate', title, lead, extra, children }) {
+export function Estimate({ id = 'estimate', title, lead, extra, aside, children }) {
   const [errs, setErrs] = useState({})
   const [state, setState] = useState('idle')
   const [msg, setMsg] = useState('')
@@ -87,6 +87,7 @@ export function Estimate({ id = 'estimate', title, lead, extra, children }) {
           <p>{lead}</p>
           <a className="est__phone" href={`tel:${CONTACT.tel}`}>{CONTACT.phone}</a>
           <p className="est__sub">Call or text. {CONTACT.email}</p>
+          {aside}
         </div>
         <form ref={ref} name="quote" method="post" onSubmit={submit} noValidate className="est__form">
           <input type="hidden" name="form-name" value="quote" /><input type="hidden" name="request" value="Free estimate" />

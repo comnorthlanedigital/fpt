@@ -43,3 +43,10 @@ Build: `python3 -I clients/jbs-pro-painters/v3/fonts.py && python3 -I clients/jb
 - `studio`: procedural 3D house (three.js), recolor walls/trim/garage/front door with real job colors, scheme goes into the estimate form; same colors on real walls with before/after.
 Sound is opt-in (Sound button), synthesized with Web Audio (`v3/shared/sound.js`, adapted from `src/audio.ts`).
 Design contracts: `.impeccable/surfaces/`. Open items before launch: owner photo, full review text and permission, approval to show the restaurant (signage is visible in the photos), original hi-res photos, real domain, analytics + cookie banner, custom 404, final legal text.
+
+## Current picks (round 4)
+- `preview/JBS-home.html`: the main site. Roller hero (drag to roll a real photo into the finished job), a compact Primer / Base / Finish section, services, warehouse, owner, estimate with the 3D logo. New header with a paint line that a roller rolls across as you scroll, painted-swipe nav hover, full-screen mobile menu. No sound.
+- `preview/JBS-color-studio.html`: separate page with the 3D house color studio (same header, no sound). Linked from the main site's nav as "Color studio"; keep both files in the same folder.
+- The other round 3 concepts moved to `preview/old-concepts/` (sources still in `v3/sites/`).
+- Build: `node clients/jbs-pro-painters/v3/build.mjs home studio` (no-sound pages alias `shared/sound.js` to `shared/silent.js`).
+- New owner photo candidate saved at `assets/batch-10/` (not used until the owner confirms it is him).

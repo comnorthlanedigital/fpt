@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JB'S Pro Painters LLC | Pick a Color, See the Job | East Valley AZ</title>
+<meta name="description" content="Tap a paint chip to see a real JB'S Pro Painters project in that color: navy cabinets, charcoal interiors, red accent walls and more. Interior and exterior painting across the East Valley. Free estimates.">
+<meta name="theme-color" content="#f3eee4">
+<meta property="og:type" content="website"><meta property="og:title" content="JB'S Pro Painters LLC | Pick a color. See the job.">
+<meta property="og:description" content="Real painting projects across the East Valley, shown one color at a time."><meta property="og:image" content="img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/logo-sm.jpg"><link rel="apple-touch-icon" href="img/logo-sq.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f3eee4;--paper2:#ebe4d5;--ink:#141821;--mute:#4f5460;--line:#14182124;--navy:#1f3563;--blue:#2447a8;--r:22px}
+*{box-sizing:border-box;margin:0}html{overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 "Instrument Sans",system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit}
+.wrap{width:min(1280px,100% - 40px);margin-inline:auto}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400;letter-spacing:-.015em;line-height:.98}.serif em{font-style:italic}
+.mono{font-family:"DM Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border-radius:99px;background:var(--ink);color:var(--paper);font:600 16px "Instrument Sans";text-decoration:none;border:0;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--navy)}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:#f3eee4eb;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.brand img{width:44px;height:44px;border-radius:11px}.brand b{font:400 24px "Instrument Serif",serif;letter-spacing:-.01em}
+.nav ul{display:flex;gap:28px;list-style:none;padding:0;font-size:15px}.nav ul a{text-decoration:none;color:var(--mute)}.nav ul a:hover{color:var(--ink)}
+.tel{white-space:nowrap;border:1px solid var(--ink);border-radius:99px;padding:10px 18px;text-decoration:none;font-weight:600;font-size:15px}
+/* hero */
+.hero{padding:34px 0 70px}
+.hero h1{font-size:clamp(48px,7.2vw,116px)}.hero h1 em{color:var(--navy)}
+.hero .top{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:end;margin-bottom:30px}
+.hero p.s{font-size:19px;color:var(--mute);max-width:40ch}.hero .cta{display:flex;gap:20px;align-items:center;margin-top:24px;flex-wrap:wrap}.hero .cta a:not(.btn){text-underline-offset:4px}
+.deck{display:flex;gap:10px;height:min(60vh,600px);min-height:420px}
+.chip{flex:1 1 0;min-width:0;position:relative;border-radius:var(--r);overflow:hidden;background:var(--c);color:var(--t,#fff);transition:flex .75s cubic-bezier(.2,.8,.2,1)}
+.chip.on{flex:8 1 0}
+.tab{position:absolute;inset:0;width:100%;border:0;background:none;color:inherit;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:20px 0;font:inherit}
+.tab .name{writing-mode:vertical-rl;transform:rotate(180deg);font:400 26px "Instrument Serif",serif;white-space:nowrap}
+.tab:hover .name{text-decoration:underline;text-underline-offset:5px}
+.chip.on .tab{pointer-events:none;inset:14px auto auto 14px;width:auto;height:auto;flex-direction:row;gap:10px;background:#f3eee4f2;color:var(--ink);padding:8px 16px;border-radius:99px;z-index:3;align-items:center}
+.chip.on .tab .name{writing-mode:horizontal-tb;transform:none;font-size:20px}
+.chip.on .tab .sw{display:block}.sw{display:none;width:14px;height:14px;border-radius:50%;background:var(--c);border:1px solid #0003}
+.body{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .5s .2s,visibility 0s .7s}.chip.on .body{opacity:1;visibility:visible;transition:opacity .6s .25s}
+.body img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s}.body img.bef{opacity:0}.body.showb img.bef{opacity:1}.body.showb img.aft{opacity:0}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:70px 20px 18px;background:linear-gradient(transparent,#000a);color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.cap b{font:400 30px/1.05 "Instrument Serif",serif;display:block}.cap span{font-size:14px;opacity:.92}
+.seg{display:inline-flex;background:#f3eee4f2;border-radius:99px;padding:4px}.seg button{min-height:40px;padding:0 18px;border:0;border-radius:99px;background:none;font:600 14px "Instrument Sans";color:var(--ink);cursor:pointer;transition:background .2s,color .2s}.seg button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+/* sections */
+.sec{padding:100px 0}.sec h2{font-size:clamp(40px,6vw,92px);margin:12px 0 16px}.sec h2 em{color:var(--navy)}.lead{color:var(--mute);font-size:19px;max-width:54ch}
+.dots{display:flex;gap:8px;margin:18px 0}.dots i{width:34px;height:34px;border-radius:50%;background:var(--c);border:1px solid #0002}
+.story{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+.collage{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:14px}.collage figure{border-radius:var(--r);overflow:hidden;position:relative;background:#2a2a30}.collage img{width:100%;height:100%;object-fit:cover}
+.collage .a{grid-row:span 2;aspect-ratio:4/5}.collage .b{aspect-ratio:4/3}.collage .c{aspect-ratio:4/3}
+figcaption.t{position:absolute;left:10px;bottom:10px;background:#f3eee4f2;border-radius:99px;padding:4px 12px}
+.ft{background:var(--paper2);border-block:1px solid var(--line)}
+.ftg{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:44px}
+.pair{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px}.pair .im{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pair figure{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/4}.pair img{width:100%;height:100%;object-fit:cover}
+.pair h3{font:400 28px "Instrument Serif",serif;margin:16px 4px 4px}.pair .ch{display:flex;align-items:center;gap:10px;margin:0 4px 6px;color:var(--mute);font-size:14px}.pair .ch i{width:18px;height:18px;border-radius:50%;background:var(--c);border:1px solid #0003}
+.idx{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.cd{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s}.cd:hover{border-color:var(--ink)}.cd .s{height:92px;background:var(--c);padding:12px 16px;color:var(--t,#fff);display:flex;justify-content:space-between;align-items:flex-start}
+.cd div:last-child{padding:18px 18px 22px}.cd h3{font:400 26px "Instrument Serif",serif;margin-bottom:6px}.cd p{color:var(--mute);font-size:16px}
+.own{display:grid;grid-template-columns:.7fr 1.3fr;gap:56px;align-items:center}.own .ph{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:1/1.1}.own .ph img{width:100%;height:100%;object-fit:cover}.own .ph span{position:absolute;left:12px;bottom:12px;background:#f3eee4f2;border-radius:99px;padding:4px 12px}
+blockquote{font:italic 400 clamp(26px,3vw,40px)/1.15 "Instrument Serif",serif;margin:26px 0 8px}cite{font-style:normal;color:var(--mute);font-size:15px}.stars{color:#a0640a;letter-spacing:4px;font-size:18px}
+.areas{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.areas span{border:1px solid var(--ink);border-radius:99px;padding:7px 16px;font-size:15px}
+.quote{background:var(--navy);color:#f6f2e8}.quote .lead{color:#d6dcf0}.quote .mono{color:#aebbe8}.q{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.phone{font:400 clamp(44px,6vw,86px)/1 "Instrument Serif",serif;text-decoration:none;display:block;margin-top:24px}
+form{background:var(--paper);color:var(--ink);border-radius:28px;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{display:grid;gap:7px;font:500 12px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}.full{grid-column:1/-1}
+input,select,textarea{font:400 17px "Instrument Sans";letter-spacing:0;text-transform:none;color:var(--ink);background:#fff;border:1px solid #14182155;border-radius:14px;padding:14px 16px;min-height:52px;width:100%}textarea{min-height:110px;resize:vertical}
+input[aria-invalid=true]{border-color:#b3261e}.err{color:#a3211a;font:400 14px "Instrument Sans";letter-spacing:0;text-transform:none;min-height:0}.hp{position:absolute;left:-9999px}
+.note{grid-column:1/-1;font-size:14px;color:var(--mute)}.note button{background:none;border:0;text-decoration:underline;cursor:pointer;font:inherit;color:inherit;padding:0}.ok{display:none;grid-column:1/-1;font-weight:600;color:#17622f}form.sent .ok{display:block}
+footer{padding:44px 0 110px;font-size:15px;color:var(--mute)}footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}footer button{background:none;border:0;color:var(--ink);font:inherit;text-decoration:underline;text-underline-offset:4px;cursor:pointer;padding:6px}
+dialog{max-width:620px;width:calc(100% - 32px);background:var(--paper);color:var(--ink);border:0;border-radius:24px;padding:32px}dialog::backdrop{background:#000a}dialog h3{font:400 34px "Instrument Serif",serif;margin-bottom:10px}dialog p{color:var(--mute);margin:10px 0;font-size:16px}
+.bar{display:none}
+@media(max-width:900px){.nav ul{display:none}.hero .top,.story,.own,.q{grid-template-columns:1fr}.ftg,.idx{grid-template-columns:1fr}.sec{padding:76px 0}.hero{padding-top:34px}}
+@media(max-width:700px){body{font-size:16px}.brand b{display:none}
+ .deck{flex-direction:column;height:auto;min-height:0}.chip{flex:none;height:62px;transition:height .65s cubic-bezier(.2,.8,.2,1)}.chip.on{flex:none;height:min(118vw,520px)}
+ .tab{flex-direction:row;align-items:center;justify-content:flex-start;padding:0 20px;gap:14px}.tab .name{writing-mode:horizontal-tb;transform:none;font-size:24px}
+ .chip.on .tab{padding:8px 16px}.cap b{font-size:26px}form{grid-template-columns:1fr;padding:22px}.collage{grid-template-columns:1fr 1fr}.collage .a{grid-column:span 2;grid-row:auto;aspect-ratio:4/3}
+ .bar{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:8px;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;background:#141821f2;border-radius:99px;padding:8px}.bar a{display:grid;place-items:center;min-height:48px;border-radius:99px;text-decoration:none;font-weight:600;font-size:15px;color:#fff}.bar a:last-child{background:#f3eee4;color:var(--ink)}}
+@media(prefers-reduced-motion:reduce){.chip,.body,.body img{transition:none}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#top" aria-label="JB'S Pro Painters LLC home"><img src="img/logo-sm.jpg" alt="JB'S Pro Painters LLC logo" width="44" height="44"><b>JB'S Pro Painters</b></a>
+  <nav aria-label="Primary"><ul><li><a href="#colors">Colors</a></li><li><a href="#from-to">Before &amp; after</a></li><li><a href="#services">Services</a></li><li><a href="#owner">Owner</a></li></ul></nav>
+  <a class="tel" href="tel:+16024730415">(602) 473-0415</a>
+</div></header>
+
+<main id="top">
+<section class="hero" id="colors"><div class="wrap">
+  <div class="top">
+    <h1 class="serif">Pick a color.<br><em>See the job.</em></h1>
+    <div>
+      <p class="s">Interior and exterior painting for homes and businesses across the East Valley. Tap a chip to see a real JB'S project.</p>
+      <div class="cta"><a class="btn" href="#quote">Get a free estimate</a><a href="tel:+16024730415">or call (602) 473-0415</a></div>
+    </div>
+  </div>
+  <div class="deck" id="deck" role="group" aria-label="Paint chips. Choose one to see a project">
+    <article class="chip on" style="--c:#1f3563">
+      <button class="tab" aria-expanded="true" aria-controls="b0"><span class="mono">JB-01</span><span class="name">Deep navy</span></button>
+      <div class="body" id="b0"><img class="bef" src="img/kitchen-before-sm.jpg" alt="Oak kitchen cabinets before painting"><img class="aft" src="img/kitchen-after.jpg" alt="Kitchen cabinets painted deep navy with granite counters"><div class="cap"><div><b>Cabinet refinish</b><span>Queen Creek &bull; oak to deep navy</span></div><div class="seg"><button aria-pressed="false" data-s="b">Before</button><button aria-pressed="true" data-s="a">After</button></div></div></div>
+    </article>
+    <article class="chip" style="--c:#46594f">
+      <button class="tab" aria-expanded="false" aria-controls="b1"><span class="mono">JB-02</span><span class="name">Garage-door green</span></button>
+      <div class="body" id="b1"><img class="bef" src="img/gdoor-before.jpg" alt="Tan garage doors before painting" loading="lazy"><img class="aft" src="img/gdoor-after.jpg" alt="Garage doors painted deep green-gray" loading="lazy"><div class="cap"><div><b>Garage doors</b><span>Exterior &bull; tan to deep green</span></div><div class="seg"><button aria-pressed="false" data-s="b">Before</button><button aria-pressed="true" data-s="a">After</button></div></div></div>
+    </article>
+    <article class="chip" style="--c:#54535a">
+      <button class="tab" aria-expanded="false" aria-controls="b2"><span class="mono">JB-03</span><span class="name">Charcoal</span></button>
+      <div class="body" id="b2"><img class="aft" src="img/char-stairs.jpg" alt="Open living space with charcoal walls, stairs and fireplace" loading="lazy"><div class="cap"><div><b>Whole-home charcoal</b><span>Interior &bull; walls, doors and trim</span></div></div></div>
+    </article>
+    <article class="chip" style="--c:#b01f2a">
+      <button class="tab" aria-expanded="false" aria-controls="b3"><span class="mono">JB-04</span><span class="name">Racing red</span></button>
+      <div class="body" id="b3"><img class="bef" src="img/stripe-before.jpg" alt="Wall taped off for stripes" loading="lazy"><img class="aft" src="img/stripe-after.jpg" alt="Accent wall with bold red and white stripes" loading="lazy"><div class="cap"><div><b>Stripe accent wall</b><span>Interior &bull; taped and cut sharp</span></div><div class="seg"><button aria-pressed="false" data-s="b">Before</button><button aria-pressed="true" data-s="a">After</button></div></div></div>
+    </article>
+    <article class="chip" style="--c:#5b3720">
+      <button class="tab" aria-expanded="false" aria-controls="b4"><span class="mono">JB-05</span><span class="name">Walnut stain</span></button>
+      <div class="body" id="b4"><img class="bef" src="img/door-before.jpg" alt="Weathered gray front door" loading="lazy"><img class="aft" src="img/door-after.jpg" alt="Front door restained in rich brown" loading="lazy"><div class="cap"><div><b>Front door refinish</b><span>Wood stain &bull; weathered to rich brown</span></div><div class="seg"><button aria-pressed="false" data-s="b">Before</button><button aria-pressed="true" data-s="a">After</button></div></div></div>
+    </article>
+    <article class="chip" style="--c:#b7ab98;--t:#141821">
+      <button class="tab" aria-expanded="false" aria-controls="b5"><span class="mono">JB-06</span><span class="name">Stone neutral</span></button>
+      <div class="body" id="b5"><img class="bef" src="img/home-before-sm.jpg" alt="Orange stucco home before repainting" loading="lazy"><img class="aft" src="img/home-after.jpg" alt="Stucco home repainted in neutral tones with brown garage doors" loading="lazy"><div class="cap"><div><b>Exterior repaint</b><span>Gilbert &bull; orange to neutral stone</span></div><div class="seg"><button aria-pressed="false" data-s="b">Before</button><button aria-pressed="true" data-s="a">After</button></div></div></div>
+    </article>
+    <article class="chip" style="--c:#e9e5dc;--t:#141821">
+      <button class="tab" aria-expanded="false" aria-controls="b6"><span class="mono">JB-07</span><span class="name">Bone white</span></button>
+      <div class="body" id="b6"><img class="bef" src="img/tl-before.jpg" alt="Restaurant exterior before repainting" loading="lazy"><img class="aft" src="img/tl-after.jpg" alt="Restaurant exterior finished in white with black trim" loading="lazy"><div class="cap"><div><b>Restaurant exterior</b><span>Commercial &bull; Gilbert</span></div><div class="seg"><button aria-pressed="false" data-s="b">Before</button><button aria-pressed="true" data-s="a">After</button></div></div></div>
+    </article>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:20px"><div class="wrap story">
+  <div class="collage">
+    <figure class="a"><img src="img/char-door.jpg" alt="Charcoal interior door and trim with a tiled shower beyond" loading="lazy"><figcaption class="t mono">Doors &amp; trim</figcaption></figure>
+    <figure class="b"><img src="img/char-fire-sm.jpg" alt="Living room with charcoal walls and a fireplace" loading="lazy"><figcaption class="t mono">Walls</figcaption></figure>
+    <figure class="c"><img src="img/char-kitchen-sm.jpg" alt="Kitchen with gray walls and white cabinets" loading="lazy"><figcaption class="t mono">Kitchen</figcaption></figure>
+  </div>
+  <div>
+    <p class="mono">Color, carried through</p>
+    <h2 class="serif">One color.<br><em>Every surface.</em></h2>
+    <p class="lead">Walls, doors and trim in one deep, even charcoal for a whole-home look that feels designed, not painted over.</p>
+    <div class="dots" aria-hidden="true"><i style="--c:#54535a"></i><i style="--c:#3d3d43"></i><i style="--c:#7b7a80"></i><i style="--c:#e9e5dc"></i></div>
+    <a class="btn" href="#quote">Start your color story</a>
+  </div>
+</div></section>
+
+<section class="sec ft" id="from-to"><div class="wrap">
+  <p class="mono">From &rarr; to</p><h2 class="serif">Same place.<br><em>New color.</em></h2>
+  <div class="ftg">
+    <div class="pair" style="--c:#ece9e2"><div class="im"><figure><img src="img/wh-b3-sm.jpg" alt="Warehouse wall of raw gray concrete before painting" loading="lazy"><figcaption class="t mono">Before</figcaption></figure><figure><img src="img/wh-a2-sm.jpg" alt="Warehouse wall painted clean white" loading="lazy"><figcaption class="t mono">After</figcaption></figure></div><h3>Warehouse walls</h3><p class="ch"><i style="--c:#8d8d89"></i>raw concrete <span>&rarr;</span> <i></i>clean white</p></div>
+    <div class="pair" style="--c:#e9e5dc"><div class="im"><figure><img src="img/tl-before-sm.jpg" alt="Restaurant exterior in olive stucco" loading="lazy"><figcaption class="t mono">Before</figcaption></figure><figure><img src="img/tl-after-sm.jpg" alt="Restaurant exterior finished in white and black" loading="lazy"><figcaption class="t mono">After</figcaption></figure></div><h3>Restaurant exterior</h3><p class="ch"><i style="--c:#8b8a6f"></i>olive stucco <span>&rarr;</span> <i></i>white + black trim</p></div>
+    <div class="pair" style="--c:#46594f"><div class="im"><figure><img src="img/gdoor-before-sm.jpg" alt="Tan garage doors" loading="lazy"><figcaption class="t mono">Before</figcaption></figure><figure><img src="img/gdoor-after-sm.jpg" alt="Deep green-gray garage doors" loading="lazy"><figcaption class="t mono">After</figcaption></figure></div><h3>Garage doors</h3><p class="ch"><i style="--c:#a89a84"></i>tan <span>&rarr;</span> <i></i>deep green</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="services"><div class="wrap">
+  <p class="mono">What we paint</p><h2 class="serif">Inside. Outside.<br><em>Home. Business.</em></h2>
+  <div class="idx">
+    <div class="cd" style="--c:#b7ab98;--t:#141821"><div class="s mono"><span>JB-A</span><span>Exterior</span></div><div><h3>Exterior painting</h3><p>Stucco, trim and garage doors with crisp lines and clean finishes.</p></div></div>
+    <div class="cd" style="--c:#54535a"><div class="s mono"><span>JB-B</span><span>Interior</span></div><div><h3>Interior painting</h3><p>Walls, ceilings, doors and trim, from soft neutrals to bold color.</p></div></div>
+    <div class="cd" style="--c:#1f3563"><div class="s mono"><span>JB-C</span><span>Cabinets</span></div><div><h3>Cabinet refinishing</h3><p>A new kitchen look without the remodel.</p></div></div>
+    <div class="cd" style="--c:#5b3720"><div class="s mono"><span>JB-D</span><span>Wood</span></div><div><h3>Doors &amp; wood stain</h3><p>Weathered wood brought back to a rich, even color.</p></div></div>
+    <div class="cd" style="--c:#e9e5dc;--t:#141821"><div class="s mono"><span>JB-E</span><span>Commercial</span></div><div><h3>Commercial repaints</h3><p>Restaurants, warehouses and shops, planned around your space.</p></div></div>
+    <div class="cd" style="--c:#b01f2a"><div class="s mono"><span>JB-F</span><span>Details</span></div><div><h3>Accent walls &amp; details</h3><p>Stripes and color blocks, taped and cut sharp.</p></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="owner" style="background:var(--paper2);border-block:1px solid var(--line)"><div class="wrap own">
+  <div class="ph"><img src="img/owner-sm.jpg" alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" width="640" height="715"><span class="mono">Placeholder photo</span></div>
+  <div>
+    <p class="mono">Operated by owner</p><h2 class="serif">Jonathan Bernal.<br><em>Licensed &bull; Insured.</em></h2>
+    <p class="lead">Jonathan brings care and precision to residential and commercial projects across the East Valley, inside and out. Quality, precision and perfection on every wall.</p>
+    <blockquote>&ldquo;JB'S Pro Painters LLC did an outstanding job painting the exterior&hellip;&rdquo;</blockquote>
+    <p><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <cite>Kenneth R. &bull; Facebook review</cite></p>
+    <div class="areas"><span>Gilbert</span><span>Mesa</span><span>Chandler</span><span>Tempe</span><span>Scottsdale</span><span>Queen Creek</span><span>And more</span></div>
+  </div>
+</div></section>
+
+<section class="sec quote" id="quote"><div class="wrap q">
+  <div>
+    <p class="mono">Free estimate</p><h2 class="serif">Got a color<br><em>in mind?</em></h2>
+    <p class="lead">Tell us the project and the color you're picturing. Jonathan will get back to you.</p>
+    <a class="phone" href="tel:+16024730415">(602) 473-0415</a>
+    <p style="margin-top:12px;color:#d6dcf0">Call or text &bull; jbspropainters@gmail.com</p>
+  </div>
+  <form id="qf" name="quote" method="post" data-netlify="true" netlify-honeypot="bot" novalidate>
+    <input type="hidden" name="form-name" value="quote"><input type="hidden" name="request" value="Free estimate">
+    <p class="hp"><label>Leave empty<input name="bot" tabindex="-1" autocomplete="off"></label></p>
+    <label>Name<input name="name" autocomplete="name" required aria-describedby="e-name"><span class="err" id="e-name"></span></label>
+    <label>Phone<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="e-phone"><span class="err" id="e-phone"></span></label>
+    <label>Email (optional)<input name="email" type="email" autocomplete="email" aria-describedby="e-email"><span class="err" id="e-email"></span></label>
+    <label>City<select name="city"><option>Gilbert</option><option>Mesa</option><option>Chandler</option><option>Tempe</option><option>Scottsdale</option><option>Queen Creek</option><option>Other</option></select></label>
+    <label class="full">Project<select name="project"><option>Exterior painting</option><option>Interior painting</option><option>Cabinets</option><option>Doors / wood stain</option><option>Commercial</option><option>Something else</option></select></label>
+    <label class="full">Color idea (optional)<input name="color" placeholder="Deep navy, warm white, a color from a photo..."></label>
+    <label class="full">Details<textarea name="message" placeholder="Rooms, size, timing"></textarea></label>
+    <button class="btn full" type="submit">Send my estimate request</button>
+    <p class="ok" role="status">Thanks! We'll be in touch soon.</p>
+    <p class="note">We use these details only to answer your request. <button type="button" data-legal="privacy">Privacy policy</button></p>
+  </form>
+</div></section>
+</main>
+<footer><div class="wrap"><div>&copy; JB'S Pro Painters LLC &bull; Licensed &bull; Insured &bull; Quality &bull; Precision &bull; Perfection</div><div><button data-legal="privacy">Privacy</button><button data-legal="terms">Terms</button></div></div></footer>
+<div class="bar"><a href="tel:+16024730415">Call</a><a href="sms:+16024730415">Text</a><a href="#quote">Free estimate</a></div>
+<dialog id="legal" aria-labelledby="lt"><h3 id="lt"></h3><div id="lb"></div><p style="margin-top:18px"><button class="btn" id="lc" type="button">Close</button></p></dialog>
+
+<script src="js/gsap.min.js"></script><script src="js/ScrollTrigger.min.js"></script>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* chip deck */
+const chips=$$('.chip');let cur=0,auto=!reduce&&matchMedia("(min-width:701px)").matches,timer;
+function open(i,user){cur=i;chips.forEach((c,k)=>{const on=k===i;c.classList.toggle('on',on);$('.tab',c).setAttribute('aria-expanded',on);on?$('.body',c).removeAttribute('inert'):$('.body',c).setAttribute('inert','')})
+ if(user){auto=false;clearInterval(timer)}}
+chips.forEach((c,i)=>{$('.tab',c).addEventListener('click',()=>open(i,true))});
+open(0,false);
+$$('.seg').forEach(s=>$$('button',s).forEach(b=>b.addEventListener('click',()=>{const body=s.closest('.body');body.classList.toggle('showb',b.dataset.s==='b');$$('button',s).forEach(x=>x.setAttribute('aria-pressed',x===b));auto=false;clearInterval(timer)})));
+if(auto){timer=setInterval(()=>{if(!document.hidden)open((cur+1)%chips.length,false)},4600)}
+/* reveals */
+if(!reduce&&window.gsap){gsap.registerPlugin(ScrollTrigger);
+ gsap.from('.hero h1',{y:40,opacity:0,duration:1,ease:'power3.out'});
+ gsap.from('.hero .top>div:last-child',{y:24,opacity:0,duration:.9,delay:.2,ease:'power3.out'});
+ gsap.from('.deck .chip',{y:50,opacity:0,duration:.8,stagger:.07,delay:.3,ease:'power3.out'});
+ $$('.pair,.cd,.collage figure').forEach(el=>gsap.from(el,{y:34,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%',once:true}}));
+ ScrollTrigger.refresh();addEventListener('load',()=>setTimeout(()=>ScrollTrigger.refresh(),200))}
+/* form */
+async function sendLead(f){const data=new URLSearchParams(new FormData(f));
+ try{const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data.toString()});if(r.ok)return 'sent'}catch(_){}
+ const body=[...new FormData(f)].filter(([k,v])=>v&&!['form-name','bot'].includes(k)).map(([k,v])=>k+': '+v).join('\n');
+ location.href='mailto:jbspropainters@gmail.com?subject='+encodeURIComponent('Free estimate request')+'&body='+encodeURIComponent(body);return 'mailto'}
+const okText=s=>s==='sent'?"Thanks! We'll be in touch soon.":"Your email app should open with your details. You can also call or text (602) 473-0415.";
+const qf=$('#qf');qf.addEventListener('submit',async e=>{e.preventDefault();if($('[name=bot]',qf).value)return;
+ const set=(n,m)=>{const i=$('[name='+n+']',qf);$('#e-'+n,qf).textContent=m;i.setAttribute('aria-invalid',!!m);return m};
+ const name=qf.name.value.trim(),ph=qf.phone.value.replace(/\D/g,''),em=qf.email.value.trim();
+ const bad=[set('name',name.length<2?'Please enter your name.':''),set('phone',ph.length<10?'Enter a 10-digit phone number.':''),set('email',em&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)?'Check the email address.':'')].filter(Boolean);
+ if(bad.length){$('[aria-invalid=true]',qf).focus();return}
+ const b=$('button[type=submit]',qf);b.disabled=true;b.textContent='Sending...';const r=await sendLead(qf);$('.ok',qf).textContent=okText(r);qf.classList.add('sent');qf.reset();b.disabled=false;b.textContent='Send my estimate request'});
+/* legal */
+const L={privacy:['Privacy policy','<p>When you send the estimate form we collect your name, phone number, optional email, city, the project and color details you type. We use them only to reply to your request and quote the job. We do not sell your information.</p><p>Questions or want your details removed? Email jbspropainters@gmail.com.</p><p><em>Sample draft for owner review. Not legal advice.</em></p>'],
+ terms:['Terms of use','<p>The photos and descriptions on this site show past JB\'S Pro Painters LLC projects and are for general information. Colors on screen can differ from paint in person. Estimates are provided separately and are not binding until agreed in writing.</p><p>Content on this site belongs to JB\'S Pro Painters LLC. Please do not copy it without permission.</p><p><em>Sample draft for owner review. Not legal advice.</em></p>']};
+const dlg=$('#legal');$$('[data-legal]').forEach(b=>b.addEventListener('click',()=>{const x=L[b.dataset.legal];$('#lt').textContent=x[0];$('#lb').innerHTML=x[1];dlg.showModal()}));$('#lc').addEventListener('click',()=>dlg.close());dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+</script>
+</body>
+</html>

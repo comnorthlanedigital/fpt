@@ -24,3 +24,11 @@ Do not publish the Ducati design-plan image (the end client's spec and trademark
 
 ## Domain ideas (public-registry check on 2026-10-25: no registration or DNS found; confirm at a registrar)
 jbspropainters.com (best), jbspropaintersaz.com, jbspaintingaz.com, jbsprofinishes.com, jbspropaintingaz.com, jbsprosaz.com
+
+## Round 2 sites (new photos, new logo)
+Source in `sites-v2/`, standalone single-file versions (double-click to open) in `preview/`. Rebuild with `python3 -I clients/jbs-pro-painters/build-v2.py` (add `--pool` to reprocess photos from `assets/`).
+- `JBS-a-proof.html`: brand-true navy/silver/blue. Proof-first: hero before/after slider plus 10 drag-to-compare projects with filters, commercial mosaic.
+- `JBS-b-swatch.html`: new idea, light paper palette. Paint-chip deck: tap a color chip to open the real job in that color (before/after toggle), "one color, every surface" interior story, from-to cards.
+- `JBS-c-raw-to-ready.html`: brand-true cinematic scroll story. 3D logo hero, pinned scroll-scrubbed before/after chapters, raw-vs-ready warehouse rows, service list with photo peek.
+All three: free-estimate form with validation, honeypot and Netlify/mailto fallback, meta/OG tags, favicon, alt text, privacy and terms dialogs (sample drafts for owner review), mobile call/text/estimate bar, reduced-motion support.
+Still to do per launch checklist once a site is chosen: real domain (canonical, sitemap.xml, robots.txt, HTTPS redirect), analytics + cookie banner, custom 404, final privacy/terms text, higher-res originals of the photos (most are 480px wide).

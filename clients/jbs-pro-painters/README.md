@@ -49,4 +49,4 @@ Design contracts: `.impeccable/surfaces/`. Open items before launch: owner photo
 - `preview/JBS-color-studio.html`: separate page with the 3D house color studio (same header, no sound). Linked from the main site's nav as "Color studio"; keep both files in the same folder.
 - The other round 3 concepts moved to `preview/old-concepts/` (sources still in `v3/sites/`).
 - Build: `node clients/jbs-pro-painters/v3/build.mjs home studio` (no-sound pages alias `shared/sound.js` to `shared/silent.js`).
-- New owner photo candidate saved at `assets/batch-10/` (not used until the owner confirms it is him).
+- New owner photo candidate saved at `assets/batch-10/` (now used as the owner photo on both pages).

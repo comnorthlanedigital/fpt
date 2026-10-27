@@ -241,5 +241,4 @@ No menu. A top bar carries the logo (46px, 12px radius) and an outlined pill pho
 ## Not canonized
 
 - The pressed-blue hover (#1c47c0) is hard-coded in the button rule rather than a token; recorded as a value, not a pattern to extend.
-- The "Placeholder photo" pill on the owner image marks an unresolved asset; it is a defect carried by the build, not a component.
 - Hero text colors #e6e4dd and #dcdad2 are one-off values near Warm Paper and are not recorded as tokens.

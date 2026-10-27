@@ -10,7 +10,7 @@ import { Header } from '../../shared/header'
 import logoSm from '../../img/logo-sm.jpg'
 import kitchenA from '../../img/kitchen-after-sm.jpg'; import gdoorA from '../../img/gdoor-after-sm.jpg'; import doorA from '../../img/door-after-sm.jpg'; import stripeA from '../../img/stripe-after-sm.jpg'; import homeA from '../../img/home-after.jpg'
 import kitchenB from '../../img/kitchen-before-sm.jpg'; import gdoorB from '../../img/gdoor-before-sm.jpg'; import doorB from '../../img/door-before-sm.jpg'; import stripeB from '../../img/stripe-before-sm.jpg'
-import owner from '../../img/owner-sm.jpg'
+import owner from '../../img/owner-new.jpg'
 
 // Colors sampled by eye from real JB'S jobs plus a few neutrals. Names describe the look, not a paint brand.
 const PALETTE = [
@@ -127,7 +127,7 @@ function App() {
         </section>
 
         <section className="own" aria-labelledby="own-t">
-          <Reveal className="own__ph"><img src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /><span>Placeholder photo</span></Reveal>
+          <Reveal className="own__ph"><img src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /></Reveal>
           <div>
             <Reveal as="h2" id="own-t">Owner-operated<br />by Jonathan Bernal.</Reveal>
             <Reveal delay={0.1} as="p" className="own__p">Licensed and insured. Care and precision for homes and businesses across the East Valley, inside and out. Interior, exterior, cabinets, doors and commercial. Quality, precision, perfection.</Reveal>

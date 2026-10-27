@@ -21,7 +21,7 @@ import tlBefore from '../../img/tl-before.jpg'; import tlAfter from '../../img/t
 import stripeBefore from '../../img/stripe-before.jpg'; import stripeAfter from '../../img/stripe-after.jpg'; import stripeSm from '../../img/stripe-after-sm.jpg'
 import whB3 from '../../img/wh-b3.jpg'; import whA2 from '../../img/wh-a2.jpg'
 import whA3 from '../../img/wh-a3-sm.jpg'; import whRail from '../../img/wh-rail-sm.jpg'; import tlPatio from '../../img/tl-patio-sm.jpg'
-import owner from '../../img/owner-sm.jpg'
+import owner from '../../img/owner-new.jpg'
 
 const LINKS = [
   { label: 'Work', href: '#work' }, { label: 'Process', href: '#process' }, { label: 'Services', href: '#services' },
@@ -355,7 +355,7 @@ function App() {
         </section>
 
         <section className="own" aria-labelledby="own-t">
-          <Reveal className="own__ph"><img src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /><span>Placeholder photo</span></Reveal>
+          <Reveal className="own__ph"><img src={owner} alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy" /></Reveal>
           <div>
             <Reveal as="h2" id="own-t">Owner-operated<br />by Jonathan Bernal.</Reveal>
             <Reveal delay={0.1} as="p" className="own__p">Operated by the owner, licensed and insured. Jonathan brings care and precision to homes and businesses across the East Valley, inside and out. Quality, precision and perfection on every wall.</Reveal>

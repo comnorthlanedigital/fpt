@@ -67,3 +67,6 @@ Main page and Texture Studio now use Onest (weights 400-700, headings 600), larg
 
 ## 3D Paint Studio (round 8)
 `preview/JBS-3d-studio.html`: three paintable scale models (House, Bathroom, Kitchen). Tap any surface in the 3D view or pick it from the list, choose a color (14 real job colors or any) and a finish (flat, satin, gloss); the written plan ("Walls: Sage, satin; ...") is filled into the estimate form's "Paint plan" field and the project type is set from the model. Fixtures (tub, toilet, appliances, windows) stay as shown. Dollhouse cutaway hides the walls facing the camera. Code: `v3/sites/models/models.js` (models + viewer; add a model by adding a build function and a MODELS entry), `main.jsx`, `style.css`. The home nav links to it as "3D studio"; the texture page is still reachable from its nav.
+
+## Deploy (Netlify Drop)
+Run `clients/jbs-pro-painters/make-netlify-zip.sh` -> `zips/jbs-pro-painters-netlify.zip` (index = main page, 3D studio, texture studio, 404, short URLs /3d-studio and /texture-studio, headers, robots.txt). Drag the zip onto https://app.netlify.com/drop. Then in Netlify: Forms -> quote -> Notifications, add jbspropainters@gmail.com so estimate requests are emailed. Add the domain, then a sitemap.xml with absolute URLs.

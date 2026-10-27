@@ -12,3 +12,5 @@ dropship/cache/
 .claude/skills/impeccable/scripts/bin/
 clients/jbs-pro-painters/sites-v2/_pool/
 .impeccable/hook.cache.json
+.impeccable/review/
+clients/jbs-pro-painters/v3/dist/

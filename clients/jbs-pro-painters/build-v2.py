@@ -66,7 +66,7 @@ def build_sites():
         # standalone
         def js(m): return '<script>' + open(f'{d}/js/{m.group(1)}', encoding='utf-8').read().replace('</script', '<\\/script') + '</script>'
         out = re.sub(r'<script src="js/([\w.-]+)"></script>', js, html)
-        out = re.sub(r'img/([\w-]+)\.jpg', lambda m: uri(P, m.group(1), 600 if m.group(1).endswith('-sm') else 1100, 70 if m.group(1).endswith('-sm') else 68) if m.group(1) not in ('logo3d','og') else uri(P, m.group(1), 1500, 78), out)
+        out = re.sub(r'img/([\w-]+)\.jpg', lambda m: uri(P, m.group(1), 520 if m.group(1).endswith('-sm') else 1000, 62 if m.group(1).endswith('-sm') else 64) if m.group(1) not in ('logo3d','og') else uri(P, m.group(1), 1500, 78), out)
         open(f'{R}/preview/JBS-{s}.html', 'w', encoding='utf-8').write(out)
         left = len(re.findall(r'(?:src|href)="(?:img|js)/', out))
         print(f'{s}: {os.path.getsize(f"{R}/preview/JBS-{s}.html")/1e6:.1f} MB, images {len(used)}, leftover refs {left}')

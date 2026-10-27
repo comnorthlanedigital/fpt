@@ -26,3 +26,9 @@
 
 ## Batch 3 photos (owner-supplied)
 Saved in `assets/batch-3/`. Likely pairings: 1 -> 3 (same ranch house, tan before / white board-and-batten after); 6 -> 4 (bathroom, cut-in prep / finished deep green); 2 -> 5 (stucco home; check it is the same Gilbert house already used); 7 pool-side two-story exterior; 8 red racing-stripe wall (already carries the JBS watermark); 9 motorcycle shop interior (KTM/Ducati signage visible: ask before using client branding).
+
+## Batch 4 photos (owner-supplied)
+Saved in `assets/batch-4/`. Low-res (about 480px wide), fine for cards/thumbnails, ask for originals for hero use.
+- Garage before (5) / after (9): same two-car garage, bare walls and concrete -> painted walls and brown floor coating (looks like an epoxy/floor coating; confirm with owner what product/service it was before we claim it).
+- Large commercial warehouse interiors (4, 6, 7, 8): big commercial/industrial scope (loading dock doors, stairwell). Ask which of these were painted by JB'S and what the job was.
+- Tan stucco two-story home (1, 2, 3): exterior; same tone as batch 3 photo 7, probably one job. Ask if a before/after exists.

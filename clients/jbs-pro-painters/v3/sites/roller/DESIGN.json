@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "title": "Design System: JB'S Pro Painters, Roller",
+  "extensions": {
+    "colorMeta": {
+      "royal-blue": { "role": "primary", "displayName": "Royal Blue", "canonical": "#2459e6", "tonalRamp": ["#0a1a52", "#10287a", "#1639a8", "#1c47c0", "#2459e6", "#5882ee", "#90abf4", "#d3defb"] },
+      "deep-navy": { "role": "secondary", "displayName": "Deep Navy", "canonical": "#0a1433", "tonalRamp": ["#030816", "#0a1433", "#142251", "#1f3170", "#3a4d8f", "#6877ad", "#a0aacb", "#dde1ee"] },
+      "primer-white": { "role": "neutral", "displayName": "Primer White", "canonical": "#f3f2ee", "tonalRamp": ["#3a3a37", "#66665f", "#8e8e86", "#b4b4ac", "#d3d2cb", "#e5e4de", "#f3f2ee", "#fbfbf9"] },
+      "silver-hardware": { "role": "neutral", "displayName": "Silver Hardware", "canonical": "#cdd5e3", "tonalRamp": ["#40485a", "#5f6a82", "#808ba4", "#9ba6bd", "#b3bdd0", "#cdd5e3", "#e1e6ef", "#f2f4f8"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only, Gloock 400." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2s." },
+      "title": { "displayName": "Title", "purpose": "Service names and pull quote." },
+      "body": { "displayName": "Body", "purpose": "Epilogue running copy; lead variant at 19px." },
+      "label": { "displayName": "Label", "purpose": "Chips, progress pill, job picker." },
+      "button": { "displayName": "Button", "purpose": "Calls to action, 700." }
+    },
+    "shadows": [
+      { "name": "stage-floor", "value": "0 30px 60px -30px #0a143399, 0 2px 0 #fff inset", "purpose": "Broad floor shadow and top highlight under the photo stage." },
+      { "name": "roller-drop", "value": "drop-shadow(0 12px 10px #0a143366)", "purpose": "Roller floating above the wall." },
+      { "name": "wet-edge", "value": "55% white sheen on lit side, 32% navy lap shadow on the other (canvas)", "purpose": "Paint front depth." }
+    ],
+    "motion": [
+      { "name": "roller-spring", "value": "spring stiffness 700, damping 45, mass 0.35", "purpose": "Roller follows the pointer." },
+      { "name": "roller-tilt", "value": "spring stiffness 200, damping 20, +/-9deg over +/-1600px/s", "purpose": "Velocity tilt." },
+      { "name": "paint-row", "value": "scaleX 0 to 1, 0.55s, shared ease", "purpose": "Service row hover fill." },
+      { "name": "jobline", "value": "spring stiffness 500, damping 40", "purpose": "Selected-job underline slide." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "900px" },
+      { "name": "mobile", "value": "700px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single blue call to action per view.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Get a free estimate</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 30px;border-radius:99px;background:#2459e6;color:#fff;font:700 17px Epilogue,system-ui,sans-serif;text-decoration:none;transition:background .2s,transform .2s}.ds-btn:hover{background:#1c47c0}.ds-btn:focus-visible{outline:3px solid #2459e6;outline-offset:3px}"
+    },
+    {
+      "name": "Chip Button (solid)",
+      "kind": "button",
+      "refersTo": "chip-button-solid",
+      "description": "Action chip over photography; inverts to white on hover.",
+      "html": "<button class=\"ds-chip\">Roll it for me</button>",
+      "css": ".ds-chip{min-height:46px;padding:0 22px;border-radius:99px;border:1.5px solid #2459e6;background:#2459e6;color:#fff;font:700 15px Epilogue,system-ui,sans-serif;cursor:pointer;transition:background .2s,color .2s}.ds-chip:hover{background:#fff;color:#2459e6}.ds-chip:focus-visible{outline:3px solid #2459e6;outline-offset:3px}"
+    },
+    {
+      "name": "Chip Button (navy)",
+      "kind": "button",
+      "refersTo": "chip-button",
+      "description": "Secondary chip over photography.",
+      "html": "<button class=\"ds-chip-navy\">Roll it again</button>",
+      "css": ".ds-chip-navy{min-height:46px;padding:0 22px;border-radius:99px;border:1.5px solid #fff;background:#0a1433e6;color:#fff;font:700 15px Epilogue,system-ui,sans-serif;cursor:pointer;transition:background .2s,color .2s}.ds-chip-navy:hover{background:#fff;color:#0a1433}.ds-chip-navy:focus-visible{outline:3px solid #2459e6;outline-offset:3px}"
+    },
+    {
+      "name": "Phone Pill",
+      "kind": "nav",
+      "refersTo": "phone-pill",
+      "description": "Header phone link.",
+      "html": "<a class=\"ds-tel\" href=\"#\">(602) 473-0415</a>",
+      "css": ".ds-tel{display:inline-block;font:700 17px Epilogue,system-ui,sans-serif;color:#0a1433;text-decoration:none;font-variant-numeric:tabular-nums;border:1.5px solid #0a1433;border-radius:99px;padding:10px 20px}.ds-tel:hover{background:#0a1433;color:#fff}.ds-tel:focus-visible{outline:3px solid #2459e6;outline-offset:3px}"
+    },
+    {
+      "name": "Stage Caption Tag",
+      "kind": "card",
+      "refersTo": "stage-tag",
+      "description": "Navy caption over a job photo.",
+      "html": "<div class=\"ds-tag\"><b>Exterior repaint</b><span>Gilbert</span></div>",
+      "css": ".ds-tag{display:inline-grid;background:#0a1433e6;color:#fff;border-radius:14px;padding:10px 16px;font-family:Epilogue,system-ui,sans-serif}.ds-tag b{font-weight:600;font-size:16px}.ds-tag span{font-size:13px;color:#c5d0ef}"
+    },
+    {
+      "name": "Service Row",
+      "kind": "custom",
+      "refersTo": "service-row",
+      "description": "Ruled row that gets painted navy on hover.",
+      "html": "<div class=\"ds-row\"><span class=\"ds-row__paint\"></span><span class=\"ds-row__name\">Interior painting</span><span class=\"ds-row__txt\">Walls, ceilings and trim.</span></div>",
+      "css": ".ds-row{position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:8px 32px;align-items:baseline;padding:26px 20px;border-top:1.5px solid #0a1433;border-bottom:1.5px solid #0a1433;overflow:hidden}.ds-row__paint{position:absolute;inset:0;background:#0a1433;transform:scaleX(0);transform-origin:left;transition:transform .55s cubic-bezier(.16,1,.3,1)}.ds-row:hover .ds-row__paint{transform:scaleX(1)}.ds-row__name,.ds-row__txt{position:relative;transition:color .3s}.ds-row__name{font:400 36px/1.05 Gloock,Georgia,serif;color:#0a1433}.ds-row__txt{font:400 17px Epilogue,system-ui,sans-serif;color:#47506b}.ds-row:hover .ds-row__name{color:#fff}.ds-row:hover .ds-row__txt{color:#dbe4ff}"
+    },
+    {
+      "name": "Estimate Field",
+      "kind": "input",
+      "refersTo": "estimate-field",
+      "description": "Form input on the navy estimate section.",
+      "html": "<label class=\"ds-lbl\">Name<input class=\"ds-input\" placeholder=\"Your name\"></label>",
+      "css": ".ds-lbl{display:grid;gap:7px;font:600 13px Epilogue,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#f3f5fb}.ds-input{font:400 17px Epilogue,system-ui,sans-serif;letter-spacing:0;text-transform:none;color:#fff;background:#06102a;border:1px solid #ffffff33;border-radius:12px;padding:13px 15px;min-height:52px;width:100%}.ds-input::placeholder{color:#9fb0dc}.ds-input:focus-visible{outline:3px solid #2459e6;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Wall You Paint",
+    "overview": "The page is a painter's wall. A primer-white ground carries deep-navy ink, and the one thing that changes it is a navy roller the visitor drags. Everything else is quiet so the real before/after photographs can be the proof: a finished photo exists only where the roller has been. The mood is confident, tactile and trade-honest, not corporate-tech.\n\nDensity is generous. Large Gloock headlines sit on wide primer-white margins, content blocks are separated by 70 to 130px of air, and rounded navy \"paint-can\" chips float over photography. Depth is soft and physical (one wet-edge sheen and lap shadow on the paint front, one broad floor shadow under the stage), never graphic.\n\nThe brand colors come from the owner's logo: navy, silver, royal blue. They are used as materials (navy roller, silver ferrule and handle, blue paint accent), not as decoration.",
+    "keyCharacteristics": [
+      "Primer-white ground with a faint fractal-noise grain, navy ink, one royal-blue accent.",
+      "Gloock display over Epilogue body; headlines large, tight, balanced.",
+      "Pill-shaped controls over rounded 22px photo stages.",
+      "Interaction is the hero: drag-to-paint, hover-to-paint list rows, spring-tilted roller.",
+      "Real job photography only; navy chips carry captions over it."
+    ],
+    "rules": [
+      { "name": "The One Blue Rule", "body": "Royal Blue is the sole accent and marks the next action or the current selection. Navy is structure, never a second accent.", "section": "colors" },
+      { "name": "The Silver Is Metal Rule", "body": "Silver appears only as roller hardware, never as a UI fill or border.", "section": "colors" },
+      { "name": "The Serif Speaks, Sans Works Rule", "body": "Gloock for headlines, service names and the quote; Epilogue for everything the visitor reads or taps.", "section": "typography" },
+      { "name": "The Wet Edge Rule", "body": "Depth belongs to the roller, the paint front and the stage. Cards, chips and rows stay flat.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use Royal Blue (#2459e6) for the single next action and the current selection only.",
+      "Do keep every photograph real and let the roller reveal it; captions go in navy chips over the image, never baked into it.",
+      "Do make controls pill-shaped (99px) and photo containers 12 to 22px radius.",
+      "Do set headlines in Gloock 400 with -0.015em tracking and balanced wrapping; body and controls in Epilogue.",
+      "Do keep tap targets at least 44px and keep the 3px Royal Blue focus ring.",
+      "Do honor reduced motion: no bobbing, no hover paint, instant reveal."
+    ],
+    "donts": [
+      "Don't add a second accent color or use silver as a UI fill.",
+      "Don't put shadows on chips, rows or section cards; depth belongs to the roller, wet edge and stage.",
+      "Don't use a before/after drag-divider slider; the reveal is always painted by the visitor or by \"Roll it for me\".",
+      "Don't show third-party brands from photos, or invent licenses, years, prices or review counts.",
+      "Don't set Gloock below headline scale or in bold; it is single-weight."
+    ]
+  }
+}

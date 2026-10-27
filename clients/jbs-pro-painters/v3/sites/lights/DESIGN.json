@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "title": "Design System: JB'S Pro Painters, Lights",
+  "extensions": {
+    "colorMeta": {
+      "night-ground": { "role": "neutral", "displayName": "Night Ground", "canonical": "#07080d", "tonalRamp": ["#07080d", "#0b0c12", "#14141a", "#2b2b30", "#4a4a55", "#9a927f", "#d9d4c8", "#efeae0"] },
+      "day-ground": { "role": "neutral", "displayName": "Day Ground", "canonical": "#efeae0", "tonalRamp": ["#17171c", "#4a4a55", "#9a927f", "#bfb49f", "#d9d4c8", "#e4dfd3", "#efeae0", "#f4f1ea"] },
+      "tungsten-cream": { "role": "neutral", "displayName": "Tungsten Cream", "canonical": "#f1e4cc", "tonalRamp": ["#4a4233", "#6e6350", "#9a927f", "#bfb49f", "#d6c9b0", "#e6d9bf", "#f1e4cc", "#f6ecd8"] },
+      "tungsten-glow": { "role": "secondary", "displayName": "Tungsten Glow", "canonical": "#ffd9a0", "tonalRamp": ["#6a4300", "#946000", "#c58a2e", "#e6a84f", "#ffc47a", "#ffd9a0", "#ffe6c0", "#fff1dc"] },
+      "switch-blue": { "role": "primary", "displayName": "Switch Blue", "canonical": "#2459e6", "tonalRamp": ["#0e2358", "#133288", "#1a47c2", "#2459e6", "#5580ee", "#86a4f3", "#b8c9f8", "#e3eafc"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles." },
+      "title": { "displayName": "Title", "purpose": "Room names." },
+      "row-title": { "displayName": "Row title", "purpose": "Service rows and the owner quote." },
+      "body": { "displayName": "Body", "purpose": "Section copy, 30 to 48ch." },
+      "label": { "displayName": "Label", "purpose": "Control captions and form field labels only." }
+    },
+    "shadows": [
+      { "name": "switch-plate", "value": "0 6px 14px #0008, inset 0 0 0 1px #fff8", "purpose": "Wall switch plate." },
+      { "name": "rocker", "value": "0 3px 5px #0008", "purpose": "Switch rocker." },
+      { "name": "mini-switch", "value": "0 3px 8px #0007", "purpose": "Service row switch." },
+      { "name": "dimmer-thumb", "value": "0 2px 6px #000a", "purpose": "Dimmer slider thumb." },
+      { "name": "hero-panel", "value": "0 30px 60px -30px #000", "purpose": "Hero photo panel." },
+      { "name": "inset-photo", "value": "0 8px 16px -6px #000a", "purpose": "Before/After inset thumbnail." }
+    ],
+    "motion": [
+      { "name": "light-level", "value": "motion value 0..1", "purpose": "Drives ground (0 #07080d, 0.5 #14141a, 0.85 #d9d4c8, 1 #efeae0), photo brightness 0.5 + 0.5*v^0.8, ink flip at 0.68, hero mask radius 190/520/2600px." },
+      { "name": "flip-on", "value": "keyframes [0.4, 0.06, 0.7, 0.2, 1] over 1.5s, times [0, .12, .26, .46, .62, 1], easeOut", "purpose": "Tube-flicker when the switch is turned on; 0.01s under reduced motion." },
+      { "name": "flip-off", "value": "0.7s shared ease to 0", "purpose": "Lights off." },
+      { "name": "rocker-spring", "value": "spring stiffness 500, damping 22", "purpose": "Wall switch rocker." },
+      { "name": "pill-spring", "value": "spring stiffness 420, damping 34", "purpose": "Before/After pill." },
+      { "name": "color-transition", "value": "0.7s", "purpose": "Ink and header color changes at the day flip." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "900px" },
+      { "name": "mobile", "value": "700px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one blue pill action.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Get a free estimate</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 30px;border-radius:99px;background:#2459e6;color:#fff;font-weight:700;text-decoration:none;transition:background .2s}.ds-btn:hover{background:#1a47c2}.ds-btn:focus-visible{outline:3px solid #ffd9a0;outline-offset:3px}"
+    },
+    {
+      "name": "Wall Switch",
+      "kind": "custom",
+      "refersTo": "switch-plate",
+      "description": "Signature physical switch that raises the light level.",
+      "html": "<button class=\"ds-sw\" role=\"switch\" aria-checked=\"false\"><span class=\"ds-plate\"><span class=\"ds-screw\"></span><span class=\"ds-slot\"><span class=\"ds-rocker\"></span></span><span class=\"ds-screw\"></span></span><span class=\"ds-swl\">Lights off</span></button>",
+      "css": ".ds-sw{display:flex;align-items:center;gap:16px;background:none;border:0;cursor:pointer;padding:0;color:inherit}.ds-plate{display:grid;justify-items:center;gap:14px;width:92px;padding:18px 0;background:linear-gradient(160deg,#f4f1ea,#d9d4c8);border-radius:10px;box-shadow:0 6px 14px #0008,inset 0 0 0 1px #fff8}.ds-screw{width:7px;height:7px;border-radius:50%;background:#b9b3a4;box-shadow:inset 0 1px 1px #0005}.ds-slot{display:grid;place-items:center;width:50px;height:94px;background:#2b2b30;border-radius:5px;overflow:hidden}.ds-rocker{display:block;width:38px;height:44px;background:linear-gradient(#fbf8f1,#cfc9bb);border-radius:3px;box-shadow:0 3px 5px #0008;transform:translateY(10px) rotateX(-24deg)}.ds-sw:hover .ds-rocker{transform:translateY(-10px) rotateX(24deg)}.ds-swl{font:700 17px 'Schibsted Grotesk',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase}.ds-sw:focus-visible{outline:3px solid #ffd9a0;outline-offset:6px;border-radius:12px}"
+    },
+    {
+      "name": "Dimmer",
+      "kind": "input",
+      "refersTo": "segmented-toggle",
+      "description": "Header pill range input with tungsten fill.",
+      "html": "<label class=\"ds-dim\"><span>Dimmer</span><input type=\"range\" min=\"0\" max=\"100\" value=\"60\" style=\"--v:60%\"></label>",
+      "css": ".ds-dim{display:flex;align-items:center;gap:12px;background:#000b;border:1px solid #ffffff38;border-radius:99px;padding:6px 18px 6px 16px;color:#f1e4cc;font:600 13px 'Schibsted Grotesk',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}.ds-dim input{-webkit-appearance:none;appearance:none;width:240px;height:28px;background:none;cursor:pointer;margin:0}.ds-dim input::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,#ffd9a0 var(--v),#ffffff33 var(--v))}.ds-dim input::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:0;margin-top:-8px;box-shadow:0 2px 6px #000a}.ds-dim input:focus-visible{outline:3px solid #ffd9a0;outline-offset:3px}"
+    },
+    {
+      "name": "Before/After Toggle",
+      "kind": "chip",
+      "refersTo": "segmented-toggle",
+      "description": "Two-state pill with a blue sliding indicator.",
+      "html": "<div class=\"ds-seg\"><button aria-pressed=\"false\">Before</button><button aria-pressed=\"true\">After</button><i class=\"ds-pill\"></i></div>",
+      "css": ".ds-seg{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;border:1.5px solid currentColor;border-radius:99px;padding:3px;color:#f1e4cc}.ds-seg button{position:relative;z-index:1;min-height:44px;min-width:104px;background:none;border:0;font:700 15px 'Schibsted Grotesk',system-ui,sans-serif;cursor:pointer;color:inherit}.ds-seg button[aria-pressed=true]{color:#fff}.ds-pill{position:absolute;left:3px;top:3px;bottom:3px;width:calc(50% - 3px);border-radius:99px;background:#2459e6;transform:translateX(100%)}.ds-seg button:focus-visible{outline:3px solid #ffd9a0;outline-offset:2px;border-radius:99px}"
+    },
+    {
+      "name": "Photo Frame",
+      "kind": "card",
+      "refersTo": "photo-frame",
+      "description": "Rounded photo container with a corner inset tag.",
+      "html": "<figure class=\"ds-photo\"><span class=\"ds-tag\">Before</span></figure>",
+      "css": ".ds-photo{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;background:#000;margin:0;width:280px}.ds-tag{position:absolute;left:14px;bottom:14px;background:#000c;color:#fff;font:700 11px 'Schibsted Grotesk',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:6px}"
+    },
+    {
+      "name": "Service Switch Row",
+      "kind": "custom",
+      "refersTo": "switch-plate",
+      "description": "Hairline row with a mini switch and a row title.",
+      "html": "<button class=\"ds-row\" role=\"switch\" aria-checked=\"false\"><span class=\"ds-mini\"><i></i></span><span class=\"ds-rn\">Interior painting</span></button>",
+      "css": ".ds-row{width:100%;display:flex;gap:20px;align-items:center;min-height:84px;background:none;border:0;border-top:1px solid #ffffff38;border-bottom:1px solid #ffffff38;text-align:left;color:#f1e4cc;cursor:pointer}.ds-mini{display:grid;place-items:center;width:34px;height:52px;background:linear-gradient(160deg,#f4f1ea,#d9d4c8);border-radius:6px;box-shadow:0 3px 8px #0007}.ds-mini i{display:block;width:18px;height:22px;border-radius:3px;background:#3a3a40;box-shadow:0 2px 3px #0006;transform:translateY(6px)}.ds-rn{font:700 28px/1.1 'Bricolage Grotesque',system-ui,sans-serif;letter-spacing:-.025em;opacity:.55}.ds-row:hover .ds-rn{opacity:1}.ds-row:focus-visible{outline:3px solid #ffd9a0;outline-offset:3px}"
+    },
+    {
+      "name": "Estimate Field",
+      "kind": "input",
+      "refersTo": "estimate-field",
+      "description": "Dark form field with an uppercase control label.",
+      "html": "<label class=\"ds-lbl\">Name<input class=\"ds-field\" type=\"text\" placeholder=\"Your name\"></label>",
+      "css": ".ds-lbl{display:grid;gap:7px;font:600 13px 'Schibsted Grotesk',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#f1e4cc}.ds-field{font:400 17px 'Schibsted Grotesk',system-ui,sans-serif;letter-spacing:0;text-transform:none;color:#f6ecd8;background:#06070b;border:1px solid #ffffff38;border-radius:12px;padding:13px 15px;min-height:52px;width:280px}.ds-field::placeholder{color:#9a927f}.ds-field:focus-visible{outline:3px solid #ffd9a0;outline-offset:3px}.ds-field[aria-invalid=true]{border-color:#ffb1a0}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Wall Switch",
+    "overview": "The page is a dark room until you light it. The ground starts at near-black blue, a flashlight follows the pointer over the hero photo, and a physical switch plate and a header dimmer raise the whole page toward a warm bright gallery. Light is the one state variable: a single motion value (0 to 1) drives the page background, the photo brightness, the hero darkness mask and the ink flip. Everything else is quiet so the finished rooms carry the proof.",
+    "keyCharacteristics": [
+      "One light level (0 to 1) governs ground color, photo brightness, hero mask radius and ink flip.",
+      "Dark by default, bright when lit; both states are fully designed, not inverted by filter.",
+      "Heavy, tight display type over a regular grotesque body at 19px.",
+      "Photo-first sections with 18 to 26px rounded frames; flat except for hardware objects.",
+      "Pill-shaped controls, one blue action color."
+    ],
+    "rules": [
+      { "name": "The One Light Rule", "body": "Background, photo brightness and ink are functions of the single light value, never separate toggles. Ground stops: 0 night, 0.5 dusk, 0.85 dawn, 1 day. Photo brightness is 0.5 + 0.5 * light^0.8. Ink flips at 0.68.", "section": "colors" },
+      { "name": "The One Action Rule", "body": "Switch Blue is the only saturated color on the page. Warm tungsten is light, never a button.", "section": "colors" },
+      { "name": "The Two Ink Rule", "body": "Text is either cream on dark or graphite on light; secondary text uses the matching mute value. Never leave cream text on a day ground.", "section": "colors" },
+      { "name": "The Heavy Tight Rule", "body": "Every heading is Bricolage 800 (700 for row titles) with -0.03em tracking and balanced wrapping.", "section": "typography" },
+      { "name": "The Controls Only Rule", "body": "Uppercase tracked labels belong to controls and form fields, not to introduce sections.", "section": "typography" },
+      { "name": "The Hardware Only Rule", "body": "Shadow belongs to things you can press (switch, rocker, thumb) and to the hero panel; text, sections and the estimate form carry none.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do derive ground, photo brightness and ink from the one light value; keep the 0.68 ink flip.",
+      "Do use Switch Blue only for the primary action and its state (toggle pill, submit).",
+      "Do set headings in Bricolage Grotesque 800 at -0.03em and body in Schibsted Grotesk.",
+      "Do keep controls pill-shaped and at least 44px tall, primary actions 56px.",
+      "Do keep photos in rounded frames with real alt text; place new hardware-like objects on the plate gradient with soft shadow.",
+      "Do show both lit and unlit states of any new component."
+    ],
+    "donts": [
+      "Don't put cream text on the day ground or graphite text on the night ground; use the matching ink pair.",
+      "Don't use a second saturated color for actions; tungsten is only light, focus and track fill.",
+      "Don't apply shadows to sections, headings or the estimate form.",
+      "Don't use hard offset shadows, glyph icons or uppercase intros above headings.",
+      "Don't use filter inversion to fake the day state; define the day values."
+    ]
+  }
+}

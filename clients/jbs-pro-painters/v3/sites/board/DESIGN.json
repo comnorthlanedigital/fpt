@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "title": "Design System: JB'S Pro Painters, The Job Board",
+  "extensions": {
+    "colorMeta": {
+      "tape-blue": { "role": "primary", "displayName": "Tape Blue", "canonical": "#2f6bd6", "tonalRamp": ["#0b1d3d", "#123a7a", "#1c4fa8", "#2f6bd6", "#5b8ae0", "#8aa9e8", "#bccdf2", "#e6edfb"] },
+      "sticky-note-yellow": { "role": "secondary", "displayName": "Sticky Note Yellow", "canonical": "#ffe27a", "tonalRamp": ["#2a2400", "#5c4f00", "#8f7a00", "#c7a800", "#ffd24a", "#ffe27a", "#fff0b0", "#fff9de"] },
+      "focus-and-hint-gold": { "role": "secondary", "displayName": "Focus and Hint Gold", "canonical": "#ffd24a", "tonalRamp": ["#2a2000", "#594500", "#8c6c00", "#c29a00", "#ffd24a", "#ffe08a", "#ffeeb8", "#fff8e0"] },
+      "drywall-charcoal": { "role": "neutral", "displayName": "Drywall Charcoal", "canonical": "#3a3a3e", "tonalRamp": ["#1d1e24", "#2c2d33", "#3a3a3e", "#585a66", "#6b6d78", "#9a9ca8", "#c5c6d0", "#ebebef"] },
+      "print-white": { "role": "neutral", "displayName": "Print White", "canonical": "#fbfaf6", "tonalRamp": ["#585a66", "#8a8b92", "#b9b9bd", "#d9d8d4", "#e9e7e0", "#f3f0e8", "#f6f4ee", "#fbfaf6"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline, uppercase, one tape strip per line." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2s and the estimate phone number." },
+      "body": { "displayName": "Body", "purpose": "Running copy in Barlow." },
+      "lead": { "displayName": "Lead", "purpose": "Support copy beside headlines, 30 to 46ch." },
+      "label": { "displayName": "Label", "purpose": "Uppercase print tags and form labels." },
+      "marker": { "displayName": "Marker", "purpose": "Print captions, tape labels, sticky note, hint." }
+    },
+    "shadows": [
+      { "name": "print", "value": "0 18px 30px -14px #000a, 0 2px 5px #0006", "purpose": "Photo prints." },
+      { "name": "note", "value": "0 14px 24px -12px #000a", "purpose": "Sticky note." },
+      { "name": "tape-label", "value": "0 6px 10px #0005", "purpose": "Service tape labels." },
+      { "name": "form", "value": "0 24px 40px -20px #0008", "purpose": "Estimate form card." }
+    ],
+    "motion": [
+      { "name": "print-drop", "value": "spring stiffness 110, damping 14, from y -260 and rotate -14deg", "purpose": "Prints fall onto the wall on entering view." },
+      { "name": "print-flip", "value": "0.7s rotateY 180deg", "purpose": "After to Before flip." },
+      { "name": "drag", "value": "momentum power 0.18, timeConstant 220, elastic 0.12, scale 1.05", "purpose": "Dragging prints." },
+      { "name": "tapebtn-hover", "value": "0.2s transform rotate(-1.5deg) scale(1.03)", "purpose": "CTA hover; none under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "900px" },
+      { "name": "phone", "value": "700px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Tape Button",
+      "kind": "button",
+      "refersTo": "button-tape",
+      "description": "Primary call to action on a torn blue tape strip.",
+      "html": "<a class=\"ds-tapebtn\" href=\"#\">Get a free estimate</a>",
+      "css": ".ds-tapebtn{position:relative;display:inline-flex;align-items:center;min-height:58px;padding:0 34px;background:repeating-linear-gradient(90deg,#ffffff1c 0 2px,#0000 2px 7px),#2f6bd6;color:#fff;font:800 22px Barlow,system-ui,sans-serif;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 8%,2% 0,4% 10%,6% 0,100% 0,100% 100%,96% 92%,94% 100%,4% 100%,2% 90%,0 100%);transition:transform .2s}.ds-tapebtn:hover{transform:rotate(-1.5deg) scale(1.03)}.ds-tapebtn:focus-visible{outline:3px solid #ffd24a;outline-offset:3px}"
+    },
+    {
+      "name": "Photo Print",
+      "kind": "card",
+      "refersTo": "print-card",
+      "description": "White print with a marker caption and a tag; flips between After and Before.",
+      "html": "<div class=\"ds-print\"><div class=\"ds-print__ph\"><i class=\"ds-print__tag\">After</i></div><div class=\"ds-print__cap\"><b>Exterior repaint</b><em>Gilbert</em></div></div>",
+      "css": ".ds-print{width:260px;padding:10px 10px 0;background:#fbfaf6;color:#1d1e24;border-radius:3px;transform:rotate(-3deg);box-shadow:0 18px 30px -14px #000a,0 2px 5px #0006}.ds-print__ph{position:relative;aspect-ratio:4/3;background:#cfcfd4}.ds-print__tag{position:absolute;right:8px;top:8px;background:#2f6bd6;color:#fff;font:700 12px Barlow,sans-serif;letter-spacing:.1em;text-transform:uppercase;font-style:normal;padding:4px 10px}.ds-print__cap{display:grid;padding:12px 4px 14px}.ds-print__cap b{font:400 22px/1.1 'Permanent Marker',cursive}.ds-print__cap em{font:500 14px Barlow,sans-serif;font-style:normal;color:#585a66}"
+    },
+    {
+      "name": "Tape Label",
+      "kind": "chip",
+      "refersTo": "tape-label",
+      "description": "Service label on a torn blue strip.",
+      "html": "<div class=\"ds-label\"><b>Exterior</b><span>Homes and businesses</span></div>",
+      "css": ".ds-label{width:300px;background:repeating-linear-gradient(90deg,#ffffff1c 0 2px,#0000 2px 7px),#2f6bd6;color:#fff;padding:20px 26px 22px;clip-path:polygon(0 6%,1.5% 0,3% 7%,4.5% 0,100% 0,100% 100%,98% 94%,96.5% 100%,1.5% 100%,0 93%);box-shadow:0 6px 10px #0005}.ds-label b{display:block;font:400 26px/1.1 'Permanent Marker',cursive;margin-bottom:6px}.ds-label span{display:block;font:500 17px/1.35 Barlow,sans-serif;color:#eaf0ff}"
+    },
+    {
+      "name": "Sticky Note",
+      "kind": "custom",
+      "refersTo": "sticky-note",
+      "description": "Yellow review note in marker type.",
+      "html": "<blockquote class=\"ds-note\">&ldquo;Great work.&rdquo;<footer>Reviewer</footer></blockquote>",
+      "css": ".ds-note{max-width:420px;background:#ffe27a;color:#2a2400;padding:26px 24px 20px;font:400 24px/1.25 'Permanent Marker',cursive;transform:rotate(1.5deg);box-shadow:0 14px 24px -12px #000a;border-radius:2px}.ds-note footer{margin-top:12px;font:600 15px Barlow,sans-serif;color:#4a4000}"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Estimate form field with uppercase label.",
+      "html": "<label class=\"ds-field\">Name<input type=\"text\" placeholder=\"Your name\"></label>",
+      "css": ".ds-field{display:grid;gap:7px;font:600 13px Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#3d3f4a}.ds-field input{font:400 17px Barlow,sans-serif;letter-spacing:0;text-transform:none;color:#1d1e24;background:#fff;border:1px solid #1d1e2440;border-radius:12px;padding:13px 15px;min-height:52px;width:100%}.ds-field input::placeholder{color:#6b6d78}.ds-field input:focus-visible{outline:3px solid #ffd24a;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Job Wall",
+    "overview": "The page is a charcoal drywall wall in a job trailer. Work is taped to it: white photo prints with marker captions, strips of blue painter's tape carrying the headline, the buttons and the service labels, and one yellow sticky note for the review. Depth comes from real, soft drop shadows under paper; the wall itself is flat charcoal with a faint noise grain. The mood is workmanlike and confident; blue tape is the only saturated color and the marker hand is reserved for things someone would write on a wall.",
+    "keyCharacteristics": [
+      "Charcoal drywall ground, grain overlay, one saturated blue (tape) as the sole action color.",
+      "Torn-edge tape shapes for every primary action and label.",
+      "White prints, slight rotations, soft paper shadows.",
+      "Condensed all-caps display type at 0.9 line height; Barlow for everything readable.",
+      "Physical motion (spring drop-in, drag, 3D flip), removed under reduced motion."
+    ],
+    "rules": [
+      { "name": "The One Tape Rule", "body": "Blue is tape. If something is blue it must look like a strip of tape (torn ends, stripe texture); no blue flat fills, outlines or links.", "section": "colors" },
+      { "name": "The Paper Is Never Dark Rule", "body": "Prints, form and note are light paper on the dark wall; text on paper uses #1d1e24 or darker greys, text on the wall uses the warm and lilac whites.", "section": "colors" },
+      { "name": "The Hand Is Written Rule", "body": "Marker type is for text that could plausibly be written on tape, a print or a note. Running copy, navigation and form text stay in Barlow.", "section": "typography" },
+      { "name": "The Paper Casts, The Wall Doesn't Rule", "body": "Only paper and tape objects carry shadows; no shadow on text, the wall, or the sound toggle and mobile bar.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do put every primary action and label on a torn tape strip in #2f6bd6.",
+      "Do keep text on paper dark (#1d1e24) and text on the wall warm white (#f3f0e8) or #c5c6d0.",
+      "Do keep display type uppercase at 0.9 line height and 0 tracking.",
+      "Do use the gold #ffd24a for focus rings.",
+      "Do disable hover and entrance motion under prefers-reduced-motion."
+    ],
+    "donts": [
+      "Don't introduce another saturated color; yellow is paper only.",
+      "Don't use marker type for running copy or navigation.",
+      "Don't put shadows on the wall or on UI chrome.",
+      "Don't make photos or tape perfectly rectangular and axis-aligned."
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "title": "Design System: JB'S Pro Painters, Coats",
+  "extensions": {
+    "colorMeta": {
+      "royal-blue": { "role": "primary", "displayName": "Royal Blue", "canonical": "#2459e6", "tonalRamp": ["#0b1e55", "#10308a", "#1a47c2", "#2459e6", "#5380ee", "#82a3f3", "#b3c6f8", "#e1e9fc"] },
+      "navy-night": { "role": "neutral", "displayName": "Night Navy", "canonical": "#050a1c", "tonalRamp": ["#02050f", "#050a1c", "#0a1433", "#13224f", "#233a78", "#4d65a1", "#8c9bc4", "#dbe1f0"] },
+      "navy-deep": { "role": "neutral", "displayName": "Deep Navy", "canonical": "#0a1433", "tonalRamp": ["#050a1c", "#0a1433", "#0d1838", "#162552", "#2a3d78", "#56699b", "#97a4c6", "#dde2f0"] },
+      "silver": { "role": "neutral", "displayName": "Silver", "canonical": "#d5dcea", "tonalRamp": ["#3a4256", "#586280", "#7a86a3", "#9ba6c0", "#b5bfd4", "#d5dcea", "#e6eaf3", "#f4f6fa"] },
+      "primer-grey": { "role": "neutral", "displayName": "Primer Grey", "canonical": "#dfe3ec", "tonalRamp": ["#3a4050", "#586075", "#7a8296", "#9aa1b3", "#b9bfcd", "#dfe3ec", "#eceef4", "#f7f8fb"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Coat Title", "purpose": "One-word coat titles and hero headline in Unbounded 700." },
+      "headline": { "displayName": "Section Headline", "purpose": "Services, strip, owner and estimate headings." },
+      "title": { "displayName": "Row Title", "purpose": "Accordion rows and owner quote." },
+      "body": { "displayName": "Body", "purpose": "Albert Sans running text, 16px mobile / 17px desktop." },
+      "label": { "displayName": "Photo Label", "purpose": "Uppercase tracked chips on photographs only." }
+    },
+    "shadows": [
+      { "name": "print-lift", "value": "0 22px 40px -18px #050a1c88", "purpose": "White-matted photo print resting on a coat panel." },
+      { "name": "before-inset", "value": "0 8px 14px -6px #050a1c99", "purpose": "Small before thumbnail on finished prints." }
+    ],
+    "motion": [
+      { "name": "coat-pour", "value": "scroll-linked SVG clipPath wave with drips, thresholds at 0.2-0.5 and 0.55-0.85 of the 440svh runway", "purpose": "Each coat rises over the last." },
+      { "name": "print-drift", "value": "per-print translateY over scroll progress with 1-2deg rotation", "purpose": "Parallax of photographic prints." },
+      { "name": "accordion", "value": "height 0 to auto, 0.45s", "purpose": "Service rows." },
+      { "name": "button-hover", "value": "background 0.2s", "purpose": "Button color change." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "900px" },
+      { "name": "mobile", "value": "700px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Royal blue pill, the one action per band.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Get a free estimate</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 30px;border-radius:99px;background:#2459e6;color:#fff;font:700 17px 'Albert Sans',system-ui,sans-serif;text-decoration:none;transition:background .2s}.ds-btn:hover{background:#1a47c2}.ds-btn:focus-visible{outline:3px solid #8fb0ff;outline-offset:3px}"
+    },
+    {
+      "name": "Silver Button",
+      "kind": "button",
+      "refersTo": "button-silver",
+      "description": "Silver pill used on the Finish coat.",
+      "html": "<a class=\"ds-btn-silver\" href=\"#\">Get a free estimate</a>",
+      "css": ".ds-btn-silver{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 30px;border-radius:99px;background:#d5dcea;color:#0a1433;font:700 17px 'Albert Sans',system-ui,sans-serif;text-decoration:none;transition:background .2s}.ds-btn-silver:hover{background:#fff}.ds-btn-silver:focus-visible{outline:3px solid #8fb0ff;outline-offset:3px}"
+    },
+    {
+      "name": "Photo Print",
+      "kind": "card",
+      "refersTo": "print",
+      "description": "White-matted photograph with stage tag, slightly rotated.",
+      "html": "<figure class=\"ds-print\"><div class=\"ds-print-img\"></div><figcaption class=\"ds-tag\">Finished</figcaption></figure>",
+      "css": ".ds-print{position:relative;margin:0;width:220px;aspect-ratio:3/4;padding:8px;background:#fff;border-radius:18px;box-shadow:0 22px 40px -18px #050a1c88;transform:rotate(-1.5deg)}.ds-print-img{width:100%;height:100%;border-radius:12px;background:#0d1838}.ds-tag{position:absolute;left:14px;top:14px;background:#050a1ce6;color:#fff;font:600 11px 'Albert Sans',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:99px}"
+    },
+    {
+      "name": "Service Row",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Hairline-ruled accordion row with Unbounded title.",
+      "html": "<div class=\"ds-svc\"><button type=\"button\"><span>Interior painting</span><i aria-hidden=\"true\">+</i></button></div>",
+      "css": ".ds-svc{border-top:1px solid #ffffff33;background:#050a1c}.ds-svc button{width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:0;cursor:pointer;text-align:left;padding:24px 0;min-height:64px;font:700 28px/1.15 'Unbounded',system-ui,sans-serif;letter-spacing:-.025em;color:#d5dcea;transition:color .2s}.ds-svc button:hover{color:#fff}.ds-svc button:focus-visible{outline:3px solid #8fb0ff;outline-offset:3px}.ds-svc i{font:300 36px/1 'Albert Sans',system-ui,sans-serif;font-style:normal;color:#2459e6;filter:brightness(1.5)}"
+    },
+    {
+      "name": "Strip Caption",
+      "kind": "chip",
+      "refersTo": "photo-tag",
+      "description": "Pill caption on drag-strip photos; blue for Ready, navy for Raw.",
+      "html": "<span class=\"ds-cap\">Ready</span>",
+      "css": ".ds-cap{display:inline-block;background:#2459e6;color:#fff;border-radius:99px;padding:6px 14px;font:600 12px 'Albert Sans',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase}"
+    },
+    {
+      "name": "Estimate Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Navy field with uppercase label on a translucent card.",
+      "html": "<label class=\"ds-field\">Name<input placeholder=\"Your name\"></label>",
+      "css": ".ds-field{display:grid;gap:7px;font:600 13px 'Albert Sans',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#eef2fb}.ds-field input{font:400 17px 'Albert Sans',system-ui,sans-serif;letter-spacing:0;text-transform:none;color:#eef2fb;background:#050a1c;border:1px solid #ffffff30;border-radius:12px;padding:13px 15px;min-height:52px}.ds-field input::placeholder{color:#8f9fc8}.ds-field input:focus-visible{outline:3px solid #8fb0ff;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Three Coats, Poured",
+    "overview": "The page is one job told in three coats: Primer, Base, Finish. A pinned stage holds three full-bleed panels (pale primer grey, royal blue, deep navy). Each next coat rises over the last through a liquid, dripping SVG edge as you scroll, with a thin white highlight line riding the edge. Around it the site is calm deep navy with silver type, so the real before/after photographs and the 3D logo carry the color.",
+    "keyCharacteristics": [
+      "Navy-first dark ground; royal blue is the single action color; silver is the neutral voice.",
+      "Liquid wavy coat edges (SVG clipPath plus highlight stroke) are the signature device.",
+      "Photos are white-matted prints, slightly rotated, drifting at different scroll speeds.",
+      "Pill-shaped controls, generously rounded photo frames, no sharp corners on interactive things.",
+      "Sound (drip, whoosh, scrape, pop) is part of the interaction grammar and is user-toggleable."
+    ],
+    "rules": [
+      { "name": "The Logo Palette Rule", "body": "Every color traces back to the logo: navy, silver/chrome, royal blue. A new hue needs a reason in the logo.", "section": "colors" },
+      { "name": "The One Action Rule", "body": "Royal blue (or silver on the blue-adjacent Finish panel) marks the one primary action. On the royal-blue coat the button flips to silver so it never disappears into its ground.", "section": "colors" },
+      { "name": "The Wide-Over-Quiet Rule", "body": "Only Unbounded carries emphasis; Albert Sans never goes display-size.", "section": "typography" },
+      { "name": "The Print Only Rule", "body": "Shadow belongs to photographs lying on a coat. Buttons, cards and bands stay flat.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep one primary action per coat and per band, in royal blue (silver on the blue coat).",
+      "Do lay real photographs as white-matted, slightly rotated prints and label them honestly with the stage they show.",
+      "Do shape any new coat or section boundary as a liquid, dripping edge with a thin white highlight.",
+      "Do honor prefers-reduced-motion: no blobs, no edge wobble.",
+      "Do keep tap targets at 44px minimum and focus outlines visible."
+    ],
+    "donts": [
+      "Don't introduce hues outside navy, royal blue, silver and primer grey.",
+      "Don't add shadows to anything but photographs.",
+      "Don't use Unbounded below title size for running text, or Albert Sans for display.",
+      "Don't use straight, hard section cuts inside the coat sequence."
+    ]
+  }
+}

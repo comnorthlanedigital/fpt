@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "title": "Design System: JB'S Pro Painters - Color Studio",
+  "extensions": {
+    "colorMeta": {
+      "royal-blue": {
+        "role": "primary",
+        "displayName": "Royal Blue",
+        "canonical": "#2459e6",
+        "tonalRamp": [
+          "#141e38",
+          "#0d2972",
+          "#1239a0",
+          "#1849ce",
+          "#3163e7",
+          "#6d90ee",
+          "#adc1f6",
+          "#eceff8"
+        ]
+      },
+      "ink-night": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "#12141a",
+        "tonalRamp": [
+          "#22242a",
+          "#343a4b",
+          "#495169",
+          "#5e6888",
+          "#7782a1",
+          "#9fa6bc",
+          "#c9cdd9",
+          "#f1f2f4"
+        ]
+      },
+      "ink-deep": {
+        "role": "neutral",
+        "displayName": "Deep Ink",
+        "canonical": "#0b0c10",
+        "tonalRamp": [
+          "#22242a",
+          "#34394c",
+          "#494f6a",
+          "#5e6688",
+          "#7780a2",
+          "#9ea4bd",
+          "#c9ccda",
+          "#f1f1f4"
+        ]
+      },
+      "paper-warm": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#f4f2ec",
+        "tonalRamp": [
+          "#2c2920",
+          "#51482f",
+          "#716541",
+          "#918254",
+          "#ab9c6e",
+          "#c3b898",
+          "#ddd7c5",
+          "#f4f3f0"
+        ]
+      },
+      "mute-cool": {
+        "role": "neutral",
+        "displayName": "Cool Mute",
+        "canonical": "#c4c7d2",
+        "tonalRamp": [
+          "#232429",
+          "#373b48",
+          "#4d5265",
+          "#636a82",
+          "#7d839c",
+          "#a2a7b8",
+          "#cbced7",
+          "#f1f2f3"
+        ]
+      },
+      "wall-stone": {
+        "role": "neutral",
+        "displayName": "Stone Wall",
+        "canonical": "#b7ab98",
+        "tonalRamp": [
+          "#2a2722",
+          "#4b4234",
+          "#695d49",
+          "#87775e",
+          "#a19178",
+          "#bcb19f",
+          "#d9d3c9",
+          "#f4f3f1"
+        ]
+      },
+      "swatch-garage-green": {
+        "role": "tertiary",
+        "displayName": "Garage-door Green",
+        "canonical": "#46594f",
+        "tonalRamp": [
+          "#242926",
+          "#38473f",
+          "#4f6459",
+          "#658072",
+          "#7f9a8c",
+          "#a4b7ad",
+          "#ccd7d1",
+          "#f1f3f2"
+        ]
+      },
+      "swatch-deep-navy": {
+        "role": "tertiary",
+        "displayName": "Deep Navy",
+        "canonical": "#1f3563",
+        "tonalRamp": [
+          "#1a2232",
+          "#1e3461",
+          "#2b4988",
+          "#375eaf",
+          "#5077c8",
+          "#839ed8",
+          "#b9c9e9",
+          "#eef1f6"
+        ]
+      },
+      "swatch-racing-red": {
+        "role": "tertiary",
+        "displayName": "Racing Red",
+        "canonical": "#b01f2a",
+        "tonalRamp": [
+          "#361619",
+          "#6c131a",
+          "#981b24",
+          "#c3222f",
+          "#dd3c48",
+          "#e7747d",
+          "#f1b1b6",
+          "#f8edee"
+        ]
+      },
+      "swatch-walnut": {
+        "role": "tertiary",
+        "displayName": "Walnut Stain",
+        "canonical": "#5b3720",
+        "tonalRamp": [
+          "#31241b",
+          "#5e3921",
+          "#84502e",
+          "#aa673c",
+          "#c38055",
+          "#d5a586",
+          "#e7ccbb",
+          "#f6f1ef"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Section headings, Anybody 800 at width 122%."
+      },
+      "headline-hero": {
+        "displayName": "Hero Headline",
+        "purpose": "Hero h1 only, width 112%."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Owner quote."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running copy in Rethink Sans."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Tabs, chips, segments, hints."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase form labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "stage-lift",
+        "value": "0 30px 60px -30px #000c",
+        "purpose": "Soft lift under the 3D stage only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "zone-pill-spring",
+        "value": "spring stiffness 460, damping 36",
+        "purpose": "Selected zone pill glides between tabs."
+      },
+      {
+        "name": "wall-tint",
+        "value": "background-color .9s",
+        "purpose": "Hero ground follows the chosen wall color."
+      },
+      {
+        "name": "pair-fade",
+        "value": "opacity .45s",
+        "purpose": "Before/after cross-fade."
+      },
+      {
+        "name": "control-hover",
+        "value": ".2s background",
+        "purpose": "Buttons, tabs and chips."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "1000px"
+      },
+      {
+        "name": "phone",
+        "value": "700px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single blue pill action per view.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Request this scheme</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 30px;border-radius:99px;background:#2459e6;color:#fff;font:700 17px 'Rethink Sans',system-ui,sans-serif;border:0;transition:background .2s}.ds-btn-primary:hover{background:#1c47c0}.ds-btn-primary:focus-visible{outline:3px solid #fff;outline-offset:3px}"
+    },
+    {
+      "name": "Zone Tabs",
+      "kind": "custom",
+      "refersTo": "zone-tab",
+      "description": "Two-by-two tab group choosing which part of the house to paint.",
+      "html": "<div class=\"ds-zones\"><button class=\"ds-zone\" aria-selected=\"true\"><i style=\"background:#b7ab98\"></i>Walls</button><button class=\"ds-zone\"><i style=\"background:#ece8df\"></i>Trim</button></div>",
+      "css": ".ds-zones{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:320px}.ds-zone{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border:0;border-radius:14px;background:#ffffff12;color:#fff;font:600 15px 'Rethink Sans',system-ui,sans-serif;cursor:pointer;transition:background .2s}.ds-zone i{width:20px;height:20px;border-radius:50%;border:2px solid #ffffff90}.ds-zone:hover{background:#ffffff22}.ds-zone[aria-selected=true]{background:#f4f2ec;color:#12141a}.ds-zone[aria-selected=true] i{border-color:#12141a}.ds-zone:focus-visible{outline:3px solid #fff;outline-offset:3px}"
+    },
+    {
+      "name": "Swatch Grid",
+      "kind": "custom",
+      "refersTo": "swatch",
+      "description": "Circular job-color swatches; selected gets a white outline.",
+      "html": "<div class=\"ds-sw\"><button style=\"background:#1f3563\"></button><button style=\"background:#46594f\" aria-checked=\"true\"></button><button style=\"background:#b01f2a\"></button><button style=\"background:#5b3720\"></button></div>",
+      "css": ".ds-sw{display:flex;gap:8px}.ds-sw button{width:40px;height:40px;border-radius:50%;border:2px solid #ffffff55;padding:0;cursor:pointer;transition:transform .15s}.ds-sw button:hover{transform:scale(1.12)}.ds-sw button[aria-checked=true]{border-color:#fff;outline:3px solid #fff;outline-offset:2px}.ds-sw button:focus-visible{outline:3px solid #fff;outline-offset:3px}"
+    },
+    {
+      "name": "Preset Chip",
+      "kind": "chip",
+      "refersTo": "preset-chip",
+      "description": "Outlined pill for starter schemes.",
+      "html": "<button class=\"ds-chip\">Deep green doors</button>",
+      "css": ".ds-chip{min-height:40px;padding:0 16px;border-radius:99px;border:1px solid #ffffff60;background:none;color:#fff;font:600 14px 'Rethink Sans',system-ui,sans-serif;cursor:pointer;transition:background .2s,color .2s}.ds-chip:hover{background:#fff;color:#12141a}.ds-chip:focus-visible{outline:3px solid #fff;outline-offset:3px}"
+    },
+    {
+      "name": "Kit Panel",
+      "kind": "card",
+      "refersTo": "kit-panel",
+      "description": "Translucent control panel holding tabs, swatches and presets.",
+      "html": "<div class=\"ds-kit\"><b>Walls:</b> Stone neutral</div>",
+      "css": ".ds-kit{background:#0b0c1099;border:1px solid #ffffff2e;border-radius:22px;padding:16px;color:#f4f2ec;font:400 16px 'Rethink Sans',system-ui,sans-serif}.ds-kit b{font-weight:700}"
+    },
+    {
+      "name": "Estimate Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Dark field with uppercase tracked label.",
+      "html": "<label class=\"ds-lab\">Color scheme<input class=\"ds-in\" value=\"Walls: Stone neutral\"></label>",
+      "css": ".ds-lab{display:grid;gap:7px;color:#f4f2ec;font:600 13px 'Rethink Sans',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}.ds-in{min-height:52px;padding:13px 15px;border-radius:12px;border:1px solid #ffffff38;background:#0b0c10;color:#fff;font:400 17px 'Rethink Sans',system-ui,sans-serif;letter-spacing:0;text-transform:none}.ds-in:focus-visible{outline:3px solid #fff;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Turntable Showroom",
+    "overview": "A dark showroom with one lit object: a 3D stucco house on a turntable. The page is deliberately near-black so that every color that appears is a paint color the visitor chose. The hero background is a 34% mix of the current wall color into night ink, so picking walls repaints the room around the house.",
+    "keyCharacteristics": [
+      "Near-black ground; color comes only from the stage, the swatches and the photos.",
+      "Page tint follows the chosen wall color (hero background, 0.9s transition).",
+      "Pill geometry for every action; large soft radii for panels and media.",
+      "One blue action color, used for the primary button and form submit.",
+      "Wide extended display type (width axis 112-122%) over a neutral humanist body."
+    ],
+    "rules": [
+      {
+        "name": "The Chosen Color Rule",
+        "body": "Outside the swatch palette and the single blue action, no saturated color appears in the interface. The page's only changing hue is the wall color the visitor picked.",
+        "section": "colors"
+      },
+      {
+        "name": "The Honest Swatch Rule",
+        "body": "A swatch is added only when it matches a color from a real job or a plain neutral, and it is named by its look, never by a paint brand.",
+        "section": "colors"
+      },
+      {
+        "name": "The Wide Heading Rule",
+        "body": "Headings use Anybody with the width axis raised (112-122%) and weight 800; never a narrow or default-width cut, and never Impact except as the failure fallback.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lit Object Rule",
+        "body": "Only the 3D house is allowed real lighting and shadow; all interface surfaces stay flat, separated by translucency and hairline borders.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the ground near-black (#12141a, #0b0c10) and let swatches, photos and the house carry color.",
+      "Do make every action a pill with at least 40px height (56px for the primary).",
+      "Do name colors by their look (\"Garage-door green\") and tie them to a real job photo where one exists.",
+      "Do keep the 3D illustration disclaimer (\"3D illustration only\") under the hero.",
+      "Do keep one Royal Blue primary action per view."
+    ],
+    "donts": [
+      "Don't use a second saturated UI accent next to Royal Blue.",
+      "Don't put shadows on interface surfaces; the stage lift is the only one.",
+      "Don't set headings in a narrow or default-width face, or in the Impact fallback by choice.",
+      "Don't name paint brands or show third-party brands in photos without owner approval (PRODUCT.md)."
+    ]
+  }
+}

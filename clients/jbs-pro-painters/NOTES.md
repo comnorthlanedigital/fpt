@@ -38,3 +38,10 @@ Saved in `assets/batch-5/`. One large industrial job: raw gray concrete walls wi
 
 ## Batch 6 photos (owner-supplied): interior repaints
 Saved in `assets/batch-6/`. Empty-house interiors with new wood-look flooring: warm cream walls (1, 2, 3) and a bold deep charcoal/gray whole-house scheme with matching doors, trim and ceilings (4-9, looks like one two-story home with fireplace and stairs, plus the tan stucco exterior from batches 3/4 may be the same house). Good "color + trim + doors" interior case study. Ask: is this one job, was flooring done by JB'S or another trade, paint colors/finish names, and whether before photos exist. Mostly warm/dim lighting, so color-correct lightly for the web.
+
+## Batch 7 photos (owner-supplied)
+Saved in `assets/batch-7/`.
+- Navy blue cabinet refinish (4, 7, 8): kitchen with granite counters; the island and cabinets are a deep navy. Cabinet painting is a headline service. No before shots yet, ask for them.
+- Garage doors (5 after / 9 before): same two garage doors, tan -> deep green-gray, on a stucco home with paver drive. Clean before/after pair. Photo 6 is the same house exterior (stucco arches, light tone), probably also this job.
+- Interior charcoal job continues (1 kitchen with white cabinets and gray walls, 2 dark hallway with doors, 3 fireplace room); same house as batch 6.
+Ask owner: confirm these are one customer/house each, paint colors, and permission to show them.

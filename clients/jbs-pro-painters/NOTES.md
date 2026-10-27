@@ -23,3 +23,6 @@
 - Do not use customer names or review text without consent.
 
 - STILL MISSING / do not invent: owner name and story, years in business, AZ ROC license number, insurance details, full services and pricing policy, paint brands, warranty, free-estimate offer, more reviews, interior room photos (living areas), domain.
+
+## Batch 3 photos (owner-supplied)
+Saved in `assets/batch-3/`. Likely pairings: 1 -> 3 (same ranch house, tan before / white board-and-batten after); 6 -> 4 (bathroom, cut-in prep / finished deep green); 2 -> 5 (stucco home; check it is the same Gilbert house already used); 7 pool-side two-story exterior; 8 red racing-stripe wall (already carries the JBS watermark); 9 motorcycle shop interior (KTM/Ducati signage visible: ask before using client branding).

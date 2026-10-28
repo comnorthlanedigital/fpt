@@ -4,6 +4,7 @@ import { sound, BEDS } from './sound'
 import './shared.css'
 
 export const CONTACT = { phone: '(602) 473-0415', tel: '+16024730415', email: 'jbspropainters@gmail.com' }
+export const FACEBOOK = 'https://www.facebook.com/profile.php?id=61584288311213'
 export const AREAS = ['Gilbert', 'Mesa', 'Chandler', 'Tempe', 'Scottsdale', 'Queen Creek']
 export const SERVICES = [
   ['Exterior painting', 'Stucco, trim and garage doors with crisp lines and clean finishes.'],
@@ -130,7 +131,7 @@ export function Footer() {
     <>
       <footer className="foot">
         <span>&copy; JB&rsquo;S Pro Painters LLC. Licensed &bull; Insured. Quality &bull; Precision &bull; Perfection.</span>
-        <span><LegalLink which="privacy">Privacy</LegalLink><LegalLink which="terms">Terms</LegalLink></span>
+        <span className="foot__r"><a className="foot__fb" href={FACEBOOK} target="_blank" rel="noopener noreferrer" aria-label="JB'S Pro Painters on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z" /></svg>Follow us on Facebook</a><LegalLink which="privacy">Privacy</LegalLink><LegalLink which="terms">Terms</LegalLink></span>
       </footer>
       <dialog ref={dlg} className="legal" onClose={() => setWhich(null)} onClick={(e) => e.target === dlg.current && dlg.current.close()}>
         {which && <><h3>{LEGAL[which][0]}</h3><p>{LEGAL[which][1]}</p><p className="legal__n">Sample draft for owner review. Not legal advice.</p></>}

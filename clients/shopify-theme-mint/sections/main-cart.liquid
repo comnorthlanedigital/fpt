@@ -1,0 +1,21 @@
+<section class="sec"><div class="wrap wrap--narrow">
+<h1 class="sec__title left">Cart</h1>
+{%- if cart.item_count == 0 -%}<p>Your cart is empty.</p><p><a class="btn" href="{{ routes.all_products_collection_url }}">Continue shopping</a></p>
+{%- else -%}
+<form action="{{ routes.cart_url }}" method="post">
+  {%- for item in cart.items -%}
+  <div class="line">
+    <a class="line__img" href="{{ item.url }}">{% if item.image %}{{ item.image | image_url: width: 160 | image_tag: loading: 'lazy', alt: item.image.alt }}{% endif %}</a>
+    <div><a href="{{ item.url }}"><b>{{ item.product.title }}</b></a>{% unless item.product.has_only_default_variant %}<p class="muted">{{ item.variant.title }}</p>{% endunless %}<p>{{ item.final_price | money }}</p></div>
+    <div><label class="sr" for="q{{ item.index }}">Quantity</label><input id="q{{ item.index }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0"><a class="muted" href="{{ item.url_to_remove }}">Remove</a></div>
+  </div>
+  {%- endfor -%}
+  <p class="total">Subtotal <b>{{ cart.total_price | money_with_currency }}</b></p>
+  <p class="muted">Taxes and shipping are calculated at checkout.</p>
+  <div class="hero__cta"><button class="btn btn--ghost" type="submit" name="update">Update cart</button><button class="btn" type="submit" name="checkout">Check out</button></div>
+</form>
+{%- endif -%}
+</div></section>
+{% schema %}
+{"name":"Cart"}
+{% endschema %}

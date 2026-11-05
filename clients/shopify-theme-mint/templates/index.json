@@ -1,0 +1,132 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Your tagline here",
+        "heading": "A headline about your product.",
+        "text": "One or two sentences about what you sell.",
+        "btn1_label": "Shop now",
+        "btn2_label": "Learn more"
+      }
+    },
+    "best": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Best sellers",
+        "count": 4
+      }
+    },
+    "gallery": {
+      "type": "image-grid",
+      "blocks": {
+        "a": {
+          "type": "image"
+        },
+        "b": {
+          "type": "image"
+        },
+        "c": {
+          "type": "image"
+        },
+        "d": {
+          "type": "image"
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ]
+    },
+    "benefits": {
+      "type": "benefits",
+      "blocks": {
+        "a": {
+          "type": "benefit",
+          "settings": {
+            "icon": "truck"
+          }
+        },
+        "b": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield"
+          }
+        },
+        "c": {
+          "type": "benefit",
+          "settings": {
+            "icon": "headset"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "reviews": {
+      "type": "reviews",
+      "blocks": {
+        "a": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "Add a real customer review here.",
+            "name": "Customer name"
+          }
+        }
+      },
+      "block_order": [
+        "a"
+      ]
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "a": {
+          "type": "item",
+          "settings": {
+            "q": "Your question?",
+            "a": "<p>Your answer.</p>"
+          }
+        },
+        "b": {
+          "type": "item",
+          "settings": {
+            "q": "Another question?",
+            "a": "<p>Another answer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b"
+      ]
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Ready when you are.",
+        "btn1_label": "Shop now"
+      }
+    },
+    "news": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "best",
+    "gallery",
+    "benefits",
+    "reviews",
+    "faq",
+    "cta",
+    "news"
+  ]
+}

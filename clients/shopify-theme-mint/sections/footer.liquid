@@ -1,0 +1,19 @@
+<footer class="ft">
+  <div class="wrap ft__in">
+    <div class="ft__brand"><p class="ft__name">{{ shop.name }}</p>{% if section.settings.about != blank %}<p class="muted">{{ section.settings.about }}</p>{% endif %}</div>
+    {%- for block in section.blocks -%}
+      <nav class="ft__col" aria-label="{{ block.settings.title | escape }}"><h2>{{ block.settings.title }}</h2>
+        {%- for link in linklists[block.settings.menu].links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}</nav>
+    {%- endfor -%}
+  </div>
+  <div class="wrap ft__base"><span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+    {%- if section.settings.show_payment -%}<span class="ft__pay">{%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag: class: 'pay' }}{%- endfor -%}</span>{%- endif -%}</div>
+</footer>
+{% schema %}
+{"name":"Footer","settings":[
+{"type":"textarea","id":"about","label":"Short description"},
+{"type":"checkbox","id":"show_payment","label":"Show payment icons","default":true}],
+"blocks":[{"type":"menu","name":"Link column","settings":[{"type":"text","id":"title","label":"Heading","default":"Support"},{"type":"link_list","id":"menu","label":"Menu","default":"footer"}]}],
+"max_blocks":3,
+"default":{"blocks":[{"type":"menu"}]}}
+{% endschema %}

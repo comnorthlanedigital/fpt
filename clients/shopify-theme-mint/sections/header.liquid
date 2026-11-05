@@ -1,0 +1,23 @@
+<header class="hd">
+  <div class="wrap hd__in">
+    <details class="hd__menu">
+      <summary aria-label="Menu">{% render 'icon', name: 'menu' %}</summary>
+      <nav class="hd__drawer" aria-label="Main">
+        {%- for link in linklists[section.settings.menu].links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+      </nav>
+    </details>
+    <a class="hd__logo" href="{{ routes.root_url }}">
+      {%- if section.settings.logo != blank -%}{{ section.settings.logo | image_url: width: 400 | image_tag: alt: shop.name, widths: '200, 400', height: 40 }}{%- else -%}{{ shop.name }}{%- endif -%}
+    </a>
+    <nav class="hd__nav" aria-label="Main">
+      {%- for link in linklists[section.settings.menu].links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+    </nav>
+    <a class="hd__cart" href="{{ routes.cart_url }}" aria-label="Cart, {{ cart.item_count }} items">{% render 'icon', name: 'bag' %}{% if cart.item_count > 0 %}<span class="hd__count">{{ cart.item_count }}</span>{% endif %}</a>
+  </div>
+</header>
+{% schema %}
+{"name":"Header","settings":[
+{"type":"image_picker","id":"logo","label":"Logo"},
+{"type":"link_list","id":"menu","label":"Menu","default":"main-menu"}
+]}
+{% endschema %}

@@ -1,0 +1,105 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Mint Dark Starter",
+    "theme_version": "1.0.0",
+    "theme_author": "Starter",
+    "theme_documentation_url": "https://help.shopify.com/",
+    "theme_support_url": "https://help.shopify.com/"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Background",
+        "default": "#090909"
+      },
+      {
+        "type": "color",
+        "id": "color_card",
+        "label": "Card",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "color_line",
+        "label": "Borders",
+        "default": "#262626"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Muted text",
+        "default": "#a3a3a3"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent",
+        "default": "#63f9ab"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_ink",
+        "label": "Text on accent",
+        "default": "#04170d"
+      },
+      {
+        "type": "color",
+        "id": "color_sale",
+        "label": "Sale badge",
+        "default": "#ff5d73"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "label": "Heading font",
+        "default": "inter_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body font",
+        "default": "inter_n4"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "Page width",
+        "min": 1000,
+        "max": 1600,
+        "step": 50,
+        "unit": "px",
+        "default": 1280
+      },
+      {
+        "type": "range",
+        "id": "radius",
+        "label": "Corner radius",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "default": 12
+      }
+    ]
+  }
+]

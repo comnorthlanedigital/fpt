@@ -1,0 +1,5 @@
+<section class="sec"><div class="wrap"><h1 class="sec__title left">Collections</h1>
+<div class="grid">{%- for c in collections -%}<article class="pcard"><a class="pcard__media" href="{{ c.url }}" aria-label="{{ c.title | escape }}">{% if c.image %}{{ c.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: c.title }}{% else %}{{ 'collection-1' | placeholder_svg_tag: 'placeholder' }}{% endif %}</a><div class="pcard__body"><h3 class="pcard__title"><a href="{{ c.url }}">{{ c.title }}</a></h3></div></article>{%- endfor -%}</div></div></section>
+{% schema %}
+{"name":"Collections list"}
+{% endschema %}

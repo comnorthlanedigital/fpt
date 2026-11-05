@@ -1,0 +1,7 @@
+<span class="price">
+  {%- if product.compare_at_price > product.price and product.available -%}
+    <span class="price__now">{{ product.price | money }}</span> <s class="price__was">{{ product.compare_at_price | money }}</s>
+  {%- else -%}
+    <span class="price__now">{{ product.price | money }}</span>
+  {%- endif -%}
+</span>

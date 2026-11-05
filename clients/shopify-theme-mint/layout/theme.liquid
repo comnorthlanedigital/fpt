@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_bg }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <title>{{ page_title }}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+  {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+  {% render 'meta-tags' %}
+  <style>
+    {{ settings.type_heading_font | font_face: font_display: 'swap' }}
+    {{ settings.type_body_font | font_face: font_display: 'swap' }}
+    :root{
+      --bg:{{ settings.color_bg }};--card:{{ settings.color_card }};--line:{{ settings.color_line }};
+      --text:{{ settings.color_text }};--muted:{{ settings.color_muted }};--accent:{{ settings.color_accent }};--accent-ink:{{ settings.color_accent_ink }};
+      --sale:{{ settings.color_sale }};--radius:{{ settings.radius }}px;--page:{{ settings.page_width }}px;
+      --font-heading:{{ settings.type_heading_font.family }},{{ settings.type_heading_font.fallback_families }};
+      --font-body:{{ settings.type_body_font.family }},{{ settings.type_body_font.fallback_families }};
+    }
+  </style>
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  {{ content_for_header }}
+</head>
+<body class="template-{{ template.name }}">
+  <a class="skip" href="#main">Skip to content</a>
+  {% section 'announcement-bar' %}
+  {% section 'header' %}
+  <main id="main" tabindex="-1">{{ content_for_layout }}</main>
+  {% section 'footer' %}
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+</body>
+</html>

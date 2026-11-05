@@ -1,0 +1,9 @@
+<section class="sec"><div class="wrap"><h1 class="sec__title left">Search</h1>
+<form action="{{ routes.search_url }}" method="get" class="nl" role="search"><label class="sr" for="q">Search</label><input id="q" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search"><button class="btn" type="submit">Search</button></form>
+{%- if search.performed -%}{%- paginate search.results by 12 -%}
+<div class="grid">{%- for item in search.results -%}{%- if item.object_type == 'product' -%}{% render 'product-card', product: item %}{%- else -%}<article class="pcard"><div class="pcard__body"><h3 class="pcard__title"><a href="{{ item.url }}">{{ item.title }}</a></h3></div></article>{%- endif -%}{%- else -%}<p>No results for &ldquo;{{ search.terms | escape }}&rdquo;.</p>{%- endfor -%}</div>
+{%- if paginate.pages > 1 -%}<nav class="pager">{%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">Previous</a>{%- endif -%}<span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>{%- if paginate.next -%}<a href="{{ paginate.next.url }}">Next</a>{%- endif -%}</nav>{%- endif -%}
+{%- endpaginate -%}{%- endif -%}</div></section>
+{% schema %}
+{"name":"Search"}
+{% endschema %}

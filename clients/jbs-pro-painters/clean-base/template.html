@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Company | Residential &amp; Commercial Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#0a47a1;
+    --blue-dark:#083a85;
+    --red:#c8102e;
+    --red-dark:#a50d26;
+    --ink:#222;
+    --muted:#444;
+    --card:#f8f8fb;
+    --num:#c3d3e8;
+    --grey:#e4e4e8;
+    --nav-h:68px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Open Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.5;padding-bottom:var(--nav-h)}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+  .center{text-align:center}
+
+  /* Buttons */
+  .btn{display:inline-block;font-weight:700;text-transform:uppercase;letter-spacing:.3px;text-decoration:none;padding:10px 22px;border-radius:4px;box-shadow:0 3px 6px rgba(0,0,0,.25);font-size:15px;border:0;cursor:pointer;transition:transform .15s,background .15s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark)}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark)}
+  .btn-black{background:#111;color:#fff}
+
+  /* Hero media */
+  .hero-media{position:relative;height:300px;background:linear-gradient(135deg,#9aa4ad,#5f6a74);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;overflow:hidden}
+  .hero-media video,.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-media span{position:relative;background:rgba(0,0,0,.35);padding:6px 12px;border-radius:4px;font-size:14px}
+
+  /* Blue hero */
+  .hero{background:var(--blue);color:#fff;text-align:center;padding:28px 20px 70px;position:relative}
+  .hero h1{font-weight:400;font-size:clamp(30px,7vw,52px);line-height:1.2;text-shadow:0 2px 4px rgba(0,0,0,.25)}
+  .hero h1 b{font-weight:700}
+  .hero p{font-weight:700;font-size:15px;max-width:520px;margin:12px auto 0}
+  .drip{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:60px;display:block}
+
+  /* Intro */
+  .intro{padding:50px 0 30px}
+  .intro h2{font-size:clamp(22px,4.6vw,32px);font-weight:700;line-height:1.25;max-width:700px;margin:0 auto}
+  .emoji{font-size:40px;margin:12px 0 4px}
+  .big-red{color:var(--red);font-weight:800;text-transform:uppercase;font-size:clamp(40px,10vw,72px);line-height:1.05;letter-spacing:.5px}
+  .intro .sub{font-weight:700;font-size:18px;margin:6px 0 22px}
+
+  /* Apart */
+  .apart{padding:40px 0 20px}
+  .apart h2{font-size:clamp(22px,4.6vw,32px);margin-bottom:16px}
+  .apart p{color:var(--muted);font-size:15px;max-width:760px;margin:0 auto 26px}
+  .apart a{color:var(--red);font-weight:700;text-decoration:none}
+
+  /* Feature cards */
+  .features{display:grid;grid-template-columns:1fr;gap:16px;padding:20px 0 30px;max-width:420px;margin:0 auto}
+  .card{background:var(--card);border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.12);min-height:124px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;position:relative;overflow:hidden}
+  .card svg{width:46px;height:46px;fill:var(--blue);margin-bottom:8px}
+  .card h3{color:var(--blue);font-size:18px;font-weight:700;line-height:1.2}
+  .card.num .n{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:150px;font-weight:800;color:var(--num);line-height:1;pointer-events:none}
+  .card.num p{position:relative;font-size:16px;color:#333;max-width:230px}
+
+  /* Schedule */
+  .schedule{background:var(--grey);padding:30px 20px 34px;text-align:center}
+  .schedule h2{color:var(--red);font-size:clamp(22px,5vw,32px);line-height:1.2}
+  .schedule p{margin:8px 0 14px}
+  .house{width:100%;max-width:340px;margin:0 auto 18px}
+
+  /* Best */
+  .best{padding:40px 0 10px}
+  .best h2{text-align:center;font-size:clamp(22px,4.6vw,32px);line-height:1.25;margin-bottom:12px}
+  .best > .wrap > p{text-align:center;color:var(--muted);max-width:760px;margin:0 auto 14px}
+  .best ul{max-width:760px;margin:0 auto 18px;padding-left:24px;color:var(--muted)}
+  .best li{margin-bottom:6px}
+  .best .q{font-weight:700;max-width:760px;margin:0 auto}
+
+  /* Service tiles */
+  .services{display:grid;grid-template-columns:1fr;gap:16px;padding:24px 0 20px;max-width:420px;margin:0 auto}
+  .tile{height:120px;border-radius:4px;box-shadow:0 3px 8px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:clamp(20px,5vw,26px);text-transform:uppercase;text-decoration:none;color:#222;background-color:#ececec;background-size:cover;background-position:center;position:relative;overflow:hidden;padding:0 16px}
+  .tile::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.45)}
+  .tile span{position:relative}
+  .tile.red{color:var(--red)}
+  .tex1{background-image:repeating-radial-gradient(circle at 20% 30%,#f2f2f2 0 2px,#e2e2e2 3px 5px)}
+  .tex2{background-image:linear-gradient(120deg,#dfe6ee 0 45%,#b9c7d6 45% 55%,#eef2f6 55%)}
+  .tex3{background-image:linear-gradient(180deg,#cfd9e4 0 40%,#b8a48c 40% 70%,#8c7a66 70%)}
+  .tex4{background-image:repeating-linear-gradient(90deg,#f4f4f4 0 60px,#dcdcdc 60px 62px)}
+  .tex5{background-image:radial-gradient(circle at 30% 40%,#cfe0ee,#a6c2da 60%,#e8eef4)}
+  .tex6{background-image:repeating-linear-gradient(45deg,#e9e9e9 0 8px,#dedede 8px 16px)}
+
+  .ready{display:block;max-width:420px;margin:10px auto 0;background:var(--blue);color:#fff;text-align:center;font-weight:700;text-transform:uppercase;padding:14px;border-radius:4px;text-decoration:none;box-shadow:0 3px 6px rgba(0,0,0,.25)}
+
+  /* Testimonials */
+  .trust{padding:50px 0 50px;position:relative;overflow:hidden}
+  .trust::before{content:"";position:absolute;left:-160px;top:180px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle at 60% 40%,#3f7fe0,#0a47a1 55%,#062a63);box-shadow:0 0 0 10px #c9ced6}
+  .trust h2{font-size:clamp(24px,5vw,34px)}
+  .trust h3{color:var(--red);font-size:clamp(18px,4vw,24px);line-height:1.2;margin-bottom:22px}
+  .rating{display:flex;align-items:center;gap:12px;max-width:300px;margin:0 auto 14px;text-align:left;position:relative}
+  .rating .logo-ph{width:40px;height:40px;border-radius:8px;border:2px dashed #9aa;flex:none}
+  .rating small{color:#666;display:block;font-size:12px}
+  .stars{color:#f5a623;letter-spacing:1px}
+  .pill-row{display:flex;gap:6px;justify-content:center;margin-bottom:20px;position:relative}
+  .pill{background:var(--blue);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:12px;text-decoration:none}
+  .carousel{position:relative;max-width:360px;margin:0 auto}
+  .review{background:#fff;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.15);padding:16px 18px;text-align:left;min-height:190px;display:none}
+  .review.active{display:block}
+  .review .who{display:flex;align-items:center;gap:10px;margin:6px 0 10px}
+  .avatar{width:34px;height:34px;border-radius:50%;background:#e8590c;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .review .who b{display:block;font-size:14px}
+  .review .who small{color:#888;font-size:12px}
+  .review p{font-size:14px;color:#333}
+  .arrow{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:1px solid #ccc;background:#fff;cursor:pointer;font-size:16px;color:#555;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+  .arrow.prev{left:-14px}.arrow.next{right:-14px}
+  .dots{display:flex;gap:6px;justify-content:center;margin:12px 0 26px}
+  .dots button{width:6px;height:6px;border-radius:50%;border:0;background:#ccc;cursor:pointer;padding:0}
+  .dots button.on{background:#e8890c}
+
+  /* Careers */
+  .careers{padding:40px 0 50px}
+  .careers h2{font-size:clamp(22px,4.6vw,32px);line-height:1.25;margin-bottom:12px}
+  .careers p{color:var(--muted);max-width:720px;margin:0 auto 18px}
+  .photo{max-width:400px;margin:26px auto 18px;background:#fff;padding:12px;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+  .photo .ph{height:220px;background-color:#b8402f;background-image:linear-gradient(#d9d0c8 2px,transparent 2px),linear-gradient(90deg,#d9d0c8 2px,transparent 2px);background-size:60px 26px,60px 52px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600}
+
+  /* Footer */
+  footer{background:var(--grey);padding:34px 20px 40px;text-align:center}
+  .social{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:220px;margin:0 auto 20px}
+  .social a{width:36px;height:36px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center}
+  .social svg{width:18px;height:18px;fill:#fff}
+  footer h4{text-transform:uppercase;font-weight:600;letter-spacing:.5px;display:inline-block;border-bottom:2px solid #333;margin-bottom:16px}
+  .locs{display:grid;grid-template-columns:1fr;gap:14px;max-width:360px;margin:0 auto}
+  .loc{background:#ececef;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.12);padding:16px}
+  .loc h5{color:var(--red);font-size:19px;font-weight:700}
+  .loc p{color:#333;font-size:15px}
+  .loc a{display:block;color:var(--red);font-weight:700;text-decoration:none;margin-top:10px}
+  .copy{font-size:12px;color:#666;margin-top:24px}
+
+  /* Bottom nav */
+  .bottom-nav{position:fixed;left:0;right:0;bottom:0;height:var(--nav-h);background:var(--blue);display:flex;justify-content:space-around;align-items:center;z-index:50;box-shadow:0 -2px 8px rgba(0,0,0,.2)}
+  .bottom-nav a,.bottom-nav button{color:#fff;text-decoration:none;display:flex;flex-direction:column;align-items:center;font-size:10px;font-weight:600;text-transform:uppercase;gap:3px;background:none;border:0;cursor:pointer;width:25%}
+  .bottom-nav svg{width:26px;height:26px;fill:#fff}
+  .bottom-nav .menu-btn span{display:block;width:40px;height:32px;border:1px solid rgba(255,255,255,.35);border-radius:4px;display:flex;align-items:center;justify-content:center}
+
+  /* Drawer */
+  .drawer{position:fixed;inset:0 0 var(--nav-h) 0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+  .drawer.open{opacity:1;pointer-events:auto}
+  .drawer nav{position:absolute;right:0;top:0;bottom:0;width:78%;max-width:320px;background:#fff;padding:30px 24px;transform:translateX(100%);transition:transform .25s}
+  .drawer.open nav{transform:none}
+  .drawer nav a{display:block;padding:12px 0;border-bottom:1px solid #eee;text-decoration:none;font-weight:600;color:var(--blue)}
+
+  /* Larger screens */
+  @media (min-width:800px){
+    .hero-media{height:420px}
+    .features{max-width:none;grid-template-columns:repeat(2,1fr)}
+    .services{max-width:none;grid-template-columns:repeat(3,1fr)}
+    .locs{max-width:none;grid-template-columns:repeat(3,1fr)}
+    .ready{max-width:520px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO MEDIA (swap in your own video or image) -->
+<div class="hero-media" id="home">
+  <!-- <video src="hero.mp4" autoplay muted loop playsinline></video> -->
+  <span>Hero video / image placeholder</span>
+</div>
+
+<!-- BLUE HERO -->
+<section class="hero">
+  <h1>Most Trusted<br><b>Service</b><br><b>Company</b> by<br>Local<br>Homeowners!</h1>
+  <p>Serving Your City and surrounding areas with professional services, including residential, commercial, interior and exterior work.</p>
+  <svg class="drip" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#fff" d="M0 60V28c8 0 10 10 16 10s6-14 14-14 6 22 14 22 8-18 16-18 6 8 12 8 8-20 18-20 6 30 14 30 8-24 16-24 8 10 14 10 8-16 16-16 6 26 14 26 6-20 14-20 10 12 16 12 6-22 14-22 8 16 14 16 10-10 16-10 6 24 14 24 8-26 16-26 8 12 14 12 8-14 16-14 6 18 14 18 6-12 12-12 10 20 16 20 6-16 12-16 8 8 14 8 6-18 14-18L400 30V60z"/>
+  </svg>
+</section>
+
+<!-- INTRO / CTA -->
+<section class="intro center">
+  <div class="wrap">
+    <h2>Professional Residential &amp; Commercial Pros in Your City</h2>
+    <div class="emoji" aria-hidden="true">🏠🎨</div>
+    <div class="big-red">Book<br>Your 2026<br>Project</div>
+    <p class="sub">Schedule A Free Estimate!</p>
+    <a href="#book" class="btn btn-red">View Offers</a>
+  </div>
+</section>
+
+<!-- WHAT SETS US APART -->
+<section class="apart center">
+  <div class="wrap">
+    <h2>What Sets Our Company Apart?</h2>
+    <p>Replace this paragraph with a short introduction to your business: who you are, the areas you serve, and the kinds of residential and commercial jobs you take on. Keep it to four or five sentences so it reads well on a phone.</p>
+    <p>Use this second paragraph for your promise to customers — how you communicate, how you keep jobs on time and on budget, and why people recommend you. Link to key pages like <a href="#services">Service Area One</a> and <a href="#services">Service Area Two</a>.</p>
+  </div>
+</section>
+
+<!-- FEATURE CARDS -->
+<section class="wrap">
+  <div class="features">
+    <div class="card">
+      <svg viewBox="0 0 24 24"><path d="M12.6 6.4 9.9 9.1a1.5 1.5 0 0 0 2.1 2.1l1.6-1.6 5.2 5.2 1.7-1.7a2 2 0 0 0 0-2.8l-4.6-4.6a2 2 0 0 0-2.8 0zM3.5 11.3l4.8-4.8 2 .1-2 2a3 3 0 0 0 4.2 4.2l1.3-1.3 4.6 4.6-3.8 3.8a1.5 1.5 0 0 1-2.1 0L3.5 13.4a1.5 1.5 0 0 1 0-2.1z"/></svg>
+      <h3>Keep Our Time Commitment</h3>
+    </div>
+    <div class="card num"><span class="n">1</span><p>We always show up when we say we will</p></div>
+
+    <div class="card">
+      <svg viewBox="0 0 24 24"><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V9h5.5L13 3.5zM8 13v1.5h8V13H8zm0 3v1.5h8V16H8z"/></svg>
+      <h3>Same Day Quotes</h3>
+    </div>
+    <div class="card num"><span class="n">2</span><p>We provide same day written quotes</p></div>
+
+    <div class="card">
+      <svg viewBox="0 0 24 24"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.4 1.3 4.5 3.4 6L4 21l4.6-2.4c1.1.3 2.2.4 3.4.4 5.5 0 10-3.6 10-8s-4.5-8-10-8z"/></svg>
+      <h3>Transparent Communication</h3>
+    </div>
+    <div class="card num"><span class="n">3</span><p>We give you daily project updates</p></div>
+
+    <div class="card">
+      <svg viewBox="0 0 24 24"><path d="M12 1l2.4 1.8 3-.1.9 2.9 2.4 1.8-1 2.8 1 2.8-2.4 1.8-.9 2.9-3-.1L12 18.6l-2.4-1.8-3 .1-.9-2.9-2.4-1.8 1-2.8-1-2.8L5.7 4.8l.9-2.9 3 .1L12 1zm0 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM8 18.5l-1.5 4.5 2.5-1 1.5 2 1.2-3.6zM16 18.5l1.5 4.5-2.5-1-1.5 2-1.2-3.6z"/></svg>
+      <h3>All Jobs Are Inspected</h3>
+    </div>
+    <div class="card num"><span class="n">4</span><p>Every job gets an initial &amp; final inspection</p></div>
+
+    <div class="card">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5v5.2l3.6 2.1-.8 1.3L11 13V7h2z"/></svg>
+      <h3>Same Day Response</h3>
+    </div>
+    <div class="card num"><span class="n">5</span><p>Same day response when you reach out to us</p></div>
+
+    <div class="card">
+      <svg viewBox="0 0 24 24"><path d="M4 2h16v9a2 2 0 0 1-2 2h-4v3a2 2 0 0 1-4 0v-3H6a2 2 0 0 1-2-2V2zm3 0v4h2V2H7zm4 0v4h2V2h-2zm4 0v4h2V2h-2zM10 16v5a2 2 0 0 0 4 0v-5h-4z"/></svg>
+      <h3>Long-Lasting Results</h3>
+    </div>
+    <div class="card num"><span class="n">6</span><p>Every customer gets a free touch-up kit</p></div>
+  </div>
+  <div class="center" style="padding-bottom:36px"><a href="#services" class="btn btn-blue">Learn About Our Services</a></div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule" id="book">
+  <h2>Schedule Your<br>Estimate Now!</h2>
+  <p>Schedule your <b>free</b> in-home quote now,<br>in <b>three minutes or less!</b></p>
+  <svg class="house" viewBox="0 0 340 190" aria-label="House illustration placeholder">
+    <rect x="40" y="80" width="200" height="90" fill="#d9d9d9" stroke="#777"/>
+    <polygon points="30,85 140,25 250,85" fill="#8a8a8a"/>
+    <rect x="200" y="100" width="100" height="70" fill="#cfcfcf" stroke="#777"/>
+    <polygon points="190,105 250,65 310,105" fill="#9a9a9a"/>
+    <g fill="#fff" stroke="#666"><rect x="60" y="100" width="30" height="26"/><rect x="105" y="100" width="30" height="26"/><rect x="150" y="100" width="30" height="26"/><rect x="225" y="120" width="26" height="22"/></g>
+    <rect x="125" y="135" width="24" height="35" fill="#6b6b6b"/>
+    <rect x="150" y="140" width="140" height="34" rx="6" fill="#c8102e"/>
+    <rect x="250" y="128" width="40" height="22" rx="4" fill="#c8102e"/>
+    <circle cx="180" cy="176" r="11" fill="#333"/><circle cx="265" cy="176" r="11" fill="#333"/>
+  </svg>
+  <a href="tel:5555550100" class="btn btn-red">Book Free Estimate</a>
+</section>
+
+<!-- BEST SERVICES -->
+<section class="best">
+  <div class="wrap">
+    <h2>Best Home Services in Your Region</h2>
+    <p>Write a short overview here: years in business, the size of your team, and the area you cover. Two or three sentences is plenty.</p>
+    <ul>
+      <li>Reliable contractors: Describe how you <b>pay attention to detail</b> and aim for <b>guaranteed satisfaction</b>, and mention licensing and insurance.</li>
+      <li>Complete solutions: List the range of work you handle — residential, commercial, interior, exterior.</li>
+      <li>Free estimates: Explain your pricing approach so customers know what to expect with no surprise fees.</li>
+    </ul>
+    <p class="q">What types of services do you offer? See below for a list of services and learn more about how we can help with your next project!</p>
+  </div>
+</section>
+
+<!-- SERVICE TILES -->
+<section class="wrap" id="services">
+  <div class="services">
+    <a href="#" class="tile red tex1"><span>Exterior Painting</span></a>
+    <a href="#" class="tile tex2"><span>Interior Painting</span></a>
+    <a href="#" class="tile tex3"><span>Commercial Painting</span></a>
+    <a href="#" class="tile red tex4"><span>Cabinet Painting</span></a>
+    <a href="#" class="tile tex5"><span>Window Washing</span></a>
+    <a href="#" class="tile red tex6"><span>Epoxy Flooring</span></a>
+  </div>
+  <a href="#book" class="ready">Ready to Schedule Your Quote?</a>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="trust center">
+  <div class="wrap">
+    <h2>Why Trust Us?</h2>
+    <h3>Customer Testimonials</h3>
+    <div class="rating">
+      <div class="logo-ph" title="Your logo"></div>
+      <div><b>Excellent</b><small>Your Company</small><span class="stars">4.8 ★★★★★</span><small>Based on 000 reviews</small></div>
+    </div>
+    <div class="pill-row"><a class="pill" href="#">See all reviews</a><a class="pill" href="#">Leave a review</a></div>
+
+    <div class="carousel">
+      <button class="arrow prev" aria-label="Previous">‹</button>
+      <div class="review active">
+        <span class="stars">★★★★★</span>
+        <div class="who"><div class="avatar">A</div><div><b>Customer Name</b><small>2 days ago</small></div></div>
+        <p>Paste a real customer review here. Short, specific reviews about timing, quality and communication work best.</p>
+      </div>
+      <div class="review">
+        <span class="stars">★★★★★</span>
+        <div class="who"><div class="avatar" style="background:#2b8a3e">B</div><div><b>Customer Name</b><small>3 days ago</small></div></div>
+        <p>Second review placeholder. Mention the crew, the job, and how the finished result turned out.</p>
+      </div>
+      <div class="review">
+        <span class="stars">★★★★★</span>
+        <div class="who"><div class="avatar" style="background:#5f3dc4">C</div><div><b>Customer Name</b><small>1 week ago</small></div></div>
+        <p>Third review placeholder. Add as many slides as you like — the dots update automatically.</p>
+      </div>
+      <button class="arrow next" aria-label="Next">›</button>
+    </div>
+    <div class="dots"></div>
+    <a href="#" class="btn btn-red">View More Testimonials</a>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section class="careers center">
+  <div class="wrap">
+    <h2>Why Work With Us?</h2>
+    <p>Describe your team culture and what you offer staff — pay, benefits, training — and invite people to apply.</p>
+    <a href="#" class="btn btn-black">View Job Openings</a>
+    <div class="photo"><div class="ph">Team photo placeholder</div></div>
+    <p>Close with a short paragraph about your commitment to quality craftsmanship and customer satisfaction.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="social">
+    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8V6.5c0-.8.2-1.2 1.4-1.2H17V2h-2.6C11.3 2 10 3.6 10 6.2V8H8v3.2h2V22h4V11.2h2.8L17 8h-3z"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.5 5.3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg></a>
+    <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM2.2 8.5h3.6V21H2.2zM9 8.5h3.4v1.7c.5-.9 1.7-2 3.6-2 3.8 0 4.5 2.5 4.5 5.7V21h-3.6v-6.2c0-1.5 0-3.3-2-3.3s-2.3 1.6-2.3 3.2V21H9z"/></svg></a>
+    <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12c0 1.3.1 2.6.4 3.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.3-1.2.4-2.5.4-3.8s-.1-2.6-.4-3.8zM10 15.2V8.8l5.2 3.2-5.2 3.2z"/></svg></a>
+  </div>
+  <h4>Locations</h4>
+  <div class="locs">
+    <div class="loc"><h5>Location One</h5><p>123 Main St,<br>City, ST 00000</p><a href="tel:5555550100">(555) 555-0100</a></div>
+    <div class="loc"><h5>Location Two</h5><p>456 Oak Ave, Suite 100,<br>City, ST 00000</p><a href="tel:5555550101">(555) 555-0101</a></div>
+    <div class="loc"><h5>Location Three</h5><p>789 Pine Rd, Suite 200,<br>City, ST 00000</p><a href="tel:5555550102">(555) 555-0102</a></div>
+  </div>
+  <p class="copy">© 2026 Your Company. All rights reserved.</p>
+</footer>
+
+<!-- DRAWER MENU -->
+<div class="drawer" id="drawer">
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#book">Free Estimate</a>
+    <a href="#">Reviews</a>
+    <a href="#">Careers</a>
+    <a href="#">Contact</a>
+  </nav>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <a href="#home"><svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v9h5v-6h4v6h5v-9h3z"/></svg>Home</a>
+  <a href="#book"><svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3V2zM5 9v10h14V9H5zm2 2h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm-8 4h2v2H7v-2zm4 0h2v2h-2v-2z"/></svg>Book</a>
+  <a href="tel:5555550100"><svg viewBox="0 0 24 24"><path d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm2 .5V7l8 5 8-5V5.5l-8 5-8-5z"/></svg>Call</a>
+  <button class="menu-btn" id="menuBtn" aria-label="Menu"><span><svg viewBox="0 0 24 24" style="width:20px;height:20px;opacity:.7"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg></span></button>
+</div>
+
+<script>
+  // Drawer
+  const drawer = document.getElementById('drawer');
+  document.getElementById('menuBtn').addEventListener('click', () => drawer.classList.toggle('open'));
+  drawer.addEventListener('click', e => { if (e.target === drawer || e.target.tagName === 'A') drawer.classList.remove('open'); });
+
+  // Testimonial carousel
+  const slides = [...document.querySelectorAll('.review')];
+  const dotsWrap = document.querySelector('.dots');
+  let i = 0;
+  slides.forEach((_, n) => {
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', 'Review ' + (n + 1));
+    b.onclick = () => show(n);
+    dotsWrap.appendChild(b);
+  });
+  function show(n){
+    i = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    [...dotsWrap.children].forEach((d, k) => d.classList.toggle('on', k === i));
+  }
+  document.querySelector('.prev').onclick = () => show(i - 1);
+  document.querySelector('.next').onclick = () => show(i + 1);
+  setInterval(() => show(i + 1), 6000);
+  show(0);
+</script>
+</body>
+</html>

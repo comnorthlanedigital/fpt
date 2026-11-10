@@ -1,0 +1,84 @@
+import base64,pathlib,io,json
+from PIL import Image
+B=pathlib.Path(__file__).resolve().parent.parent;R=B/'v3'
+def b64(n,w=None,q=74):
+    if w:
+        im=Image.open(R/'img'/n).convert('RGB');im.thumbnail((w,w*2));bf=io.BytesIO();im.save(bf,'JPEG',quality=q);d=bf.getvalue()
+    else: d=(R/'img'/n).read_bytes()
+    return 'data:image/jpeg;base64,'+base64.b64encode(d).decode()
+fonts=(R/'fonts/home.css').read_text()
+call='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>'
+sms='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>'
+JOBS=[('Bathroom','Interior','bath'),('Exterior repaint','Gilbert','home'),('Cabinet refinish','Queen Creek','kitchen'),('Front door stain','Wood refinish','door'),('Garage doors','Exterior','gdoor'),('Restaurant exterior','Commercial, Gilbert','tl')]
+reel=''.join(f'<li><button class="rc" type="button" data-b="false" aria-label="{t}, {p}. Tap to switch between the finished job and before"><img class="a" src="{b64(k+"-after.jpg",900)}" alt="{t} finished by JB\'S Pro Painters" {"loading=lazy" if i else ""}><img class="b" src="{b64(k+"-before.jpg",900)}" alt="{t} before painting" loading="lazy"><span class="tag"><b>Fresh coat</b>{t} &middot; {p}</span><span class="hint">Tap for before</span></button></li>' for i,(t,p,k) in enumerate(JOBS))
+types=['Interior painting','Exterior painting','Cabinet refinishing','Doors and wood stain','Commercial','Not sure yet']
+chips=''.join(f'<label class="chip"><input type="radio" name="job" value="{t}" {"required" if i==0 else ""}><span>{t}</span></label>' for i,t in enumerate(types))
+FAQ=[('Do you paint homes and businesses?','Both. We paint houses, restaurants, warehouses and shops, inside and out.'),('What can you paint?','Exteriors, interiors, kitchen cabinets, doors and wood stain, accent walls, and commercial repaints.'),('Who will I deal with?','The business is owner-operated by Jonathan Bernal, so you talk with the owner.'),('How much does it cost?','Every job is different, so we give a free estimate. Call, text or use the form above.')]
+faq=''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in FAQ)
+CH=[('Interior','Walls, ceilings, doors and trim, from soft neutrals to bold color. Accent walls and details taped and cut sharp.'),('Exterior','Stucco, trim and garage doors with crisp lines and clean finishes.'),('Cabinets and wood','Kitchen cabinets refinished and weathered wood brought back to a rich, even color.'),('Commercial','Restaurants, warehouses and shops, planned around your space.')]
+chap=''.join(f'<li><span>{i+1:02d}</span><h3>{t}</h3><p>{d}</p></li>' for i,(t,d) in enumerate(CH))
+css='''
+@@FONTS@@
+:root{--bg:#050a1c;--bg2:#0a1433;--bg3:#0e1b46;--ink:#e8ecf7;--mute:#a9b5d2;--line:#ffffff26;--blue:#2459e6;--blue2:#7da3ff;--silver:#d5dcea;--navy:#0a1433}
+*{box-sizing:border-box;margin:0}html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--bg);color:var(--ink);font:400 18px/1.65 'Onest',system-ui,sans-serif;overflow-x:clip;padding-bottom:84px;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit}:focus-visible{outline:3px solid var(--blue2);outline-offset:3px}
+h1,h2,h3{font-family:'Gilda Display',Georgia,serif;font-weight:400;line-height:1.06;text-wrap:balance}
+.w{width:min(1240px,100% - 40px);margin-inline:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border-radius:99px;background:var(--blue);color:#fff;font-weight:650;font-size:17px;text-decoration:none;border:1.5px solid var(--blue);cursor:pointer;transition:background .2s,transform .2s}.btn:hover{background:#1c47c0;transform:translateY(-2px)}.btn svg{width:20px;height:20px}.btn:disabled{opacity:.6;cursor:progress}
+.btn--g{background:none;border-color:#ffffff66;color:#fff}.btn--g:hover{background:#fff;color:var(--bg2)}
+header{position:sticky;top:0;z-index:50;background:#050a1cf2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}header .w{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;letter-spacing:.14em;font-size:14px}.brand img{border-radius:10px}header .btn{min-height:44px;padding:0 20px;font-size:15px}@media(max-width:600px){.hn,.brand span{display:none}}
+.eyebrow{font:600 13px 'Onest';letter-spacing:.16em;text-transform:uppercase;color:var(--blue2);margin-bottom:16px}
+.hero{padding:clamp(34px,5vw,70px) 0 0}.hero h1{font-size:clamp(42px,6.6vw,96px);max-width:15ch;letter-spacing:-.015em}.hero h1 em{font-style:normal;color:var(--blue2)}.lead{margin-top:18px;font-size:clamp(18px,1.6vw,21px);color:#dbe2f3;max-width:42ch}
+.reel{list-style:none;padding:0 max(20px,calc((100% - 1240px)/2));margin:34px 0 0;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(20px,calc((100% - 1240px)/2));-webkit-overflow-scrolling:touch;scrollbar-width:none}.reel::-webkit-scrollbar{display:none}
+.reel li{flex:0 0 min(78vw,420px);scroll-snap-align:start}.rc{position:relative;display:block;width:100%;aspect-ratio:4/5;border:0;padding:0;border-radius:22px;overflow:hidden;cursor:pointer;background:var(--bg3);box-shadow:0 0 0 1px #ffffff2e}
+.rc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s}.rc .b{opacity:0}.rc[data-b=true] .b{opacity:1}.rc[data-b=true] .a{opacity:0}
+.tag{position:absolute;left:12px;top:12px;max-width:calc(100% - 24px);background:#050a1ce6;border:1px solid var(--line);border-radius:10px;padding:8px 12px;text-align:left;display:grid;font-size:13px;color:#cfd8ee}.tag b{font:700 16px 'Onest';color:#fff}
+.hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);background:#050a1cf5;border:1px solid #ffffff40;border-radius:99px;padding:9px 18px;font:600 14px 'Onest';white-space:nowrap;color:#fff}
+.swipe{margin-top:10px;color:var(--mute);font-size:14px}
+.est{margin-top:clamp(40px,6vw,80px);background:var(--silver);color:var(--navy);padding:clamp(34px,5vw,64px) 0}.est .w{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(26px,5vw,70px);align-items:start}.est h2{font-size:clamp(32px,4.4vw,58px)}.est p.s{margin-top:14px;color:#3b4a6b}.est .ph{display:inline-block;margin-top:18px;font:400 clamp(28px,3.4vw,42px) 'Gilda Display',serif;text-decoration:none}
+.est .eyebrow{color:#1c47c0}
+.step{display:none}.step.on{display:block}.stepno{font:650 13px 'Onest';letter-spacing:.12em;text-transform:uppercase;color:#3b4a6b;margin-bottom:12px}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:10px}.chip{position:relative}.chip input{position:absolute;opacity:0;inset:0;cursor:pointer}.chip span{display:flex;align-items:center;min-height:56px;padding:0 16px;border:1.5px solid #9fb0d4;border-radius:14px;background:#fff;font-weight:600;transition:background .2s,border-color .2s,color .2s}.chip input:checked+span{background:var(--navy);border-color:var(--navy);color:#fff}.chip input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+.fld{display:grid;gap:7px;margin-bottom:14px;font:650 13px 'Onest';letter-spacing:.08em;text-transform:uppercase}.fld input{font:400 17px 'Onest';letter-spacing:0;text-transform:none;min-height:54px;border-radius:12px;border:1.5px solid #9fb0d4;background:#fff;color:var(--navy);padding:0 14px;width:100%}
+.row{display:flex;gap:10px;margin-top:16px}.est .btn--g{color:var(--navy);border-color:#9fb0d4}.est .btn--g:hover{background:var(--navy);color:#fff}.hp{position:absolute;left:-9999px}#ok{margin-top:12px;font-weight:650;min-height:1.4em}
+.sec{padding:clamp(72px,9vw,128px) 0}.sec h2{font-size:clamp(34px,5vw,68px);max-width:16ch}.sub{margin-top:16px;color:var(--mute);max-width:46ch;font-size:19px}
+.chap{list-style:none;padding:0;margin:44px 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:0 28px}.chap li{border-top:1px solid var(--line);padding:24px 0}.chap span{font:600 13px 'Onest';letter-spacing:.14em;color:var(--blue2)}.chap h3{font-size:30px;margin:10px 0 8px}.chap p{color:var(--mute);font-size:17px;line-height:1.6}
+.two{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,90px);align-items:start}
+.own{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:1/1.05;background:var(--bg3);box-shadow:0 0 0 1px #ffffff26}.own img{width:100%;height:100%;object-fit:cover;object-position:22% 40%}.own div{position:absolute;left:12px;right:12px;bottom:12px;background:#050a1cf0;border-radius:12px;padding:10px 14px;display:grid;font-size:14px;color:#cfd8ee}.own b{font:700 18px 'Onest';color:#fff}
+blockquote{margin-top:22px;padding-left:18px;border-left:2px solid var(--blue2);font:400 clamp(20px,2vw,26px)/1.35 'Gilda Display',serif;color:#f2f5fc}blockquote small{display:block;margin-top:8px;font:500 14px 'Onest';color:var(--mute)}
+.pts{list-style:none;padding:0;margin:26px 0 0}.pts li{padding:16px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:34px 1fr;gap:4px 12px}.pts li::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--blue2);margin-top:9px;grid-row:span 2}.pts b{font:650 19px 'Onest'}.pts span{color:var(--mute);font-size:17px}
+.areas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.areas span{padding:10px 18px;border:1px solid #ffffff40;border-radius:99px;font-weight:550}
+details{border-top:1px solid var(--line)}details:last-child{border-bottom:1px solid var(--line)}summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;cursor:pointer;font:600 19px 'Onest'}summary::-webkit-details-marker{display:none}summary::after{content:"+";font-size:26px;color:var(--blue2);transition:transform .25s}details[open] summary::after{transform:rotate(45deg)}details p{padding:0 0 22px;color:var(--mute);max-width:58ch}
+footer{padding:34px 0 40px;color:var(--mute);font-size:14px}footer .w{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}footer a{font-weight:600}
+.bar{display:none}
+@media(max-width:1000px){.est .w,.two{grid-template-columns:1fr}.chap{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){body{font-size:17px}.chap{grid-template-columns:1fr}.chips{grid-template-columns:1fr}.hero h1{font-size:clamp(40px,12vw,56px)}.bar{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:6px;position:fixed;z-index:60;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));background:#050a1cf5;border:1px solid var(--line);border-radius:99px;padding:6px}.bar a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:99px;font-weight:700;font-size:15px;text-decoration:none}.bar a:last-child{background:var(--blue)}.bar svg{width:19px;height:19px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+'''.replace('@@FONTS@@',fonts)
+owner=b64('owner-new.jpg')
+html=f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JB'S Pro Painters LLC | Painters in Gilbert, Mesa and the East Valley, AZ</title><meta name="description" content="Owner-operated interior and exterior painters in Gilbert, Mesa, Chandler, Tempe, Scottsdale and Queen Creek, AZ. Licensed and insured. Free estimates."><style>{css}</style></head><body>
+<form name="quote" data-netlify="true" netlify-honeypot="bot" hidden><input name="form-name"><input name="job"><input name="name"><input name="phone"><input name="bot"></form>
+<header><div class="w"><a class="brand" href="#"><img src="{b64('logo-sq.jpg')}" width="44" height="44" alt="JB'S Pro Painters LLC logo"><span>JB'S PRO PAINTERS</span></a><a class="btn" href="tel:+16024730415">{call}Call<span class="hn">&nbsp;(602) 473-0415</span></a></div></header>
+<main>
+<section class="hero"><div class="w"><p class="eyebrow">Licensed &middot; Insured &middot; Owner-operated</p><h1>See the finish <em>before you call.</em></h1><p class="lead">Real projects from across the East Valley. Tap any photo to compare it with the before.</p></div>
+<ul class="reel" aria-label="Project photos">{reel}</ul><p class="w swipe">Swipe for more projects &rarr;</p></section>
+<section class="est" id="estimate"><div class="w"><div><p class="eyebrow">Free estimate</p><h2>Two quick steps.</h2><p class="s">Tell us what you are painting, then where to reach you. Jonathan will get back to you.</p><a class="ph" href="tel:+16024730415">(602) 473-0415</a></div>
+<form id="f" name="quote" method="POST" data-netlify="true" netlify-honeypot="bot"><input type="hidden" name="form-name" value="quote"><label class="hp">Leave empty<input name="bot" tabindex="-1" autocomplete="off"></label>
+<div class="step on" data-s="1"><p class="stepno">Step 1 of 2</p><fieldset style="border:0;padding:0;margin:0"><legend class="sr" style="position:absolute;left:-9999px">What are we painting?</legend><div class="chips">{chips}</div></fieldset><div class="row"><button class="btn" type="button" id="next">Next</button></div></div>
+<div class="step" data-s="2"><p class="stepno">Step 2 of 2</p><label class="fld">Name<input name="name" required autocomplete="name"></label><label class="fld">Phone<input name="phone" type="tel" required autocomplete="tel"></label><div class="row"><button class="btn btn--g" type="button" id="back">Back</button><button class="btn" type="submit">Request my free estimate</button></div><p id="ok" role="status"></p></div></form></div></section>
+<section class="sec"><div class="w"><p class="eyebrow">What we paint</p><h2>Inside, outside and everything between.</h2><ol class="chap">{chap}</ol></div></section>
+<section class="sec" style="background:var(--bg2)" id="about"><div class="w two"><div><div class="own"><img src="{owner}" alt="Jonathan Bernal, owner of JB'S Pro Painters LLC" loading="lazy"><div><b>Jonathan Bernal</b>Owner, JB'S Pro Painters LLC</div></div></div>
+<div><p class="eyebrow">Why JB'S</p><h2>The details we take care of.</h2><ul class="pts"><li><b>Prep first</b><span>Surfaces are cleaned, patched and protected before paint goes on.</span></li><li><b>Your space, protected</b><span>Floors, furniture and fixtures are covered and the job stays tidy.</span></li><li><b>Straight answers</b><span>You talk to the owner from the free estimate to the last coat.</span></li><li><b>Done right</b><span>Quality, precision and perfection on every wall.</span></li></ul><blockquote>&ldquo;JB&rsquo;S Pro Painters LLC did an outstanding job painting the exterior…&rdquo;<small>Kenneth R., Facebook review (excerpt)</small></blockquote></div></div></section>
+<section class="sec"><div class="w two"><div><p class="eyebrow">Service area</p><h2>Serving the East Valley.</h2><div class="areas"><span>Gilbert</span><span>Mesa</span><span>Chandler</span><span>Tempe</span><span>Scottsdale</span><span>Queen Creek</span></div></div><div>{faq}</div></div></section>
+</main>
+<footer><div class="w"><span>&copy; JB'S Pro Painters LLC &middot; jbspropainters@gmail.com</span><a href="https://www.facebook.com/profile.php?id=61584288311213">Facebook</a></div></footer>
+<nav class="bar" aria-label="Quick actions"><a href="tel:+16024730415">{call}Call</a><a href="sms:+16024730415">{sms}Text</a><a href="#estimate">Free estimate</a></nav>
+<script>
+document.querySelectorAll('.rc').forEach(c=>c.addEventListener('click',()=>{{const v=c.dataset.b!=='true';c.dataset.b=v;c.querySelector('.tag b').textContent=v?'Before':'Fresh coat';c.querySelector('.hint').textContent=v?'Tap for finish':'Tap for before'}}));
+const f=document.getElementById('f'),ok=document.getElementById('ok'),go=n=>f.querySelectorAll('.step').forEach(s=>s.classList.toggle('on',s.dataset.s==n));
+document.getElementById('next').onclick=()=>{{if(!f.job.value){{f.querySelector('.chip input').reportValidity();return}}go(2);f.name.focus()}};document.getElementById('back').onclick=()=>go(1);
+f.addEventListener('submit',async e=>{{e.preventDefault();if(f.bot.value)return;const s=f.querySelector('button[type=submit]');s.disabled=true;try{{const r=await fetch('/',{{method:'POST',headers:{{'Content-Type':'application/x-www-form-urlencoded'}},body:new URLSearchParams(new FormData(f)).toString()}});if(!r.ok)throw 0;ok.textContent='Thanks! Jonathan will be in touch soon.';f.reset()}}catch(_){{ok.textContent='Could not send. Please call (602) 473-0415.'}}s.disabled=false}});
+</script></body></html>'''
+out=B/'preview/JBS-new-2-reel.html';out.write_text(html);print(out.stat().st_size//1024,'KB')
